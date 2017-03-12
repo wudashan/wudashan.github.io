@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wudashan Blog</title>
-    <description>Java开发工程师，在华为，做物联网方向</description>
+    <description>一枚程序猿。</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 12 Mar 2017 16:20:11 +0800</pubDate>
-    <lastBuildDate>Sun, 12 Mar 2017 16:20:11 +0800</lastBuildDate>
+    <pubDate>Sun, 12 Mar 2017 16:30:20 +0800</pubDate>
+    <lastBuildDate>Sun, 12 Mar 2017 16:30:20 +0800</lastBuildDate>
     <generator>Jekyll v3.4.2</generator>
     
   </channel>
