@@ -71,7 +71,7 @@ ga_domain: auto
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "不要着急，问题不大。"
-sidebar-avatar: /img/wudashan.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/wudashan.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
