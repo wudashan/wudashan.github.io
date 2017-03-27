@@ -138,7 +138,7 @@ public class Invoker {
 public class Client {
 
     public static void main(String[] args) {
-    	
+
         // 创建接收者
         Receiver receiver = new Receiver();
 
@@ -159,7 +159,9 @@ public class Client {
 ---
 
 ## 总结
+在华为，我们的IoT平台非常的庞大，手动安装一个单节点的环境大概需要1个小时，而安装完成后再配置环境大概还需要1个小时。为了节省花费在安装和配置环境的时间，花了半天的时间写了一个Java程序实现自动化。刚开始就是完全面向过程地写代码，写完之后非常的丑陋，后来用命令模式重构代码之后，命令分为：**UninstallCommand.java（卸载环境）、InstallCommand.java（安装环境）、SettingCommand.java（配置环境）**，代码美得不要不要的。
 
+当然，命令模式不仅仅解耦了调用方，它还可以实现对已命令的撤销，或者将命令加入队列中，挨个执行，并且还可以添加新的命令到系统中，简直美滋滋！
 
 ---
 
