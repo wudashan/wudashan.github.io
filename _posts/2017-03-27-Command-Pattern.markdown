@@ -143,7 +143,7 @@ public class Client {
         Receiver receiver = new Receiver();
 
         // 创建命令对象，设定它的接收者
-        Command command = new ConcreteCommand();
+        Command command = new ConcreteCommand(receiver);
 
         // 创建请求者，把命令对象设置进去
         Invoker invoker = new Invoker(command);
