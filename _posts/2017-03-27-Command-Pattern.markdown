@@ -51,10 +51,106 @@ tags:
 ## 代码示例
 
 #### Receiver.java
+
+```
+/**
+ * 命令接收类
+ */
+public class Receiver {
+
+    /**
+     * 执行相应的动作
+     */
+    public void doAction() {
+
+    }
+
+}
+```
+
 #### Command.java
-#### ComcreteCommand.java
+
+```
+/**
+ * 抽象命令
+ */
+public interface Command {
+
+    /**
+     * 执行命令
+     */
+    void execute();
+    
+}
+```
+
+#### ConcreteCommand.java
+
+```
+/**
+ * 具体的命令
+ */
+public class ConcreteCommand implements Command {
+    
+    private Receiver receiver;
+
+    public ConcreteCommand(Receiver receiver) {
+        this.receiver = receiver;
+    }
+
+    @Override
+    public void execute() {
+        // 调用真正的接收者来执行命令
+        receiver.doAction();
+    }
+}
+```
+
 #### Invoker.java
+
+```
+/**
+ * 调用者
+ */
+public class Invoker {
+
+    private Command command;
+
+    public Invoker(Command command) {
+        this.command = command;
+    }
+
+    /**
+     * 调用方法
+     */
+    public void invoke() {
+        command.execute();
+    }
+}
+```
+
 #### Client.java
+
+```
+/**
+ * 客户端
+ */
+public class Client {
+
+    public static void main(String[] args) {
+        //创建接收者
+        Receiver receiver = new Receiver();
+        //创建命令对象，设定它的接收者
+        Command command = new ConcreteCommand();
+        //创建请求者，把命令对象设置进去
+        Invoker invoker = new Invoker(command);
+        //执行方法
+        invoker.invoke();
+    }
+
+}
+```
+
 
 ---
 
