@@ -151,7 +151,7 @@ public class Main {
 
     public static void main(String[] args) {
         
-         Context context = new Context();
+        Context context = new Context();
          
         // 使用策略A
         context.setStrategy(new ConcreteStrategyA());
