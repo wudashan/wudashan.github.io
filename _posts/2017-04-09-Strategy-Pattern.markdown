@@ -20,8 +20,9 @@ tags:
 
 ---
 
+<span id="motivation"></span>
 ## 动机
-不知道大家在做功能开发的时候有没有遇到这种情况：用户网上支付的选择可以有三种，支付宝、微信、网银。
+不知道大家在做功能开发的时候有没有遇到下面类似的这种情况：用户网上支付的选择可以有三种，支付宝、微信、网银。
 
 具体的方法实现可能如下：
 ```
@@ -131,10 +132,6 @@ public class Context {
 
     private Strategy strategy;
 
-    public Context(Strategy strategy) {
-        this.strategy = strategy;
-    }
-
     public void setStrategy(Strategy strategy) {
         this.strategy = strategy;
     }
@@ -154,8 +151,10 @@ public class Main {
 
     public static void main(String[] args) {
         
+         Context context = new Context();
+         
         // 使用策略A
-        Context context = new Context(new ConcreteStrategyA());
+        context.setStrategy(new ConcreteStrategyA());
         context.algorithm();
         
         // 使用策略B
@@ -169,6 +168,55 @@ public class Main {
 ---
 
 ## 总结
+我们将行为、算法封装到了一个类里面，这就使得我们的程序得到了扩展。当有新的行为和算法需要加入到主程序时，我们只需编写新的类，并在程序运行时动态设置即可。可以发现，策略模式非常符合“开闭原则”——对扩展开放，对修改关闭。我们可以扩展出新的行为和算法，但是我们却不能修改整个程序。
 
+最后，策略模式也是优化if语句的绝佳选择。现在，我们就可以优化[动机](#motivation)一节中的代码：
+```
+public boolean pay(Pay payment, int money) {
+    if (payment == Pay.ALIPAY) {
+    
+        // 使用阿里支付策略
+        new AlipayStrategy().pay();
+        
+    } else if (payment == Pay.WECHAT) {
+    
+        // 使用微信支付策略
+        new WechatStrategy().pay();
+        
+    } else if (payment == Pay.BANK) {
+    
+        // 使用网银支付策略
+        new BankStrategy().pay();
+    
+    } else {
+        throw new IllegalArgumentException();
+    }
+}
+```
+心细的同学可以马上发现上述方法会有一个问题，那就是当pay()方法被频繁调用时，将会创建多个Strategy对象。并且还是有很多if语句，看着也感觉没优化多少。那么，接下来就是见证奇迹的时刻，看我如何同时解决上述问题：
+```
+public class PaySystem {
+
+    // 增加Pay和Strategy的关系映射来替代if
+    private static Map<Pay, Strategy> map = new HashMap<>();
+    
+    // 静态初始化对应的关系
+    static {
+        map.put(Pay.ALIPAY, new AlipayStrategy());
+        map.put(Pay.WECHAT, new WechatStrategy());
+        map.put(Pay.BANK, new BankStrategy());
+    }
+    
+    // 被改造后的方法
+    public boolean pay(Pay payment, int money) {
+        Strategy strategy = map.get(payment);
+        if (strategy == null) {
+            throw new IllegalArgumentException();
+        }
+        strategy.pay();
+    }
+    
+}
+```
 
 ---
