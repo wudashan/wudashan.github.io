@@ -76,12 +76,95 @@ public boolean pay(Pay payment, int money) {
 ---
 
 ## 类图
+![](http://o7x0ygc3f.bkt.clouddn.com/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F.png)
 
 ---
 
 ## 代码示例
 
+#### Strategy.java
+```
+/**
+ * 策略接口，提供算法
+ */
+public interface Strategy {
 
+    void algorithm();
+
+}
+```
+#### ConcreteStrategyA.java
+```
+/**
+ * 具体的策略A
+ */
+public class ConcreteStrategyA implements Strategy {
+
+    @Override
+    public void algorithm() {
+        // do something
+    }
+    
+}
+```
+
+#### ConcreteStrategyB.java
+```
+/**
+ * 具体的策略B
+ */
+public class ConcreteStrategyB implements Strategy {
+    
+    @Override
+    public void algorithm() {
+        // do something
+    }
+    
+}
+```
+#### Context.java
+```
+/**
+ * 环境上下文
+ */
+public class Context {
+
+    private Strategy strategy;
+
+    public Context(Strategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void setStrategy(Strategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void algorithm() {
+        strategy.algorithm();
+    }
+
+}
+```
+#### Main.java
+```
+/**
+ * 主程序
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        
+        // 使用策略A
+        Context context = new Context(new ConcreteStrategyA());
+        context.algorithm();
+        
+        // 使用策略B
+        context.setStrategy(new ConcreteStrategyB());
+        context.algorithm();
+    }
+    
+}
+```
 
 ---
 
@@ -89,4 +172,3 @@ public boolean pay(Pay payment, int money) {
 
 
 ---
-
