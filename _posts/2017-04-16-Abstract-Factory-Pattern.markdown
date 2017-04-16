@@ -101,6 +101,97 @@ public interface AbstractFactory {
 }
 ```
 
+#### ConcreteFactoryOne.java
+```
+/**
+ * 具体的工厂One
+ */
+public class ConcreteFactoryOne implements AbstractFactory {
+    @Override
+    public ProductA createProductA() {
+        return new ProductA() {
+            @Override
+            public void getProperty() {
+                // do something
+            }
+        };
+    }
+
+    @Override
+    public ProductB createProductB() {
+        return new ProductB() {
+            @Override
+            public void getProperty() {
+                // do something
+            }
+        };
+    }
+}
+```
+
+#### ConcreteFactoryTwo.java
+```
+/**
+ * 具体的工厂Two
+ */
+public class ConcreteFactoryTwo implements AbstractFactory {
+    @Override
+    public ProductA createProductA() {
+        return new ProductA() {
+            @Override
+            public void getProperty() {
+                // do something
+            }
+        };
+    }
+
+    @Override
+    public ProductB createProductB() {
+        return new ProductB() {
+            @Override
+            public void getProperty() {
+                // do something
+            }
+        };
+    }
+}
+```
+
+#### Client.java
+```
+/**
+ * 客户端
+ */
+public class Client {
+
+    public static void main(String[] args) {
+
+        // 声明一个抽象工厂
+        AbstractFactory abstractFactory;
+
+        // 使用具体工厂One
+        abstractFactory = new ConcreteFactoryOne();
+
+        // 使用工厂One创建一系列产品并获取属性
+        ProductA productA1 = abstractFactory.createProductA();
+        ProductB productB1 = abstractFactory.createProductB();
+        productA1.getProperty();
+        productB1.getProperty();
+
+        // 切换使用具体工厂Two
+        abstractFactory = new ConcreteFactoryTwo();
+
+        // 使用工厂Two创建一系列产品并获取属性
+        ProductA productA2 = abstractFactory.createProductA();
+        ProductB productB2 = abstractFactory.createProductB();
+        productA2.getProperty();
+        productB2.getProperty();
+
+    }
+
+}
+```
+
 
 
 ---
