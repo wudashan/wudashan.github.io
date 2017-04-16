@@ -45,11 +45,61 @@ tags:
 ---
 
 ## 类图
-![](http://o7x0ygc3f.bkt.clouddn.com/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png)
+![](http://o7x0ygc3f.bkt.clouddn.com/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F_01.png)
 
 ---
 
 ## 代码示例
+
+#### ProductA.java
+```
+/**
+ * 抽象的产品A
+ */
+public abstract class ProductA {
+
+    /**
+     * 获取产品的属性
+     */
+    public abstract void getProperty();
+
+}
+```
+
+#### ProductB.java
+```
+/**
+ * 抽象的产品B
+ */
+public abstract class ProductB {
+
+    /**
+     * 获取产品的属性
+     */
+    public abstract void getProperty();
+    
+}
+```
+
+#### AbstractFactory.java
+```
+/**
+ * 抽象工厂接口
+ */
+public interface AbstractFactory {
+
+    /**
+     * 创建出产品A
+     */
+    ProductA createProductA();
+
+    /**
+     * 创建出产品B
+     */
+    ProductB createProductB();
+
+}
+```
 
 
 
