@@ -45,7 +45,7 @@ tags:
 ---
 
 ## 类图
-![](http://o7x0ygc3f.bkt.clouddn.com/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F_01.png)
+![](http://o7x0ygc3f.bkt.clouddn.com/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F_02.png)
 
 ---
 
