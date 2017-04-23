@@ -32,7 +32,7 @@ public class Application {
     // 抽象的组件
     private Component component; 
    
-    public Component createComponent() {
+    public void createComponent() {
         // 创建的是一个按钮组件
         component = new Button();
     }
@@ -63,7 +63,7 @@ public class Application {
 ---
 
 ## 类图
-![]()
+![](http://o7x0ygc3f.bkt.clouddn.com/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F_01.png)
 
 ---
 
