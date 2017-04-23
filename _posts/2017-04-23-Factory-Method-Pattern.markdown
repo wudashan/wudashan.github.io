@@ -29,8 +29,8 @@ tags:
  */
 public class Application {
     
-    private Component component;
-   
+    // 抽象的组件
+    private Component component; 
    
     public Component createComponent() {
         // 创建的是一个按钮组件
