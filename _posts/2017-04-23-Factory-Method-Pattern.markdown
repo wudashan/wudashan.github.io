@@ -22,7 +22,30 @@ tags:
 
 
 ## 动机
-
+考虑一个这样的场景：你编写了一个Application类，这个类可以负责创建控件，并且提供了对控件操作的方法。具体代码如下：
+```
+/**
+ * 应用类
+ */
+public class Application {
+    
+    private Component component;
+   
+    // 创建的是一个按钮组件
+    public Component createComponent() {
+        component = new Button();
+    }
+    
+    // 设置组件的大小
+    public void setComponentSize(int width, int height) {
+        component.setSize(width, height);
+    }
+    
+    // 其他对组件的操作
+    
+}
+```
+提供对控件的操作很简单，直接添加新方法就可以了；但是有时我们无法像上述代码一样（可以确定需要创建一个具体的按钮组件），暂时无法确定需要创建的是什么控件时怎么办？那就得改造代码，经过上古时期的程序猿总结，**工厂方法模式**是最佳的实践。
 
 ---
 
