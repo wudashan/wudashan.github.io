@@ -68,7 +68,119 @@ public class Application {
 ---
 
 ## 代码示例
+#### Product.java
+```
+/**
+ * 抽象的产品
+ */
+public interface Product {
 
+    /**
+     * 获取产品的属性
+     */
+    String getProperties();
+
+}
+```
+
+#### ConcreteProductA.java
+```
+/**
+ * 具体的产品A
+ */
+public class ConcreteProductA implements Product {
+    @Override
+    public String getProperties() {
+        return "Product name is ConcreteProductA";
+    }
+}
+
+```
+
+#### ConcreteProductB.java
+```
+/**
+ * 具体的产品B
+ */
+public class ConcreteProductB implements Product {
+    @Override
+    public String getProperties() {
+        return "Product name is ConcreteProductB";
+    }
+}
+```
+
+#### Creator.java
+```
+/**
+ * 抽象的生成器
+ */
+public abstract class Creator {
+
+    /**
+     * 将创建产品的操作推迟到子类
+     */
+    protected abstract Product factoryMethod();
+
+    public void anOperation() {
+        // 创建产品
+        Product product = factoryMethod();
+        // 对产品进行操作
+        product.getProperties();
+    }
+
+}
+```
+
+#### ConcreteCreatorA.java
+```
+/**
+ * 具体的生成器A
+ */
+public class ConcreteCreatorA extends Creator {
+    @Override
+    public Product factoryMethod() {
+        return new ConcreteProductA();
+    }
+}
+```
+
+#### ConcreteCreatorB.java
+```
+/**
+ * 具体的生成器B
+ */
+public class ConcreteCreatorB extends Creator {
+    @Override
+    public Product factoryMethod() {
+        return new ConcreteProductB();
+    }
+}
+```
+
+#### Main.java
+```
+/**
+ * 主程序
+ */
+public class Main {
+
+    public static void main(String[] args) {
+
+        // 声明一个生成器
+        Creator creator;
+
+        // 通过生成器A的工厂方法生成产品A并获取属性
+        creator = new ConcreteCreatorA();
+        creator.anOperation();
+
+        // 通过生成器B的工厂方法生成产品B并获取属性
+        creator = new ConcreteCreatorB();
+        creator.anOperation();
+    }
+
+}
+```
 
 
 
