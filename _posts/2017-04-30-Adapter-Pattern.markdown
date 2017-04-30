@@ -40,7 +40,7 @@ tags:
 ---
 
 ## 类图
-![]()
+![](http://o7x0ygc3f.bkt.clouddn.com/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F.png)
 
 ---
 
