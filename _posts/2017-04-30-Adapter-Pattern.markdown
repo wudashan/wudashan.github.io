@@ -46,8 +46,81 @@ tags:
 
 ## 代码示例
 
+#### Target.java
+```
+/**
+ * 目标类
+ */
+public interface Target {
 
+    /**
+     * 可调用的方法
+     */
+    void request();
 
+}
+```
+
+#### Adaptee.java
+```
+/**
+ * 被适配者类
+ */
+public class Adaptee {
+
+    /**
+     * 具体的方法，与Target接口方法名不一致，所以需要适配
+     */
+    public void specificRequest() {
+        // do something
+    }
+
+}
+```
+
+#### Adapter.java
+```
+/**
+ * 适配器，实现Target接口，且持有被适配者类对象
+ */
+public class Adapter implements Target {
+
+    private Adaptee adaptee;
+
+    public Adapter(Adaptee adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    @Override
+    public void request() {
+        adaptee.specificRequest();
+    }
+
+}
+```
+
+#### Client.java
+```
+/**
+ * 客户端类，调用方
+ */
+public class Client {
+
+    public static void main(String[] args) {
+
+        // 创建一个被适配者类
+        Adaptee adaptee = new Adaptee();
+
+        // 使用适配器
+        Target target = new Adapter(adaptee);
+
+        // 调用目标接口
+        target.request();
+
+    }
+
+}
+```
 
 ---
 
