@@ -36,15 +36,19 @@ tags:
 
 ## 第2章 有意义的命名
 
- 1. 名副其实。变量、函数或类的名称应该已经答复了所有的大问题。它该告诉你，它为什么会存在，它做什么事，应该怎么用。如果名称需要注释来补充，那就不算是名副其实。如下代码，第二个变量名比第一个好理解多了。
+**名副其实。**变量、函数或类的名称应该已经答复了所有的大问题。它该告诉你，它为什么会存在，它做什么事，应该怎么用。如果名称需要注释来补充，那就不算是名副其实。如下代码，第二个变量名比第一个好理解多了。
 ```
     int d;  // 消逝的时间，以日计
     int elapsedTimeInDays;
 ```
- 2. 避免误导。别用accountList来指一组账号，除非它真的是List类型，但是直接用accounts不是更好更直接吗？
- 3. 类名应该是名词或名词短语。如Customer、WikiPage、Account和AddressParser，避免使用Manager、Processor、Data或Info这样的类名。类名不应当是动词。
- 4. 方法名应当是动词或动词短语。如postPayment、deletePage或save。属性访问器、修改器和断言应该根据其值命名，并依Javabean标准加上get、set或is前缀。
- 5. 使用解决方案领域名称。比如系统中用到了抽象工厂模式，那么给对应的工厂命名为XXXFactroy富有意义。
+
+**避免误导。**别用accountList来指一组账号，除非它真的是List类型，但是直接用accounts不是更好更直接吗？
+ 
+**类名应该是名词或名词短语**。如Customer、WikiPage、Account和AddressParser，避免使用Manager、Processor、Data或Info这样的类名。类名不应当是动词。
+
+**方法名应当是动词或动词短语。**如postPayment、deletePage或save。属性访问器、修改器和断言应该根据其值命名，并依Javabean标准加上get、set或is前缀。
+
+**使用解决方案领域名称**。比如系统中用到了抽象工厂模式，那么给对应的工厂命名为XXXFactroy富有意义。
 
  
 
