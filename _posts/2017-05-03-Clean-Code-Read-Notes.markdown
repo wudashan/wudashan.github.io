@@ -172,9 +172,13 @@ String outputDir = context.getOptions().getScratchDir().getAbsolutePath();
 整洁的测试还应遵循以下5条规则——**F.I.R.S.T**：
 
 **快速（Fast）。**测试应该能快速运行。测试运行缓慢，你就不会想要频繁地运行它。
+
 **独立（Independent）。**测试应该相互独立，某个测试不应为下一个测试设定条件。
+
 **可重复（Repeatable）。**测试应当可在任何环境中重复通过。
+
 **自足验证（Self-Validating）。**测试应该有布尔值输出，无论通过或失败，你不应该查看日志文件来确认测试是否通过。
+
 **及时（Timely）。**测试应及时编写。单元测试应该恰好在使其通过的生产代码之前编写。
 
 ---
