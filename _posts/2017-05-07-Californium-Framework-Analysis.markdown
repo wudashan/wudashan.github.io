@@ -19,3 +19,5 @@ tags:
 [Californium 框架设计分析](http://www.cnblogs.com/littleatp/p/6417567.html)
 
 [CoAP协议学习——CoAP基础](http://blog.csdn.net/xukai871105/article/details/17734163)
+
+[RFC 7252 - The Constrained Application Protocol (CoAP)](https://tools.ietf.org/html/rfc7252)
