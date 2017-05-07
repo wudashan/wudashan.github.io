@@ -17,3 +17,5 @@ tags:
 ## 参考阅读
 
 [Californium 框架设计分析](http://www.cnblogs.com/littleatp/p/6417567.html)
+
+[CoAP协议学习——CoAP基础](http://blog.csdn.net/xukai871105/article/details/17734163)
