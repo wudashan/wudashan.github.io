@@ -12,7 +12,7 @@ tags:
     - 源码分析
 ---
 
-> 项目源码地址：https://github.com/eclipse/californium
+> 项目源码地址：[https://github.com/eclipse/californium](https://github.com/eclipse/californium)
 
 ## 参考阅读
 
