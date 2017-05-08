@@ -29,23 +29,23 @@ tags:
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/coap%E6%95%B0%E6%8D%AE%E5%8C%85.png)
 
-Version (Ver)：长度为2位，表示CoAP协议的版本号。当前版本为01（二进制表示）。
+**Version (Ver)：**长度为2位，表示CoAP协议的版本号。当前版本为01（二进制表示）。
 
-Type (T)：长度为2位，表示报文类型。其中各类型及二进制表示形式如下，Confirmable (00)、Non-confirmable (01)、Acknowledgement (10)、Reset (11)。
+**Type (T)：**长度为2位，表示报文类型。其中各类型及二进制表示形式如下，Confirmable (00)、Non-confirmable (01)、Acknowledgement (10)、Reset (11)。
 
-Token Length (TKL)：长度为4位，表示Token的长度。
+**Token Length (TKL)：**长度为4位，表示Token的长度。
 
-Code：长度为8位，表示响应码。其中前3位代表一个数，后5位代表一个数。如`010 00000`，转为十进制就是`2.00`（表示时中间带一个点），其意思可以理解为HTTP中`200 OK`响应码。
+**Code：**长度为8位，表示响应码。其中前3位代表一个数，后5位代表一个数。如`010 00000`，转为十进制就是`2.00`（表示时中间带一个点），其意思可以理解为HTTP中`200 OK`响应码。
 
-Message ID：长度为16位，表示消息id。用来检测是否为重发的报文，或者请求报文和响应报文的匹配。
+**Message ID：**长度为16位，表示消息id。用来检测是否为重发的报文，或者请求报文和响应报文的匹配。
 
-Token：长度由TKL字段决定，表示一次会话记录。用来关联请求和响应。有人可能有疑惑，Message ID不是可以将请求和响应关联吗？的确，CON类型的请求报文与ACK类型的响应报文可以用Message ID进行关联，但NON类型的报文由于没有要求是一对的，所有如果NON类型的报文想成对，那就只能通过相同的Token来匹配了。
+**Token：**长度由TKL字段决定，表示一次会话记录。用来关联请求和响应。有人可能有疑惑，Message ID不是可以将请求和响应关联吗？的确，CON类型的请求报文与ACK类型的响应报文可以用Message ID进行关联，但NON类型的报文由于没有要求是一对的，所有如果NON类型的报文想成对，那就只能通过相同的Token来匹配了。
 
-Options：长度不确定，表示报文的选项。类似为HTTP的请求头，包括CoAP报文的ip地址、端口号等等。
+**Options：**长度不确定，表示报文的选项。类似为HTTP的请求头，包括CoAP报文的ip地址、端口号等等。
 
-1 1 1 1 1 1 1 1：Payload Marker，用来隔离Options字段和Payload字段。
+**1 1 1 1 1 1 1 1：**Payload Marker，用来隔离Options字段和Payload字段。
 
-Payload：长度由数据包决定，表示应用层需要的数据。
+**Payload：**长度由数据包决定，表示应用层需要的数据。
 
 ## 未完待续
 
