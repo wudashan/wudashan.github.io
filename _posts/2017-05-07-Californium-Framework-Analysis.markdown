@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Coap协议与Californium开源框架分析"
-subtitle:   "一个受限制的应用协议，一个基于Java实现的Coap技术框架。"
+title:      "Californium开源框架分析"
+subtitle:   "一个基于Java实现的Coap技术框架。"
 date:       2017-05-07 22:00:00
 author:     "Wudashan"
 header-img: "img/post-bg-californium-framework-analysis.jpg"
