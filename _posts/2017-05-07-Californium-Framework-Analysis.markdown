@@ -31,7 +31,7 @@ tags:
 
 **Version (Ver)：**长度为2位，表示CoAP协议的版本号。当前版本为01（二进制表示形式）。
 
-**Type (T)：**长度为2位，表示报文类型。其中各类型及二进制表示形式如下，Confirmable (00)、Non-confirmable (01)、Acknowledgement (10)、Reset (11)。
+**Type (T)：**长度为2位，表示报文类型。其中各类型及二进制表示形式如下，Confirmable (00)、Non-confirmable (01)、Acknowledgement (10)、Reset (11)。在描述的时候为了简便，会将Confirmable缩写为CON，Non-confirmable缩写为NON，Acknowledgement缩写为ACK，Reset缩写为RST。比如一个报文的类型为Confirmable，我们就会简写为CON报文。
 
 **Token Length (TKL)：**长度为4位，表示Token字段的长度。
 
