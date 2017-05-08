@@ -29,7 +29,7 @@ tags:
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/coap%E6%95%B0%E6%8D%AE%E5%8C%85.png)
 
-**Version (Ver)：**长度为2位，表示CoAP协议的版本号。当前版本为01（二进制表示）。
+**Version (Ver)：**长度为2位，表示CoAP协议的版本号。当前版本为01（二进制表示形式）。
 
 **Type (T)：**长度为2位，表示报文类型。其中各类型及二进制表示形式如下，Confirmable (00)、Non-confirmable (01)、Acknowledgement (10)、Reset (11)。
 
