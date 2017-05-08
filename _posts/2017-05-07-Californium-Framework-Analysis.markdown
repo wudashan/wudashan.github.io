@@ -21,13 +21,13 @@ tags:
 
 ## CoAP协议
 
-在阅读Californium框架之前，我们需要对CoAP协议有个大致的了解，已经懂得的了同学可以直接跳过本章节。
+在阅读Californium框架之前，我们需要对CoAP协议有个大致的了解，已经懂得了的同学可以直接跳过本章节。
 
 #### CoAP报文
 
 首先让我们看一下CoAP协议的报文是长啥样的：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoAP%E6%95%B0%E6%8D%AE%E5%8C%85.png)
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/coap%E6%95%B0%E6%8D%AE%E5%8C%85.png)
 
 Version (Ver)：长度为2位，表示CoAP协议的版本号。当前版本为01（二进制表示）。
 
