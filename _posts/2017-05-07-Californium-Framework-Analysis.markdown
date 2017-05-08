@@ -33,7 +33,7 @@ tags:
 
 **Type (T)：**长度为2位，表示报文类型。其中各类型及二进制表示形式如下，Confirmable (00)、Non-confirmable (01)、Acknowledgement (10)、Reset (11)。
 
-**Token Length (TKL)：**长度为4位，表示Token的长度。
+**Token Length (TKL)：**长度为4位，表示Token字段的长度。
 
 **Code：**长度为8位，表示响应码。其中前3位代表一个数，后5位代表一个数。如`010 00000`，转为十进制就是`2.00`（表示时中间带一个点），其意思可以理解为HTTP中`200 OK`响应码。
 
