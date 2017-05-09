@@ -121,6 +121,59 @@ public static void main(String[] args) {
 那么，接下来就让我们从CoapServer这个类开始，对整个框架进行分析。
 
 
+## CoapServer类
+
+首先让我们看看构造方法里面做了哪些事：
+
+```
+public CoapServer(final NetworkConfig config, final int... ports) {
+	
+	// 初始化配置	
+	if (config != null) {
+		this.config = config;
+	} else {
+		this.config = NetworkConfig.getStandard();
+	}
+	
+	// 初始化Resource
+	this.root = createRoot();
+	
+	// 初始化MessageDeliverer
+	this.deliverer = new ServerMessageDeliverer(root);
+		
+	CoapResource wellKnown = new CoapResource(".well-known");
+	wellKnown.setVisible(false);
+	wellKnown.add(new DiscoveryResource(root));
+	root.add(wellKnown);
+	
+	// 初始化EndPoints	
+	this.endpoints = new ArrayList<>();
+	
+	// 初始化线程池
+	this.executor = Executors.newScheduledThreadPool(this.config.getInt(NetworkConfig.Keys.PROTOCOL_STAGE_THREAD_COUNT), new NamedThreadFactory("CoapServer#")); 
+	
+	// 添加Endpoint
+	for (int port : ports) {
+		addEndpoint(new CoapEndpoint(port, this.config));
+	}
+}
+```
+
+从上面构造方法里，咱们可以确定CoapServer与几个类的关系：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapServer_02.png)
+
+
+**List&lt;Endpoint&gt; endpoints：**端点，每个Endpoint可以看做是一个连接的端口，数据包从网络直接传输到端点。
+
+**ScheduledExecutorService executor：**线程池，初始化后共享给CoapServer下的所有Endpoint对象，Endpoint对象的所有异步操作都由该线程池的线程完成。
+
+**Resource root：**资源树的根节点，当客户端发送请求时，会根据请求路径匹配资源树中对应的Resource。
+
+**MessageDeliverer deliverer：**消息分发器，当Endpoint将请求消息发送给它的时候，它需要根据请求消息的Uri-Path从Resource Tree中找到对应的Resource资源，Resource资源负责处理请求消息。
+
+
+
 ## 未完待续
 
 ## 参考阅读
