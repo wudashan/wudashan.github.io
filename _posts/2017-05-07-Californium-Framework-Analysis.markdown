@@ -67,6 +67,29 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 如上图，客户端发起一个NON报文（Message ID = 0x01a0）之后，服务端无需回复响应，客户端也不会重发。
 
 
+#### 请求与响应模型
+
+由于存在可靠与不可靠两种传输模型，那么对应的也会存在两种请求与响应模型。
+
+**CON请求，ACK响应：**
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%B7%A6.png)
+
+如上图，客户端发起了一个`CON报文（Message ID = 0xbc90, Code = 0.01 GET, Payload = "/temperature", Token = 0x71）`，服务端在收到查询温度的请求之后，回复`ACK报文（Message ID = 0xbc90, Code = 2.05 Content, Payload = "22.5 C", Token = 0x71）`。也就是说服务端可以在ACK报文中，就将客户端查询温度的结果一起返回。
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%8F%B3.png)
+
+当然，还有一种情况，那就是服务端可能由于某些原因不马上返回结果。如上图，客户端发起查询温度的CON报文之后，服务端先回复ACK报文。一段时间过后，服务端再发起CON报文给客户端，并将温度的结果一起携带，客户端收到结果之后回复ACK。
+
+**NON请求，NON响应：**
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/NON%E8%AF%B7%E6%B1%82_NON%E5%93%8D%E5%BA%94.png)
+
+如上图，客户端发起了一个`NON报文（Message ID = 0x7a11, Code = 0.01 GET, Payload = "/temperature", Token = 0x74）`，服务端在收到查询温度的请求之后，回复`NON报文（Message ID = 0x23bc, Code = 2.05 Content, Payload = "22.5 C", Token = 0x74）`。
+
+可以发现，CON类型的请求报文与ACK类型的响应报文是通过Message ID进行匹配，NON类型的请求报文与NON类型的响应报文则是通过Token进行匹配。
+
+
 ## 未完待续
 
 ## 参考阅读
