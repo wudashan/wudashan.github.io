@@ -178,7 +178,7 @@ CoapResource类实现了Resource接口，关系如下：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapResource.png)
 
-Resource接口其实可以等同于HTTP接口，框架通过`getURI()`匹配客户端想调用的Resource接口，再通过调用`handleRequest(Exchange exchange)`来处理来自客户端的GET/POST/PUT/DELETE请求，源码如下：
+Resource接口其实可以等同于HTTP接口，框架通过`getURI()`匹配客户端想调用的Resource接口，再通过调用`handleRequest(Exchange exchange)`来处理来自客户端的GET、POST、PUT、DELETE请求，源码如下：
 
 ```
 @Override
