@@ -171,6 +171,7 @@ public CoapServer(final NetworkConfig config, final int... ports) {
 
 **ScheduledExecutorService executor：**线程池，初始化后共享给CoapServer下的所有Endpoint对象，Endpoint对象的所有异步操作都由该线程池的线程完成。
 
+那么接下来，就让我们逐个分析CoapResource、ServerMessageDeliverer、CoapEndpoint类，看看他们的内部实现以及如何分工合作的。
 
 ## CoapResource类
 
