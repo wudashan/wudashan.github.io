@@ -165,11 +165,12 @@ public CoapServer(final NetworkConfig config, final int... ports) {
 
 **Resource root：**资源树的根节点，当客户端发送请求时，会根据请求路径匹配资源树中对应的Resource。
 
+**MessageDeliverer deliverer：**消息分发器，当Endpoint将请求消息发送给它的时候，它需要根据请求消息的Uri-Path从Resource Tree中找到对应的Resource资源，Resource资源负责处理请求消息。
+
 **List&lt;Endpoint&gt; endpoints：**端点，每个Endpoint可以看做是一个连接的端口，数据包从网络直接传输到端点。
 
 **ScheduledExecutorService executor：**线程池，初始化后共享给CoapServer下的所有Endpoint对象，Endpoint对象的所有异步操作都由该线程池的线程完成。
 
-**MessageDeliverer deliverer：**消息分发器，当Endpoint将请求消息发送给它的时候，它需要根据请求消息的Uri-Path从Resource Tree中找到对应的Resource资源，Resource资源负责处理请求消息。
 
 ## CoapResource类
 
