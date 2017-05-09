@@ -92,6 +92,35 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 至此，咱们的CoAP协议初学之路已到了终点，如果还想详细研究的同学，可以查阅[RFC 7252](https://tools.ietf.org/html/rfc7252)，这里就不再做详述了！那么，接下来就让我们对Californium开源框架一探究竟吧！
 
 
+## 分析入口
+
+想要分析一个框架，最好的方法就是先启动它，再通过debug，一步步地了解它是如何运行的。
+
+首先在pom.xml文件里引入Californium开源框架的依赖：
+
+```
+<dependency>
+    <groupId>org.eclipse.californium</groupId>
+    <artifactId>californium-core</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+</dependency>
+```
+
+其次，我们只要在Main函数里敲两行代码，服务端就启动起来了：
+
+```
+public static void main(String[] args) {
+        
+    CoapServer server = new CoapServer();
+
+    server.start();
+
+}
+```
+
+那么，接下来就让我们从CoapServer这个类开始，对整个框架进行分析。
+
+
 ## 未完待续
 
 ## 参考阅读
