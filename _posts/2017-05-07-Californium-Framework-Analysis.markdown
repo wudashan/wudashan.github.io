@@ -118,7 +118,7 @@ public static void main(String[] args) {
 }
 ```
 
-那么，接下来就让我们从CoapServer这个类开始，对整个框架进行分析。
+那么，接下来就让我们从CoapServer这个类开始，自顶向下地对整个框架进行分析。
 
 
 ## CoapServer类
