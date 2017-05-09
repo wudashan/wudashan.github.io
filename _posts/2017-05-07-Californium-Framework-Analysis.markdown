@@ -194,6 +194,15 @@ public void handleRequest(final Exchange exchange) {
 }
 ```
 
+让我们再看看`handleGET(CoapExchange exchange)`里做了哪些事：
+```
+public void handleGET(CoapExchange exchange) {
+	exchange.respond(ResponseCode.METHOD_NOT_ALLOWED);
+}
+```
+从字面意思上看，好像是通过CoapExchange对象，返回了一个*METHOD_NOT_ALLOWED*的响应码，具体操作是怎样，看来我们还要去CoapExchange类里逛逛。
+
+
 
 ## 未完待续
 
