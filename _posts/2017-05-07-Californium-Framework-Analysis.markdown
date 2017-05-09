@@ -47,6 +47,26 @@ tags:
 
 **Payload：**长度由数据包决定，表示应用层需要的数据。
 
+
+#### 消息传输模型
+
+CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两种传输模型。
+
+**可靠传输模型：**
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%9E%8B.png)
+
+如上图，客户端通过发起一个CON报文（Message ID = 0x7d34），服务端在收到CON报文之后，需要回复一个ACK报文（Message ID = 0x7d34）。通过Message ID将CON报文和ACK报文对应起来。
+
+确保可靠传输的方法有俩：其一，通过服务端回复ACK报文，客户端可以确认CON报文已被服务端接收；其二，超时重传机制。若客户端在一定时间内未收到ACK报文，则认为CON报文已经在链路上丢失，这时候就会重传CON报文，重传时间和次数可配置。
+
+**不可靠传输模型：**
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E4%B8%8D%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%9E%8B.png)
+
+如上图，客户端发起一个NON报文（Message ID = 0x01a0）之后，服务端无需回复响应，客户端也不会重发。
+
+
 ## 未完待续
 
 ## 参考阅读
