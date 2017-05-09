@@ -172,6 +172,26 @@ public CoapServer(final NetworkConfig config, final int... ports) {
 
 **MessageDeliverer deliverer：**消息分发器，当Endpoint将请求消息发送给它的时候，它需要根据请求消息的Uri-Path从Resource Tree中找到对应的Resource资源，Resource资源负责处理请求消息。
 
+## CoapResource类
+
+CoapResource类实现了Resource接口，关系如下：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapResource.png)
+
+Resource接口其实可以等同于HTTP接口，框架通过`getURI()`匹配客户端想调用的Resource接口，再通过调用`handleRequest(Exchange exchange)`来处理来自客户端的GET/POST/PUT/DELETE请求，源码如下：
+
+```
+@Override
+public void handleRequest(final Exchange exchange) {
+	Code code = exchange.getRequest().getCode();
+	switch (code) {
+		case GET:	handleGET(new CoapExchange(exchange, this)); break;
+		case POST:	handlePOST(new CoapExchange(exchange, this)); break;
+		case PUT:	handlePUT(new CoapExchange(exchange, this)); break;
+		case DELETE: handleDELETE(new CoapExchange(exchange, this)); break;
+	}
+}
+```
 
 
 ## 未完待续
