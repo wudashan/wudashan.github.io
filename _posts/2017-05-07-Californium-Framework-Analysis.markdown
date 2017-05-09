@@ -188,7 +188,7 @@ public void handleRequest(final Exchange exchange) {
 		case GET:	handleGET(new CoapExchange(exchange, this)); break;
 		case POST:	handlePOST(new CoapExchange(exchange, this)); break;
 		case PUT:	handlePUT(new CoapExchange(exchange, this)); break;
-		case DELETE: handleDELETE(new CoapExchange(exchange, this)); break;
+		case DELETE:	handleDELETE(new CoapExchange(exchange, this)); break;
 	}
 }
 ```
