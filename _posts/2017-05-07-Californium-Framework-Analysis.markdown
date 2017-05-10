@@ -202,7 +202,15 @@ public static void main(String[] args) throws URISyntaxException {
 }
 ```
 
-通过前面分析，我们知道Endpoint是直接与网络进行交互的，那么客户端发起的GET请求，应该在服务端的Endpoint中收到。让我们深入了解一下Endpoint实现类CoapEndpoint的内部实现。
+通过前面分析，我们知道Endpoint是直接与网络进行交互的，那么客户端发起的GET请求，应该在服务端的Endpoint中收到。框架中Endpoint接口的实现类只有CoapEndpoint，让我们深入了解一下CoapEndpoint的内部实现，看看它是如何接收和处理请求的。
+
+## CoapEndpoint类
+
+CoapEndpoint类实现了Endpoint接口，其内部结构如下所示：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE.png)
+
+
 
 
 
