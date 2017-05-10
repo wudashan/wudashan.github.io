@@ -272,6 +272,9 @@ private void receiveMessage(final RawData raw) {
     
     // 如果是响应数据，则与请求数据一样，分别由消息拦截器、匹配器、Coap协议栈接收响应
     ...
+
+    // 如果是空数据，则与请求数据、响应数据一样，分别由消息拦截器、匹配器、Coap协议栈接收空数据
+    ...
     
     // 一些非关键操作
     ...
@@ -286,6 +289,8 @@ private void receiveMessage(final RawData raw) {
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/MessageInterceptor%E7%B1%BB%E5%9B%BE.png)
 
 框架本身并没有提供该接口的任何实现类，我们可以根据业务需求实现该接口，并通过`CoapEndpoint.addInterceptor(MessageInterceptor interceptor)`方法添加具体的实现类。
+
+
 
 
 
