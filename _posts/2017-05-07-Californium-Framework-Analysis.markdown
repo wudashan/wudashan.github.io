@@ -279,7 +279,7 @@ private void receiveMessage(final RawData raw) {
 }
 ```
 
-
+接下来，我们分别对MessageInterceptor（消息拦截器）、Matcher（匹配器）、CoapStack（Coap协议栈）进行分析，看看他们接收到请求后做了什么处理。
 
 
 
