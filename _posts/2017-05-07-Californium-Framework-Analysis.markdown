@@ -206,9 +206,78 @@ public static void main(String[] args) throws URISyntaxException {
 
 ## CoapEndpoint类
 
-CoapEndpoint类实现了Endpoint接口，其内部结构如下所示：
+CoapEndpoint类实现了Endpoint接口，其构造方法如下：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE.png)
+```
+public CoapEndpoint(Connector connector, NetworkConfig config, ObservationStore store) {
+	this.config = config;
+	this.connector = connector;
+	if (store == null) {
+		this.matcher = new Matcher(config, new NotificationDispatcher(), new InMemoryObservationStore());
+	} else {
+		this.matcher = new Matcher(config, new NotificationDispatcher(), store);
+	}
+	this.coapstack = new CoapStack(config, new OutboxImpl());
+	this.connector.setRawDataReceiver(new InboxImpl());
+}
+```
+
+从构造方法可以了解到，其内部结构如下所示：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE_01.png)
+
+那么，也就是说客户端发起的GET请求将被InboxImpl类接收。InboxImpl类实现了RawDataChannel接口，该接口只有一个`receiveData(RawData raw)`方法，InboxImpl类的该方法如下：
+
+```
+public void receiveData(final RawData raw) {
+
+    // 参数校验
+    ...
+    
+    // 启动线程处理收到的消息
+    runInProtocolStage(new Runnable() {
+		@Override
+		public void run() {
+		receiveMessage(raw);
+		}
+	});
+    
+}
+```
+
+再往`receiveMessage(RawData raw)`方法里看：
+
+```
+private void receiveMessage(final RawData raw) {
+    
+    // 解析数据源
+    DataParser parser = new DataParser(raw.getBytes());
+
+    // 如果是请求数据
+    if (parser.isRequest()) {
+        // 一些非关键操作
+        ...
+        
+        // 消息拦截器接收请求
+        for (MessageInterceptor interceptor:interceptors) {
+		    interceptor.receiveRequest(request);
+	    }
+	    
+	    // 匹配器接收请求
+	    matcher.receiveRequest(request)
+	    
+	    // Coap协议栈接收请求
+	    coapstack.receiveRequest(exchange, request);
+    }
+    
+    // 如果是响应数据，则与请求数据一样，分别由消息拦截器、匹配器、Coap协议栈接收响应
+    ...
+    
+    // 一些非关键操作
+    ...
+
+}
+```
 
 
 
