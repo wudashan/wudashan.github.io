@@ -263,8 +263,8 @@ private void receiveMessage(final RawData raw) {
             interceptor.receiveRequest(request);
         }
     
-        // 匹配器接收请求
-        matcher.receiveRequest(request)
+        // 匹配器接收请求，并返回Exchange对象
+        Exchange exchange = matcher.receiveRequest(request);
         
         // Coap协议栈接收请求
         coapstack.receiveRequest(exchange, request);
