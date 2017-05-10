@@ -343,6 +343,32 @@ public CoapStack(NetworkConfig config, Outbox outbox) {
 }
 ```
 
+回归正题，继续看`CoapStack.receiveRequest(Exchange exchange, Request request)`方法是怎么处理客户端的GET请求：
+
+```
+public void receiveRequest(Exchange exchange, Request request) {
+    bottom.receiveRequest(exchange, request);
+}
+```
+
+CoapStack在收到请求后，交给了StackBottomAdapter去处理，StackBottomAdapter处理完后就会依次向上传递给ReliabilityLayer、BlockwiseLayer、ObserveLayer，最终传递给StackTopAdapter。中间的处理细节就不详述了，直接看`StackTopAdapter.receiveRequest(Exchange exchange, Request request)`方法：
+
+```
+public void receiveRequest(Exchange exchange, Request request) {
+
+    // 一些非关键操作
+    ...
+    
+    // 将请求传递给消息分发器
+    deliverer.deliverRequest(exchange);
+    
+}
+```
+
+可以看到，StackTopAdapter最后会将请求传递给MessageDeliverer，至此CoapEndpoint的任务也就算完成了，我们可以通过一张请求消息流程图来回顾一下，一个客户端GET请求最终是如何到达MessageDeliverer的：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
+
 
 ## 未完待续
 
