@@ -231,11 +231,11 @@ public CoapEndpoint(Connector connector, NetworkConfig config, ObservationStore 
 ```
 public void receiveData(final RawData raw) {
 
-    // 参数校验
-    ...
+	// 参数校验
+	...
     
-    // 启动线程处理收到的消息
-    runInProtocolStage(new Runnable() {
+	// 启动线程处理收到的消息
+	runInProtocolStage(new Runnable() {
 		@Override
 		public void run() {
 		receiveMessage(raw);
