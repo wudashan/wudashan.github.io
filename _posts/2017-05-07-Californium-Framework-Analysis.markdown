@@ -118,12 +118,7 @@ public static void main(String[] args) {
 }
 ```
 
-那么，接下来就让我们从CoapServer这个类开始，自顶向下地对整个框架进行分析。
-
-
-## CoapServer类
-
-首先让我们看看构造方法里面做了哪些事：
+那么，接下来就让我们从CoapServer这个类开始，对整个框架进行分析。首先让我们看看构造方法里面做了哪些事：
 
 ```
 public CoapServer(final NetworkConfig config, final int... ports) {
@@ -159,53 +154,13 @@ public CoapServer(final NetworkConfig config, final int... ports) {
 }
 ```
 
-从上面构造方法里，咱们可以确定CoapServer与几个类的关系：
-
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapServer_02.png)
-
-**Resource root：**资源树的根节点，当客户端发送请求时，根节点或叶子节点Resource负责处理请求消息。
-
-**MessageDeliverer deliverer：**消息分发器，当Endpoint将请求消息发送给它的时候，根据请求消息的Uri-Path匹配对应的Resource。
-
-**List&lt;Endpoint&gt; endpoints：**端点，每个Endpoint可以看做是一个连接的端口，数据包从网络直接传输到端点。
-
-**ScheduledExecutorService executor：**线程池，初始化后共享给CoapServer下的所有Endpoint对象，Endpoint对象的所有异步操作都由该线程池的线程完成。
-
-那么接下来，就让我们逐个分析CoapResource、ServerMessageDeliverer、CoapEndpoint类，看看他们的内部实现以及如何分工合作的。
-
-## CoapResource类
-
-CoapResource类实现了Resource接口，关系如下：
-
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapResource.png)
-
-Resource接口其实可以等同于HTTP接口，框架通过`getURI()`匹配客户端想调用的Resource接口，再通过调用`handleRequest(Exchange exchange)`来处理来自客户端的GET、POST、PUT、DELETE请求，源码如下：
-
-```
-@Override
-public void handleRequest(final Exchange exchange) {
-	Code code = exchange.getRequest().getCode();
-	switch (code) {
-		case GET:	handleGET(new CoapExchange(exchange, this)); break;
-		case POST:	handlePOST(new CoapExchange(exchange, this)); break;
-		case PUT:	handlePUT(new CoapExchange(exchange, this)); break;
-		case DELETE:	handleDELETE(new CoapExchange(exchange, this)); break;
-	}
-}
-```
-
-让我们再看看`handleGET(CoapExchange exchange)`里做了哪些事：
-```
-public void handleGET(CoapExchange exchange) {
-	exchange.respond(ResponseCode.METHOD_NOT_ALLOWED);
-}
-```
-从字面意思上看，好像是通过CoapExchange对象，返回了一个*METHOD_NOT_ALLOWED*的响应码。具体操作是怎样，看来我们还要去CoapExchange类里逛逛。
+从上面构造方法里，初始化了一些成员变量。其中，Endpoint直接与网络进行通信，MessageDeliverer分发请求，Resource处理请求。
 
 
-## CoapExchange类
 
-框架中有Exchange类，大家可能都想当然的认为CoapExchange类继承自Exchange类。但是，优秀的框架是不会这样干的，因为设计模式里有一条规则：**多用组合，少用继承**。所以真正的情况是CoapExchange类中有一个Exchange成员变量。
+
+
+
 
 
 ## 未完待续
