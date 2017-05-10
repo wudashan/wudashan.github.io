@@ -202,7 +202,7 @@ public static void main(String[] args) throws URISyntaxException {
 }
 ```
 
-
+通过前面分析，我们知道Endpoint是直接与网络进行交互的，那么客户端发起的GET请求，应该在服务端的Endpoint中收到。让我们深入了解一下Endpoint实现类CoapEndpoint的内部实现。
 
 
 
