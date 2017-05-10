@@ -281,6 +281,12 @@ private void receiveMessage(final RawData raw) {
 
 接下来，我们分别对MessageInterceptor（消息拦截器）、Matcher（匹配器）、CoapStack（Coap协议栈）进行分析，看看他们接收到请求后做了什么处理。
 
+#### MessageInterceptor接口
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/MessageInterceptor%E7%B1%BB%E5%9B%BE.png)
+
+框架本身并没有提供该接口的任何实现类，我们可以根据业务需求实现该接口，并通过`CoapEndpoint.addInterceptor(MessageInterceptor interceptor)`方法添加具体的实现类。
+
 
 
 ## 未完待续
