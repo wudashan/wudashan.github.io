@@ -100,9 +100,9 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ```
 <dependency>
-	<groupId>org.eclipse.californium</groupId>
-	<artifactId>californium-core</artifactId>
-	<version>2.0.0-M1</version>
+    <groupId>org.eclipse.californium</groupId>
+    <artifactId>californium-core</artifactId>
+    <version>2.0.0-M1</version>
 </dependency>
 ```
 
@@ -123,35 +123,35 @@ public static void main(String[] args) {
 
 ```
 public CoapServer(final NetworkConfig config, final int... ports) {
-	
-	// 初始化配置	
-	if (config != null) {
-		this.config = config;
-	} else {
-		this.config = NetworkConfig.getStandard();
-	}
-	
-	// 初始化Resource
-	this.root = createRoot();
-	
-	// 初始化MessageDeliverer
-	this.deliverer = new ServerMessageDeliverer(root);
-		
-	CoapResource wellKnown = new CoapResource(".well-known");
-	wellKnown.setVisible(false);
-	wellKnown.add(new DiscoveryResource(root));
-	root.add(wellKnown);
-	
-	// 初始化EndPoints	
-	this.endpoints = new ArrayList<>();
-	
-	// 初始化线程池
-	this.executor = Executors.newScheduledThreadPool(this.config.getInt(NetworkConfig.Keys.PROTOCOL_STAGE_THREAD_COUNT), new NamedThreadFactory("CoapServer#")); 
-	
-	// 添加Endpoint
-	for (int port : ports) {
-		addEndpoint(new CoapEndpoint(port, this.config));
-	}
+    
+    // 初始化配置	
+    if (config != null) {
+        this.config = config;
+    } else {
+        this.config = NetworkConfig.getStandard();
+    }
+
+    // 初始化Resource
+    this.root = createRoot();
+
+    // 初始化MessageDeliverer
+    this.deliverer = new ServerMessageDeliverer(root);
+
+    CoapResource wellKnown = new CoapResource(".well-known");
+    wellKnown.setVisible(false);
+    wellKnown.add(new DiscoveryResource(root));
+    root.add(wellKnown);
+
+    // 初始化EndPoints
+    this.endpoints = new ArrayList<>();
+
+    // 初始化线程池
+    this.executor = Executors.newScheduledThreadPool(this.config.getInt(NetworkConfig.Keys.PROTOCOL_STAGE_THREAD_COUNT), new NamedThreadFactory("CoapServer#")); 
+
+    // 添加Endpoint
+    for (int port : ports) {
+        addEndpoint(new CoapEndpoint(port, this.config));
+    }
 }
 ```
 
@@ -160,22 +160,22 @@ public CoapServer(final NetworkConfig config, final int... ports) {
 ```
 public void start() {
 
-	// 如果没有一个Endpoint与CoapServer进行绑定，那就创建一个默认的Endpoint
-	...			
-	
-	// 一个一个地将Endpoint启动	
-	int started = 0;
-	for (Endpoint ep:endpoints) {
-		try {
-			ep.start();
-			++started;
-		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Cannot start server endpoint [" + ep.getAddress() + "]", e);
-		}
-	}
-	if (started==0) {
-		throw new IllegalStateException("None of the server endpoints could be started");
-	}
+    // 如果没有一个Endpoint与CoapServer进行绑定，那就创建一个默认的Endpoint
+    ...
+
+    // 一个一个地将Endpoint启动
+    int started = 0;
+    for (Endpoint ep:endpoints) {
+        try {
+            ep.start();
+            ++started;
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "Cannot start server endpoint [" + ep.getAddress() + "]", e);
+        }
+    }
+    if (started==0) {
+        throw new IllegalStateException("None of the server endpoints could be started");
+    }
 }
 ```
 
@@ -210,15 +210,15 @@ CoapEndpoint类实现了Endpoint接口，其构造方法如下：
 
 ```
 public CoapEndpoint(Connector connector, NetworkConfig config, ObservationStore store) {
-	this.config = config;
-	this.connector = connector;
-	if (store == null) {
-		this.matcher = new Matcher(config, new NotificationDispatcher(), new InMemoryObservationStore());
-	} else {
-		this.matcher = new Matcher(config, new NotificationDispatcher(), store);
-	}
-	this.coapstack = new CoapStack(config, new OutboxImpl());
-	this.connector.setRawDataReceiver(new InboxImpl());
+    this.config = config;
+    this.connector = connector;
+    if (store == null) {
+        this.matcher = new Matcher(config, new NotificationDispatcher(), new InMemoryObservationStore());
+    } else {
+        this.matcher = new Matcher(config, new NotificationDispatcher(), store);
+    }
+    this.coapstack = new CoapStack(config, new OutboxImpl());
+    this.connector.setRawDataReceiver(new InboxImpl());
 }
 ```
 
@@ -231,17 +231,17 @@ public CoapEndpoint(Connector connector, NetworkConfig config, ObservationStore 
 ```
 public void receiveData(final RawData raw) {
 
-	// 参数校验
-	...
-    
-	// 启动线程处理收到的消息
-	runInProtocolStage(new Runnable() {
-		@Override
-		public void run() {
-		receiveMessage(raw);
-		}
-	});
-    
+    // 参数校验
+    ...
+
+    // 启动线程处理收到的消息
+    runInProtocolStage(new Runnable() {
+        @Override
+        public void run() {
+            receiveMessage(raw);
+        }
+    });
+
 }
 ```
 
@@ -260,14 +260,14 @@ private void receiveMessage(final RawData raw) {
         
         // 消息拦截器接收请求
         for (MessageInterceptor interceptor:interceptors) {
-		    interceptor.receiveRequest(request);
-	    }
-	    
-	    // 匹配器接收请求
-	    matcher.receiveRequest(request)
-	    
-	    // Coap协议栈接收请求
-	    coapstack.receiveRequest(exchange, request);
+            interceptor.receiveRequest(request);
+        }
+    
+        // 匹配器接收请求
+        matcher.receiveRequest(request)
+        
+        // Coap协议栈接收请求
+        coapstack.receiveRequest(exchange, request);
     }
     
     // 如果是响应数据，则与请求数据一样，分别由消息拦截器、匹配器、Coap协议栈接收响应
