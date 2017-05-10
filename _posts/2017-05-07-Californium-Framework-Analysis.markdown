@@ -100,9 +100,9 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ```
 <dependency>
-    <groupId>org.eclipse.californium</groupId>
-    <artifactId>californium-core</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+	<groupId>org.eclipse.californium</groupId>
+	<artifactId>californium-core</artifactId>
+	<version>2.0.0-M1</version>
 </dependency>
 ```
 
@@ -110,12 +110,13 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ```
 public static void main(String[] args) {
-        
-    CoapServer server = new CoapServer();
 
-    server.start();
+        // 创建服务端
+        CoapServer server = new CoapServer();
+        // 启动服务端
+        server.start();
 
-}
+    }
 ```
 
 那么，接下来就让我们从CoapServer这个类开始，对整个框架进行分析。首先让我们看看构造方法里面做了哪些事：
