@@ -155,7 +155,31 @@ public CoapServer(final NetworkConfig config, final int... ports) {
 }
 ```
 
-从上面构造方法里，初始化了一些成员变量。其中，Endpoint直接与网络进行通信，MessageDeliverer分发请求，Resource处理请求。
+构造方法初始化了一些成员变量。其中，Endpoint负责与网络进行通信，MessageDeliverer负责分发请求，Resource负责处理请求。接着让我们看看启动方法`start()`又做了哪些事：
+
+```
+public void start() {
+
+	// 如果没有一个Endpoint与CoapServer进行绑定，那就创建一个默认的Endpoint
+	...			
+	
+	// 一个一个地将Endpoint启动	
+	int started = 0;
+	for (Endpoint ep:endpoints) {
+		try {
+			ep.start();
+			++started;
+		} catch (IOException e) {
+			LOGGER.log(Level.SEVERE, "Cannot start server endpoint [" + ep.getAddress() + "]", e);
+		}
+	}
+	if (started==0) {
+		throw new IllegalStateException("None of the server endpoints could be started");
+	}
+}
+```
+
+
 
 
 
