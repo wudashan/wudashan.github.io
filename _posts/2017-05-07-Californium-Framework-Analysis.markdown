@@ -179,13 +179,28 @@ public void start() {
 }
 ```
 
-至此，服务端算是启动成功了。让我们稍微总结一下几个类的关系：
+启动方法很简单，主要是将所有的Endpoint一个个启动。至此，服务端算是启动成功了。让我们稍微总结一下几个类的关系：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapServer%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
 
 如上图，消息会从Network模块传输给对应的Endpoint节点，所有的Endpoint节点都会将消息推给MessageDeliverer，MessageDeliverer根据消息的内容传输给指定的Resource，Resource再对消息内容进行处理。
 
+接下来，将让我们再模拟一个客户端发起一个请求，看看服务端是如何接收和处理的吧！客户端代码如下：
 
+```
+public static void main(String[] args) throws URISyntaxException {
+        
+    // 确定请求路径
+    URI uri = new URI("127.0.0.1");
+
+    // 创建客户端
+    CoapClient client = new CoapClient(uri);
+    
+    // 发起一个GET请求
+    client.get();
+
+}
+```
 
 
 
