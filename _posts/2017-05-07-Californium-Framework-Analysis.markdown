@@ -179,8 +179,11 @@ public void start() {
 }
 ```
 
+至此，服务端算是启动成功了。让我们稍微总结一下几个类的关系：
 
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapServer_02.png)
 
+如上图，消息会从Network模块传输给对应的Endpoint节点，所有的Endpoint节点都会将消息推给MessageDeliverer，MessageDeliverer根据消息的内容传输给指定的Resource，Resource再对消息内容进行处理。
 
 
 
