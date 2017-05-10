@@ -305,6 +305,43 @@ public Exchange receiveRequest(Request request) {
 }
 ```
 
+#### CoapStack类
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapStack%E7%B1%BB%E5%9B%BE.png)
+
+CoapStack的类图比较复杂，其结构可以简化为下图：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapStack%E6%A8%A1%E5%9D%97%E5%9B%BE.png)
+
+有人可能会疑惑，这个结构图是怎么来，答案就在构造方法里：
+
+```
+public CoapStack(NetworkConfig config, Outbox outbox) {
+
+    // 初始化栈顶
+    this.top = new StackTopAdapter();
+    
+    // 初始化栈底
+    this.bottom = new StackBottomAdapter();
+    
+    // 初始化出口
+    this.outbox = outbox;
+
+    // 初始化ReliabilityLayer
+    ...
+
+    // 初始化层级
+    this.layers = 
+        new Layer.TopDownBuilder()
+        .add(top)
+        .add(new ObserveLayer(config))
+        .add(new BlockwiseLayer(config))
+        .add(reliabilityLayer)
+        .add(bottom)
+        .create();
+
+}
+```
 
 
 ## 未完待续
