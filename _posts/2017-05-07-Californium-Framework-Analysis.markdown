@@ -119,7 +119,7 @@ public static void main(String[] args) {
     }
 ```
 
-那么，接下来就让我们从CoapServer这个类开始，对整个框架进行分析。首先让我们看看构造方法里面做了哪些事：
+那么，接下来就让我们从CoapServer这个类开始，对整个框架进行分析。首先让我们看看构造方法`CoapServer()`里面做了哪些事：
 
 ```
 public CoapServer(final NetworkConfig config, final int... ports) {
