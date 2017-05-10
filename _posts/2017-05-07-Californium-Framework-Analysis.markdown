@@ -200,8 +200,12 @@ public void handleGET(CoapExchange exchange) {
 	exchange.respond(ResponseCode.METHOD_NOT_ALLOWED);
 }
 ```
-从字面意思上看，好像是通过CoapExchange对象，返回了一个*METHOD_NOT_ALLOWED*的响应码，具体操作是怎样，看来我们还要去CoapExchange类里逛逛。
+从字面意思上看，好像是通过CoapExchange对象，返回了一个*METHOD_NOT_ALLOWED*的响应码。具体操作是怎样，看来我们还要去CoapExchange类里逛逛。
 
+
+## CoapExchange类
+
+框架中有Exchange类，大家可能都想当然的认为CoapExchange类继承自Exchange类。但是，优秀的框架是不会这样干的，因为设计模式里有一条规则：**多用组合，少用继承**。所以真正的情况是CoapExchange类中有一个Exchange成员变量。
 
 
 ## 未完待续
