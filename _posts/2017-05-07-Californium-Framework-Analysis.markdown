@@ -513,7 +513,7 @@ public void sendResponse(Exchange exchange, Response response) {
 }
 ```
 
-最后还是通过一张响应消息流程图来回顾一下，一个服务端响应最终是如何传输到网络里去：
+通过一张响应消息流程图来回顾一下，一个服务端响应最终是如何传输到网络里去：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
 
