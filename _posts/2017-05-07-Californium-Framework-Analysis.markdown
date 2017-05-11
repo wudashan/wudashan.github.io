@@ -458,7 +458,7 @@ public void respond(Response response) {
     
     // 检查关系
     resource.checkObserveRelation(exchange, response);
-	
+
     // 由成员变量Exchange发送响应
     exchange.sendResponse(response);
 
@@ -517,8 +517,10 @@ public void sendResponse(Exchange exchange, Response response) {
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
 
+## 总结
 
-## 未完待续
+通过服务端的创建和启动，客户端发起GET请求，服务端接收请求并返回响应流程，我们对Californium框架有了一个整体的了解。俗话说，师父领进门，修行看个人。在分析这个流程的过程中，我省略了很多的细节，意在让大家对框架有个概念上的理解，在以后二次开发或定位问题时更能抓住重点，着重针对某个模块。最后，也不得不赞叹一下这款开源框架代码逻辑清晰，模块职责划分明确，灵活地使用设计模式，非常值得我们学习！
+
 
 ## 参考阅读
 
