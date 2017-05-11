@@ -39,7 +39,7 @@ tags:
 
 **Message ID：**长度为16位，表示消息id。用来表示是否为同一个的报文（重发场景下，去重会用到），或者CON请求报文和ACK响应报文的匹配。
 
-**Token：**长度由TKL字段决定，表示一次会话记录。用来关联请求和响应。有人可能有疑惑，Message ID不是可以将请求和响应关联吗？的确，CON类型的请求报文与ACK类型的响应报文可以用Message ID进行关联，但NON类型的报文由于没有要求是一对的，所有如果NON类型的报文想成对，那就只能通过相同的Token来匹配了。
+**Token：**长度由TKL字段决定，表示一次会话记录。用来关联请求和响应。有人可能有疑惑，Message ID不是可以将请求和响应关联吗？的确，CON类型的请求报文与ACK类型的响应报文可以用Message ID进行关联，但NON类型的报文由于没有要求是一对的，所以如果NON类型的报文想成对，那就只能通过相同的Token来匹配了。
 
 **Options：**长度不确定，表示报文的选项。类似为HTTP的请求头，内容包括Uri-Host、Uri-Path、Uri-Port等等。
 
@@ -75,7 +75,7 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%B7%A6.png)
 
-如上图，客户端发起了一个`CON报文（Message ID = 0xbc90, Code = 0.01 GET, Payload = "/temperature", Token = 0x71）`，服务端在收到查询温度的请求之后，回复`ACK报文（Message ID = 0xbc90, Code = 2.05 Content, Payload = "22.5 C", Token = 0x71）`。也就是说服务端可以在ACK报文中，就将客户端查询温度的结果一起返回。
+如上图，客户端发起了一个`CON报文（Message ID = 0xbc90, Code = 0.01 GET, OptionSet = {"Uri-Path":"/temperature"}, Token = 0x71）`，服务端在收到查询温度的请求之后，回复`ACK报文（Message ID = 0xbc90, Code = 2.05 Content, Payload = "22.5 C", Token = 0x71）`。也就是说服务端可以在ACK报文中，就将客户端查询温度的结果一起返回。
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%8F%B3.png)
 
@@ -85,7 +85,7 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/NON%E8%AF%B7%E6%B1%82_NON%E5%93%8D%E5%BA%94.png)
 
-如上图，客户端发起了一个`NON报文（Message ID = 0x7a11, Code = 0.01 GET, Payload = "/temperature", Token = 0x74）`，服务端在收到查询温度的请求之后，回复`NON报文（Message ID = 0x23bc, Code = 2.05 Content, Payload = "22.5 C", Token = 0x74）`。
+如上图，客户端发起了一个`NON报文（Message ID = 0x7a11, Code = 0.01 GET, OptionSet = {"Uri-Path":"/temperature"}, Token = 0x74）`，服务端在收到查询温度的请求之后，回复`NON报文（Message ID = 0x23bc, Code = 2.05 Content, Payload = "22.5 C", Token = 0x74）`。
 
 可以发现，CON类型的请求报文与ACK类型的响应报文是通过Message ID进行匹配，NON类型的请求报文与NON类型的响应报文则是通过Token进行匹配。
 
@@ -116,7 +116,7 @@ public static void main(String[] args) {
         // 启动服务端
         server.start();
 
-    }
+}
 ```
 
 那么，接下来就让我们从CoapServer这个类开始，对整个框架进行分析。首先让我们看看构造方法`CoapServer()`里面做了哪些事：
