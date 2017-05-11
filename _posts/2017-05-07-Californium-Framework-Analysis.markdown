@@ -185,7 +185,7 @@ public void start() {
 
 如上图，消息会从Network模块传输给对应的Endpoint节点，所有的Endpoint节点都会将消息推给MessageDeliverer，MessageDeliverer根据消息的内容传输给指定的Resource，Resource再对消息内容进行处理。
 
-接下来，将让我们再模拟一个客户端发起一个请求，看看服务端是如何接收和处理的吧！客户端代码如下：
+接下来，将让我们再模拟一个客户端发起一个GET请求，看看服务端是如何接收和处理的吧！客户端代码如下：
 
 ```
 public static void main(String[] args) throws URISyntaxException {
