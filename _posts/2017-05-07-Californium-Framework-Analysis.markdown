@@ -402,6 +402,121 @@ public void deliverRequest(final Exchange exchange) {
 当MessageDeliverer找到Request请求对应的Resource资源后，就会交由Resource资源来处理请求。（是不是很像Spring MVC中的DispatcherServlet，它也负责分发请求给对应的Controller，再由Controller自己处理请求）
 
 
+## Resource接口
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/Resource%E7%B1%BB%E5%9B%BE.png)
+
+还记得CoapServer构造方法里创建了一个RootResource吗？它的资源路径为空，而客户端发起的GET请求默认也是空路径。那么ServerMessageDeliverer就会把请求分发给RootResource处理。RootResource类没有覆写`handleRequest(Exchange exchange)`方法，所以我们看看CoapResource父类的实现：
+
+```
+public void handleRequest(final Exchange exchange) {
+    Code code = exchange.getRequest().getCode();
+    switch (code) {
+        case GET:	handleGET(new CoapExchange(exchange, this)); break;
+        case POST:	handlePOST(new CoapExchange(exchange, this)); break;
+        case PUT:	handlePUT(new CoapExchange(exchange, this)); break;
+        case DELETE: handleDELETE(new CoapExchange(exchange, this)); break;
+    }
+}
+```
+
+由于我们客户端发起的是GET请求，那么将会进入到`RootResource.handleGET(CoapExchange exchange)`方法：
+
+```
+public void handleGET(CoapExchange exchange) {
+    // 由CoapExchange返回响应
+    exchange.respond(ResponseCode.CONTENT, msg);
+}
+```
+
+再接着看`CoapExchange.respond(ResponseCode code, String payload)`方法：
+
+```
+public void respond(ResponseCode code, String payload) {
+
+    // 生成响应并赋值
+    Response response = new Response(code);
+    response.setPayload(payload);
+    response.getOptions().setContentFormat(MediaTypeRegistry.TEXT_PLAIN);
+    
+    // 调用同名函数
+    respond(response);
+    
+}
+```
+
+看看同名函数里又做了哪些操作：
+
+```
+public void respond(Response response) {
+
+    // 参数校验
+    ...
+    
+    // 设置Response属性
+    ...
+    
+    // 检查关系
+    resource.checkObserveRelation(exchange, response);
+	
+	// 由成员变量Exchange发送响应
+    exchange.sendResponse(response);
+
+}
+```
+
+那么`Exchange.sendResponse(Response response)`又是如何发送响应的呢？
+
+```
+public void sendResponse(Response response) {
+
+    // 设置Response属性
+    response.setDestination(request.getSource());
+    response.setDestinationPort(request.getSourcePort());
+    setResponse(response);
+    
+    // 由Endpoint发送响应
+    endpoint.sendResponse(this, response);
+
+}
+```
+
+原来最终还是交给了Endpoint去发送响应了啊！之前的GET请求就是从Endpoint中来的。这真是和达康书记一样，从人民中来，再到人民中去。
+
+在CoapEndpoint类一章节中我们有介绍它的内部结构。那么当发送响应的时候，将与之前接收请求相反，先由StackTopAdapter处理、再是依次ObserveLayer、BlockwiseLayer、ReliabilityLayer处理，最后由StackBottomAdapter处理，中间的细节还是老样子忽略，让我们直接看`StackBottomAdapter.sendResponse(Exchange exchange, Response response)`方法：
+
+```
+public void sendResponse(Exchange exchange, Response response) {
+    outbox.sendResponse(exchange, response);
+}
+```
+
+请求入口是**CoapEndpoint.InboxImpl**，而响应出口是**CoapEndpint.OutboxImpl**，简单明了。最后，让我们看看`OutboxImpl.sendResponse(Exchange exchange, Response response)`吧：
+
+```
+public void sendResponse(Exchange exchange, Response response) {
+
+    // 一些非关键操作
+    ...
+    
+    // 匹配器发送响应
+    matcher.sendResponse(exchange, response);
+
+    // 消息拦截器发送响应
+    for (MessageInterceptor interceptor:interceptors) {
+        interceptor.sendResponse(response);
+    }
+    
+    // 真正地发送响应到网络里
+    connector.send(Serializer.serialize(response));
+    
+}
+```
+
+最后还是通过一张响应消息流程图来回顾一下，一个服务端响应最终是如何传输到网络里去：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
+
 
 ## 未完待续
 
