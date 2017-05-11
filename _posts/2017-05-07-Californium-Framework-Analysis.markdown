@@ -75,7 +75,7 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%B7%A6.png)
 
-如上图，客户端发起了一个`CON报文（Message ID = 0xbc90, Code = 0.01 GET, OptionSet = {"Uri-Path":"/temperature"}, Token = 0x71）`，服务端在收到查询温度的请求之后，回复`ACK报文（Message ID = 0xbc90, Code = 2.05 Content, Payload = "22.5 C", Token = 0x71）`。也就是说服务端可以在ACK报文中，就将客户端查询温度的结果一起返回。
+如上图，客户端发起了一个`CON报文（Message ID = 0xbc90, Code = 0.01 GET, Options = {"Uri-Path":"/temperature"}, Token = 0x71）`，服务端在收到查询温度的请求之后，回复`ACK报文（Message ID = 0xbc90, Code = 2.05 Content, Payload = "22.5 C", Token = 0x71）`。也就是说服务端可以在ACK报文中，就将客户端查询温度的结果一起返回。
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%8F%B3.png)
 
@@ -85,7 +85,7 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/NON%E8%AF%B7%E6%B1%82_NON%E5%93%8D%E5%BA%94.png)
 
-如上图，客户端发起了一个`NON报文（Message ID = 0x7a11, Code = 0.01 GET, OptionSet = {"Uri-Path":"/temperature"}, Token = 0x74）`，服务端在收到查询温度的请求之后，回复`NON报文（Message ID = 0x23bc, Code = 2.05 Content, Payload = "22.5 C", Token = 0x74）`。
+如上图，客户端发起了一个`NON报文（Message ID = 0x7a11, Code = 0.01 GET, Options = {"Uri-Path":"/temperature"}, Token = 0x74）`，服务端在收到查询温度的请求之后，回复`NON报文（Message ID = 0x23bc, Code = 2.05 Content, Payload = "22.5 C", Token = 0x74）`。
 
 可以发现，CON类型的请求报文与ACK类型的响应报文是通过Message ID进行匹配，NON类型的请求报文与NON类型的响应报文则是通过Token进行匹配。
 
