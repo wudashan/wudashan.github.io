@@ -459,7 +459,7 @@ public void respond(Response response) {
     // 检查关系
     resource.checkObserveRelation(exchange, response);
 	
-	// 由成员变量Exchange发送响应
+    // 由成员变量Exchange发送响应
     exchange.sendResponse(response);
 
 }
