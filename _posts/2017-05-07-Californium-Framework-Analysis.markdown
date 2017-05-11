@@ -369,6 +369,39 @@ public void receiveRequest(Exchange exchange, Request request) {
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
 
+## MessageDeliverer接口
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/MessageDeliverer%E7%B1%BB%E5%9B%BE.png)
+
+框架有ServerMessageDeliverer和ClientMessageDeliverer两个实现类。从CoapServer的构造方法里知道使用的是ServerMessageDeliverer类。那么就让我们看看`ServerMessageDeliverer.deliverRequest(Exchange exchange)`方法是如何分发GET请求的：
+
+```
+public void deliverRequest(final Exchange exchange) {
+
+    // 从exchange里获取request
+    Request request = exchange.getRequest();
+    
+    // 从request里获取请求路径
+    List<String> path = request.getOptions().getUriPath();
+    
+    // 找出请求路径对应的Resource
+    final Resource resource = findResource(path);
+    
+    // 一些非关键操作
+    ...
+    
+    // 由Resource来真正地处理请求
+    resource.handleRequest(exchange);
+    
+    // 一些非关键操作
+    ...
+	
+}
+```
+
+当MessageDeliverer找到Request请求对应的Resource资源后，就会交由Resource资源来处理请求。（是不是很像Spring MVC中的DispatcherServlet，它也负责分发请求给对应的Controller，再由Controller自己处理请求）
+
+
 
 ## 未完待续
 
