@@ -224,7 +224,7 @@ public CoapEndpoint(Connector connector, NetworkConfig config, ObservationStore 
 
 从构造方法可以了解到，其内部结构如下所示：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE_01.png)
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE_02.png)
 
 那么，也就是说客户端发起的GET请求将被InboxImpl类接收。InboxImpl类实现了RawDataChannel接口，该接口只有一个`receiveData(RawData raw)`方法，InboxImpl类的该方法如下：
 
