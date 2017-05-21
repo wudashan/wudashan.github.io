@@ -529,3 +529,5 @@ public void sendResponse(Exchange exchange, Response response) {
 [CoAP协议学习——CoAP基础](http://blog.csdn.net/xukai871105/article/details/17734163)
 
 [RFC 7252 - The Constrained Application Protocol (CoAP)](https://tools.ietf.org/html/rfc7252)
+
+[RFC7252-《受限应用协议》中文版.md](https://github.com/WildDogTeam/contribute/blob/master/source/RFC7252-%E3%80%8A%E5%8F%97%E9%99%90%E5%BA%94%E7%94%A8%E5%8D%8F%E8%AE%AE%E3%80%8B%E4%B8%AD%E6%96%87%E7%89%88.md)
