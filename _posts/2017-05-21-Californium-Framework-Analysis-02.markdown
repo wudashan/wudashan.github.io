@@ -41,6 +41,40 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
  - 请求码：GET，POST，PUT，DELETE
  - 响应码：成功2.XX，客户端错误4.XX，服务端错误5.XX
 
+**OptionNumberRegistry类**
+
+根据RFC 7252的第12.2章节，该类定义了CoAP报文中Option字段支持的值。其值如下表格：
+
+```
+             +--------+------------------+-----------+ 
+             | Number | Name             | Reference | 
+             +--------+------------------+-----------+ 
+             |      0 | (Reserved)       | [RFC7252] | 
+             |      1 | If-Match         | [RFC7252] |
+             |      3 | Uri-Host         | [RFC7252] | 
+             |      4 | ETag             | [RFC7252] |  
+             |      5 | If-None-Match    | [RFC7252] |  
+             |      6 | Observe          |           |  
+             |      7 | Uri-Port         | [RFC7252] |  
+             |      8 | Location-Path    | [RFC7252] | 
+             |     11 | Uri-Path         | [RFC7252] |
+             |     12 | Content-Format   | [RFC7252] |
+             |     14 | Max-Age          | [RFC7252] | 
+             |     15 | Uri-Query        | [RFC7252] |  
+             |     17 | Accept           | [RFC7252] |   
+             |     20 | Location-Query   | [RFC7252] |  
+             |     23 | Block2           |           |    
+             |     27 | Block1           |           | 
+             |     28 | Size2            |           | 
+             |     35 | Proxy-Uri        | [RFC7252] |  
+             |     39 | Proxy-Scheme     | [RFC7252] | 
+             |     60 | Size1            | [RFC7252] |
+             |    128 | (Reserved)       | [RFC7252] | 
+             |    132 | (Reserved)       | [RFC7252] |  
+             |    136 | (Reserved)       | [RFC7252] |   
+             |    140 | (Reserved)       | [RFC7252] |    
+             +--------+------------------+-----------+ 
+```
 
 
 
