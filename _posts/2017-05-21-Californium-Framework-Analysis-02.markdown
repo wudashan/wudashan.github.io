@@ -23,4 +23,10 @@ Californium开源框架由`californium-core`和`element-connector`两个jar包�
 
 ## californium-core
 
+包图如下：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/californium-core%E5%8C%85%E5%9B%BE.png)
+
+#### coap包
+
 未完待续。
