@@ -33,7 +33,7 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/coap%E5%8C%85%E7%B1%BB%E5%9B%BE.png)
 
-###### CoAP类
+**CoAP类**
 
 未完待续。
 
