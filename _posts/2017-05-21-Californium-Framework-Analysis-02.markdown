@@ -76,5 +76,21 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
 +--------+------------------+-----------+ 
 ```
 
+**MediaTypeRegistry类**
+根据RFC 7252的第12.3章节，该类定义了CoAP报文中Option字段的Content-Format支持的值。其值如下表格：
+
+```
++--------------------------+----------+----+----------------------+
+| Media type               | Encoding | ID | Reference            |
++--------------------------+----------+----+----------------------+
+| text/plain;              | -        |  0 | [RFC2046] [RFC3676]  |
+| charset=utf-8            |          |    | [RFC5147]            |
+| application/link-format  | -        | 40 | [RFC6690]            |
+| application/xml          | -        | 41 | [RFC3023]            |
+| application/octet-stream | -        | 42 | [RFC2045] [RFC2046]  |
+| application/exi          | -        | 47 | [REC-exi-20140211]   |
+| application/json         | -        | 50 | [RFC7159]            |
++--------------------------+----------+----+----------------------+
+```
 
 
