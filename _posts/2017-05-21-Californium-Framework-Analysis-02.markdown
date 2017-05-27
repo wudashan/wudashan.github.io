@@ -78,7 +78,7 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
 
 **MediaTypeRegistry类**
 
-根据RFC 7252的第12.3章节，该类定义了CoAP报文中Option字段的Content-Format支持的值。其值如下表格：
+根据RFC 7252的第12.3章节，该类定义了CoAP报文中Option字段的Content-Format选项支持的值。其值如下表格：
 
 ```
 +--------------------------+----------+----+----------------------+
@@ -97,4 +97,9 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
 **MessageFormatException类**
 
 该类继承RuntimeException类，即属于运行时（非受检）异常。当解析二进制形式的CoAP报文失败时，程序就会抛出该异常。
+
+
+**BlockOption类**
+
+该类表示的是CoAP报文中Option字段的Block1和Block2，由于这两个选项比较特殊，所以单独封装成一个类。
 
