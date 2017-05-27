@@ -103,3 +103,24 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
 
 该类表示的是CoAP报文中Option字段的Block1和Block2值，由于这两个选项比较特殊，所以单独封装成一个类。
 
+
+**Option类**
+
+该类是个Option字段的通用表示类。请求报文和响应报文都有可能携带多个Option，可以通过Option的序号判断该Option是必须还是可选，安全还是非安全。如果某个Option选项是安全的，那么还可以判断它是否是可缓存的。算法如下：
+
+```
+Critical = (OptionNumber & 1);
+UnSafe = (OptionNumber & 2);
+NoCacheKey = ((OptionNumber & 0x1e) == 0x1c)
+```
+
+说起来非常抽象，让我们直接看一个实例，Option序号二进制表示形式如下：
+
+```
+  0   1   2   3   4   5   6   7
++---+---+---+---+---+---+---+---+
+|           | NoCacheKey| U | C |
++---+---+---+---+---+---+---+---+
+```
+
+从OptionNumberRegistry类查询到Uri-Host的序号为3，转换为二进制就是`000 000 1 1`，Critical = (00000011 & 1) = 1，所以Uri-Host是必选的； UnSafe = (00000011 & 10) != 0，所以Uri-Host是不安全的。NoCacheKey = (00000011 & 11110) != 00011100，所以Uri-Host不是非缓存键。
