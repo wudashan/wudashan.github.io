@@ -125,6 +125,7 @@ NoCacheKey = ((OptionNumber & 0x1e) == 0x1c)
 
 从OptionNumberRegistry类查询到Uri-Host的序号为3，转换为二进制就是`000 000 1 1`。
 
- - Critical = (00000011 & 1) = 1，所以Uri-Host是必选的；
- - UnSafe = (00000011 & 10) != 0，所以Uri-Host是不安全的；
- - NoCacheKey = (00000011 & 11110) != 00011100，所以Uri-Host不是非缓存键。
+ - Critical = (00000011 & 00000001) = 1，所以Uri-Host是必选的；
+ - UnSafe = (00000011 & 00000010) != 0，所以Uri-Host是不安全的；
+ - NoCacheKey = (00000011 & 00011110) != 00011100，所以Uri-Host不是非缓存键。
+
