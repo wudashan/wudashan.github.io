@@ -101,5 +101,5 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
 
 **BlockOption类**
 
-该类表示的是CoAP报文中Option字段的Block1和Block2，由于这两个选项比较特殊，所以单独封装成一个类。
+该类表示的是CoAP报文中Option字段的Block1和Block2值，由于这两个选项比较特殊，所以单独封装成一个类。
 
