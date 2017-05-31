@@ -90,7 +90,7 @@ service-worker: true
 # Friends
 friends: [
     {
-        title: "Su",
-        href: "http://su.gallery/"
+        title: "jaywcjlove",
+        href: "https://jaywcjlove.github.io/linux-command/"
     }
 ]
