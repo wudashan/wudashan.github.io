@@ -15,15 +15,15 @@ tags:
 
 > 项目源码地址：[https://github.com/eclipse/californium](https://github.com/eclipse/californium)
 
-## 引言
+# 引言
 
 物联网时代，所有设备都可以接入我们的互联网。想想看只要有一台智能手机，就可以操控所有的设备，也可以获取到所有设备采集的信息。不过，并不是所有设备都支持HTTP协议的，而且让设备支持HTTP协议也不现实，因为对于设备来说，这个协议太重了，会消耗大量的带宽和电量。于是CoAP协议也就运应而生了，我们可以把它看为超简化版的HTTP协议。而Californium框架，就是对CoAP协议的Java实现。
 
-## CoAP协议
+# CoAP协议
 
 在阅读Californium框架之前，我们需要对CoAP协议有个大致的了解，已经懂得了的同学可以直接跳过本章节。
 
-#### CoAP报文
+## CoAP报文
 
 首先让我们看一下CoAP协议的报文是长啥样的：
 
@@ -48,11 +48,11 @@ tags:
 **Payload：**长度由数据包决定，表示应用层需要的数据。
 
 
-#### 消息传输模型
+## 消息传输模型
 
 CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两种传输模型。
 
-**可靠传输模型：**
+### 可靠传输模型
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%9E%8B.png)
 
@@ -60,18 +60,18 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 确保可靠传输的方法有俩：其一，通过服务端回复ACK报文，客户端可以确认CON报文已被服务端接收；其二，超时重传机制。若客户端在一定时间内未收到ACK报文，则认为CON报文已经在链路上丢失，这时候就会重传CON报文，重传时间和次数可配置。
 
-**不可靠传输模型：**
+### 不可靠传输模型
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E4%B8%8D%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%9E%8B.png)
 
 如上图，客户端发起一个NON报文（Message ID = 0x01a0）之后，服务端无需回复响应，客户端也不会重发。
 
 
-#### 请求与响应模型
+## 请求与响应模型
 
 由于存在可靠与不可靠两种传输模型，那么对应的也会存在两种请求与响应模型。
 
-**CON请求，ACK响应：**
+### CON请求，ACK响应
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%B7%A6.png)
 
@@ -81,7 +81,7 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 当然，还有一种情况，那就是服务端可能由于某些原因不马上返回结果。如上图，客户端发起查询温度的CON报文之后，服务端先回复ACK报文。一段时间过后，服务端再发起CON报文给客户端，并将温度的结果一起携带，客户端收到结果之后回复ACK报文。
 
-**NON请求，NON响应：**
+### NON请求，NON响应
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/NON%E8%AF%B7%E6%B1%82_NON%E5%93%8D%E5%BA%94.png)
 
@@ -92,7 +92,7 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 至此，咱们的CoAP协议初学之路已到了终点，如果还想详细研究的同学，可以查阅[RFC 7252](https://tools.ietf.org/html/rfc7252)，这里就不再做详述了！那么，接下来就让我们对Californium开源框架一探究竟吧！
 
 
-## 分析入口
+# 分析入口
 
 想要分析一个框架，最好的方法就是先使用它，再通过debug，一步步地了解它是如何运行的。
 
@@ -204,7 +204,7 @@ public static void main(String[] args) throws URISyntaxException {
 
 通过前面分析，我们知道Endpoint是直接与网络进行交互的，那么客户端发起的GET请求，应该在服务端的Endpoint中收到。框架中Endpoint接口的实现类只有CoapEndpoint，让我们深入了解一下CoapEndpoint的内部实现，看看它是如何接收和处理请求的。
 
-## CoapEndpoint类
+# CoapEndpoint类
 
 CoapEndpoint类实现了Endpoint接口，其构造方法如下：
 
@@ -284,13 +284,13 @@ private void receiveMessage(final RawData raw) {
 
 接下来，我们分别对MessageInterceptor（消息拦截器）、Matcher（匹配器）、CoapStack（Coap协议栈）进行分析，看看他们接收到请求后做了什么处理。
 
-#### MessageInterceptor接口
+## MessageInterceptor接口
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/MessageInterceptor%E7%B1%BB%E5%9B%BE.png)
 
 框架本身并没有提供该接口的任何实现类，我们可以根据业务需求实现该接口，并通过`CoapEndpoint.addInterceptor(MessageInterceptor interceptor)`方法添加具体的实现类。
 
-#### Matcher类
+## Matcher类
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/Matcher%E7%B1%BB%E5%9B%BE.png)
 
@@ -305,7 +305,7 @@ public Exchange receiveRequest(Request request) {
 }
 ```
 
-#### CoapStack类
+## CoapStack类
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapStack%E7%B1%BB%E5%9B%BE.png)
 
@@ -369,7 +369,7 @@ public void receiveRequest(Exchange exchange, Request request) {
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
 
-## MessageDeliverer接口
+# MessageDeliverer接口
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/MessageDeliverer%E7%B1%BB%E5%9B%BE.png)
 
@@ -402,7 +402,7 @@ public void deliverRequest(final Exchange exchange) {
 当MessageDeliverer找到Request请求对应的Resource资源后，就会交由Resource资源来处理请求。（是不是很像Spring MVC中的DispatcherServlet，它也负责分发请求给对应的Controller，再由Controller自己处理请求）
 
 
-## Resource接口
+# Resource接口
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/Resource%E7%B1%BB%E5%9B%BE.png)
 
@@ -517,12 +517,12 @@ public void sendResponse(Exchange exchange, Response response) {
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
 
-## 总结
+# 总结
 
 通过服务端的创建和启动，客户端发起GET请求，服务端接收请求并返回响应流程，我们对Californium框架有了一个整体的了解。俗话说，师父领进门，修行看个人。在分析这个流程的过程中，我省略了很多的细节，意在让大家对框架有个概念上的理解，在以后二次开发或定位问题时更能抓住重点，着重针对某个模块。最后，也不得不赞叹一下这款开源框架代码逻辑清晰，模块职责划分明确，灵活地使用设计模式，非常值得我们学习！
 
 
-## 参考阅读
+# 参考阅读
 
 [Californium 框架设计分析](http://www.cnblogs.com/littleatp/p/6417567.html)
 
