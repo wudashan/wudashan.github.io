@@ -154,10 +154,7 @@ public class OptionSet {
     private Integer      size1;
     private Integer      size2;
     private Integer      observe;
-
-    // Arbitrary options
-    private List<Option> others;
-    
+    private List<Option> others; // Arbitrary options
     ...
 }
 ```
