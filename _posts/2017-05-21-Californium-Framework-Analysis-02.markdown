@@ -160,3 +160,41 @@ public class OptionSet {
 ```
 
 它涵盖了RFC 7252中定义的所有Option字段，包括上面提到的通用Option类和单独BlockOption类，也都统一的封装在该类中。
+
+**Message类**
+
+终于到我们coap包中最重要的一个类了，该类是所有CoAP消息的基类。CoAP消息一共有三个子类：请求消息Request类、响应消息Response类、空消息EmptyMessage类。每个CoAP消息都包括消息类型Type、MID、token、OptionSet和payload等等。
+
+除此之外，一个消息可以被应答、拒绝、取消、超时，所以在该类也定义了相应的成员变量来表示：
+
+```
+public abstract class Message {
+    // 表示消息是否已应答
+    private boolean acknowledged;
+
+    // 表示消息是否被拒绝
+    private boolean rejected;
+
+    // 表示消息是否被取消
+    private boolean canceled;
+
+    // 表示消息是否已超时
+    private boolean timedOut; // Important for CONs
+    ...
+    }
+```
+
+该类使用了观察者设计模式。通过`Message.addMessageObserver()`加入观察者，当消息状态（应答、拒绝、取消、超时）出现变更时，会通知相应的MessageObserver类。从具体的内部实现代码即可发现：
+
+```
+public void setCanceled(boolean canceled) {
+    this.canceled = canceled;
+    if (canceled) {
+        // 逐个通知观察者
+        for (MessageObserver handler : getMessageObservers()) {
+            // 回调观察者的相应方法
+            handler.onCancel();
+        }
+    }
+}
+```
