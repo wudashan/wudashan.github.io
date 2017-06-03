@@ -15,13 +15,13 @@ tags:
 
 > 定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个，工厂方法让类把实例化推迟到子类。
 
-## 模式名和分类
+# 模式名和分类
 工厂方法模式，属于创建型模式。
 
 ---
 
 
-## 动机
+# 动机
 考虑一个这样的场景：你编写了一个Application类，这个类可以负责创建组件，并且提供了对组件操作的方法。具体代码如下：
 ```
 /**
@@ -50,25 +50,25 @@ public class Application {
 
 ---
 
-## 优缺点
-#### 优点
+# 优缺点
+## 优点
 
  - 隐藏了哪种具体产品类将被实例化这一细节，使调用方更专注于如何处理产品。
  - 系统可扩展性强。当需要添加新的产品时，创建具体的工厂和具体的产品即可，而无需修改原有的抽象工厂和抽象产品，符合“开闭原则”。
 
-#### 缺点
+## 缺点
 
  - 增加系统复杂度。每编写一个新的具体产品，就要有一个具体的工厂与之对应。
 
 ---
 
-## 类图
+# 类图
 ![](http://o7x0ygc3f.bkt.clouddn.com/%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F_01.png)
 
 ---
 
-## 代码示例
-#### Product.java
+# 代码示例
+## Product.java
 ```
 /**
  * 抽象的产品
@@ -83,7 +83,7 @@ public interface Product {
 }
 ```
 
-#### ConcreteProductA.java
+## ConcreteProductA.java
 ```
 /**
  * 具体的产品A
@@ -97,7 +97,7 @@ public class ConcreteProductA implements Product {
 
 ```
 
-#### ConcreteProductB.java
+## ConcreteProductB.java
 ```
 /**
  * 具体的产品B
@@ -110,7 +110,7 @@ public class ConcreteProductB implements Product {
 }
 ```
 
-#### Creator.java
+## Creator.java
 ```
 /**
  * 抽象的生成器
@@ -132,7 +132,7 @@ public abstract class Creator {
 }
 ```
 
-#### ConcreteCreatorA.java
+## ConcreteCreatorA.java
 ```
 /**
  * 具体的生成器A
@@ -145,7 +145,7 @@ public class ConcreteCreatorA extends Creator {
 }
 ```
 
-#### ConcreteCreatorB.java
+## ConcreteCreatorB.java
 ```
 /**
  * 具体的生成器B
@@ -158,7 +158,7 @@ public class ConcreteCreatorB extends Creator {
 }
 ```
 
-#### Main.java
+## Main.java
 ```
 /**
  * 主程序
@@ -187,7 +187,7 @@ public class Main {
 
 ---
 
-## 总结
+# 总结
 记忆力棒的同学可能会发现**工厂方法模式**和之前说的**[抽象工厂模式](http://wudashan.cn/2017/04/16/Abstract-Factory-Pattern/)**好像非常的相像啊，特别是再对比之后感觉完全混淆了。我当初学习这两个模式的时候，刚学其中一个的时候还明明白白，再学第二个的时候感觉就稀里糊涂了。
 
 其实两者还是有细微的差别的，这里区别一下：
