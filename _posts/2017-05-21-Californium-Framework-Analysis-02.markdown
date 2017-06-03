@@ -15,25 +15,25 @@ tags:
 
 > 项目源码地址：[https://github.com/eclipse/californium](https://github.com/eclipse/californium)
 
-## 引言
+# 引言
 
 在[上一篇](http://wudashan.cn/2017/05/07/Californium-Framework-Analysis-01)博客中，我们通过模拟Debug + 源码走读的方式，对Californium框架有了一个整体的认识。本篇博客，我们将按框架的目录结构，对所有的类进行详细的分析和解读。
 
 Californium开源框架由`californium-core`和`element-connector`两个jar包组成。其中`californium-core`是框架的核心实现，而`element-connector`则是从框架中独立出来的网络传输模块。话不多说，就让我们赶紧看看它们的内部结构吧！
 
-## californium-core
+# californium-core
 
 包图如下：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/californium-core%E5%8C%85%E5%9B%BE.png)
 
-#### coap包
+## coap包
 
 coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/coap%E5%8C%85%E7%B1%BB%E5%9B%BE.png)
 
-**CoAP类**
+### CoAP类
 
 该类定义了CoAP报文的一些常量，以及按协议要求定义了报文中各字段的格式。包括：
 
@@ -41,7 +41,7 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
  - 请求码：GET，POST，PUT，DELETE
  - 响应码：成功2.XX，客户端错误4.XX，服务端错误5.XX
 
-**OptionNumberRegistry类**
+### OptionNumberRegistry类
 
 根据RFC 7252的第12.2章节，该类定义了CoAP报文中Option字段支持的值。其值如下表格：
 
@@ -76,7 +76,7 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
 +--------+------------------+-----------+ 
 ```
 
-**MediaTypeRegistry类**
+### MediaTypeRegistry类
 
 根据RFC 7252的第12.3章节，该类定义了CoAP报文中Option字段的Content-Format选项支持的值。其值如下表格：
 
@@ -94,17 +94,17 @@ coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
 +--------------------------+----------+----+----------------------+
 ```
 
-**MessageFormatException类**
+### MessageFormatException类
 
 该类继承RuntimeException类，即属于运行时（非受检）异常。当解析二进制形式的CoAP报文失败时，程序就会抛出该异常。
 
 
-**BlockOption类**
+### BlockOption类
 
 该类表示的是CoAP报文中Option字段的Block1和Block2值，由于这两个选项比较特殊，所以单独封装成一个类。
 
 
-**Option类**
+### Option类
 
 该类是个Option字段的通用表示类。请求报文和响应报文都有可能携带多个Option，可以通过Option的序号判断该Option是必须还是可选，安全还是非安全。如果某个Option选项是安全的，那么还可以判断它是否是可缓存的。算法如下：
 
@@ -129,7 +129,7 @@ NoCacheKey = ((OptionNumber & 0x1e) == 0x1c)
  - UnSafe = (00000011 & 00000010) != 0，所以Uri-Host是不安全的；
  - NoCacheKey = (00000011 & 00011110) != 00011100，所以Uri-Host不是非缓存键。
 
-**OptionSet类**
+### OptionSet类
 
 该类是一个POJO类，其含义为CoAP协议里消息体的Option集合，我们从它的成员变量就可以看出来：
 
@@ -161,7 +161,7 @@ public class OptionSet {
 
 它涵盖了RFC 7252中定义的所有Option字段，包括上面提到的通用Option类和单独BlockOption类，也都统一的封装在该类中。
 
-**Message类**
+### Message类
 
 终于到我们coap包中最重要的一个类了，该类是所有CoAP消息的基类。CoAP消息一共有三个子类：请求消息Request类、响应消息Response类、空消息EmptyMessage类。每个CoAP消息都包括消息类型Type、MID、token、OptionSet和payload等等。
 
@@ -199,7 +199,7 @@ public void setCanceled(boolean canceled) {
 }
 ```
 
-**Request类**
+### Request类
 
 该类继承自Message类，表示一个CoAP请求消息。其消息类型Type为CON或者NON，请求码Code为GET、PUT、POST、DELETE的其中一种。一个请求消息需要通过Endpoint类来发送到它的目的地去。若不指定Endpoint，则框架会通过EndpointManager来生成一个默认的Endpoint。通常由服务端回复一个Reponse类，即一个对应的CoAP响应消息。客户端可以发起一个同步请求：
 
