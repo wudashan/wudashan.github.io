@@ -223,7 +223,7 @@ request.addMessageObserver(new MessageObserverAdapter() {
     public void responded(Response response) {
         // 收到响应时回调该方法
         if (response.getCode() == ResponseCode.CONTENT) {
-        System.out.println("Received :" + response.getPayloadString());
+            System.out.println("Received :" + response.getPayloadString());
         } else {
             // 错误处理
         }
