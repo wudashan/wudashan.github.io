@@ -15,12 +15,12 @@ tags:
 
 > 确保一个类只有一个实例，并提供一个全局访问点。
 
-## 模式名和分类
+# 模式名和分类
 单例模式，属于创建型模式。
 
 ---
 
-## 动机
+# 动机
 那么什么情况下，我们会使用到单例模式？咱们可以看jdk源码，`java.lang.Runtime`类就是一个典型的例子：
 ```
 public class Runtime {
@@ -37,14 +37,14 @@ public class Runtime {
 
 ---
 
-## 优缺点
-#### 优点
+# 优缺点
+## 优点
 
  - 提供了对唯一实例的受限访问
  - 可控制实例的数量
  - 节约系统资源
 
-#### 缺点
+## 缺点
 
  - 单例模式比较难扩展
  - 单例类的职责过重，在一定程度上违背了“单一职责原则”。
@@ -52,14 +52,14 @@ public class Runtime {
 
 ---
 
-## 类图
+# 类图
 ![](http://o7x0ygc3f.bkt.clouddn.com/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.png)
 
 ---
 
-## 代码示例
+# 代码示例
 
-#### 饿汉模式
+## 饿汉模式
 ```
 public class Singleton {
 
@@ -81,7 +81,7 @@ public class Singleton {
 ```
 饿汉模式比较简单，所以我们可以看到`java.lang.Runtime`也这样使用。
 
-#### 懒汉模式
+## 懒汉模式
 ```
 public class Singleton {
 
@@ -106,7 +106,7 @@ public class Singleton {
 ```
 可以看到，懒汉模式相比饿汉模式，推迟了`singleton`对象的初始化，只有当第一次调用了`getInstance()`方法时才会初始化对象。由于需要防止多线程下可能初始化多个实例的问题，所以需要添加`synchronized`关键字。
 
-#### 双重检查锁模式
+## 双重检查锁模式
 ```
 public class Singleton {
 
@@ -136,7 +136,7 @@ public class Singleton {
 为了防止JVM的即时编译器进行指令重排序优化，而导致双重检查锁失效，需要添加`volatile`关键字！注意：由于之前jdk版本的缺陷，使用双重检查锁的前提是jdk版本为1.5及以上。
 
 
-#### 静态内部类模式
+## 静态内部类模式
 ```
 public class Singleton {
 
@@ -162,7 +162,7 @@ public class Singleton {
 《Effective Java》推荐的单例模式写法，这种写法依靠Java内置机制保证单例。只不过写起来比较麻烦，而且容易出错。
 
 
-#### 枚举Enum模式
+## 枚举Enum模式
 ```
 public enum Singleton{
     INSTANCE;
@@ -172,7 +172,7 @@ public enum Singleton{
 
 ---
 
-## 总结
+# 总结
 说了这么多种单例模式的变体，你是不是早已晕头转向？是不是都无法确定使用哪种变体？其实很简单：**优先考虑使用饿汉模式，如果发现需要延迟初始化对象，则使用静态内部类模式。**
 
 ---
