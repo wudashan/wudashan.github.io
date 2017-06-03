@@ -15,12 +15,12 @@ tags:
 
 > 将“请求”封装成对象，以便使用不同的请求、队列或者日志来参数化其他对象。命令模式也支持可撤销的操作。
 
-## 模式名和分类
+# 模式名和分类
 命令模式，属于行为模式。
 
 ---
 
-## 动机
+# 动机
 现在我们手机App经常会有一个菜单栏，点击菜单栏里的每个选项会执行相应的功能，如下图：
 ![](http://o7x0ygc3f.bkt.clouddn.com/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F_01.png)
 但是如果我们对每个选项进行硬编码，那么下次App想换功能的时候，又需要删除旧代码，换成新代码。
@@ -31,28 +31,28 @@ tags:
 
 ---
 
-## 优缺点
-#### 优点
+# 优缺点
+## 优点
 
  - 降低命令对象与调用者的耦合度。
  - 可以方便地实现对命令的取消（Undo）和重做（Redo）。
  - 新的命令可以很容易地加入到系统中。
  - 可以比较容易地设计一个命令队列和宏命令（组合命令）。
 
-#### 缺点
+## 缺点
 
  - 如果将命令过度细化，那么系统里就有很多命令类。
 
 ---
 
-## 类图
+# 类图
 ![](http://o7x0ygc3f.bkt.clouddn.com/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F_02.png)
 
 ---
 
-## 代码示例
+# 代码示例
 
-#### Receiver.java
+## Receiver.java
 
 ```
 /**
@@ -70,7 +70,7 @@ public class Receiver {
 }
 ```
 
-#### Command.java
+## Command.java
 
 ```
 /**
@@ -86,7 +86,7 @@ public interface Command {
 }
 ```
 
-#### ConcreteCommand.java
+## ConcreteCommand.java
 
 ```
 /**
@@ -108,7 +108,7 @@ public class ConcreteCommand implements Command {
 }
 ```
 
-#### Invoker.java
+## Invoker.java
 
 ```
 /**
@@ -131,7 +131,7 @@ public class Invoker {
 }
 ```
 
-#### Client.java
+## Client.java
 
 ```
 /**
@@ -160,7 +160,7 @@ public class Client {
 
 ---
 
-## 总结
+# 总结
 在华为，我们的IoT平台非常的庞大，手动安装一个单节点的环境大概需要1个小时，而安装完成后再配置环境大概还需要1个小时。为了节省花费在安装和配置环境的时间，花了半天的时间写了一个Java程序实现自动化。刚开始就是完全面向过程地写代码，写完之后非常的丑陋，后来用命令模式重构代码之后，命令分为：**UninstallCommand.java（卸载环境）、InstallCommand.java（安装环境）、SettingCommand.java（配置环境）**，代码美得不要不要的。
 
 当然，命令模式不仅仅解耦了调用方，它还可以实现对已命令的撤销，或者将命令加入队列中，挨个执行，并且还可以添加新的命令到系统中，简直美滋滋！
