@@ -198,3 +198,52 @@ public void setCanceled(boolean canceled) {
     }
 }
 ```
+
+**Request类**
+
+该类继承自Message类，表示一个CoAP请求消息。其消息类型Type为CON或者NON，请求码Code为GET、PUT、POST、DELETE的其中一种。一个请求消息需要通过Endpoint类来发送到它的目的地去。若不指定Endpoint，则框架会通过EndpointManager来生成一个默认的Endpoint。通常由服务端回复一个Reponse类，即一个对应的CoAP响应消息。客户端可以发起一个同步请求：
+
+```
+// 创建一个GET请求并发送
+Request request = new Request(Code.GET);
+request.setURI("coap://example.com:5683/sensors/temperature");
+request.send();
+// 同步等待服务器响应
+Response response = request.waitForResponse();
+```
+
+当然，有同步请求就有异步请求，通过添加观察者到Request类中，当请求消息收到响应时回调观察者：
+
+```
+// 创建一个GET请求
+Request request = new Request(Code.GET);
+request.setURI("coap://example.com:5683/sensors/temperature");
+// 添加观察者
+request.addMessageObserver(new MessageObserverAdapter() {
+    public void responded(Response response) {
+        // 收到响应时回调该方法
+        if (response.getCode() == ResponseCode.CONTENT) {
+        System.out.println("Received :" + response.getPayloadString());
+        } else {
+            // 错误处理
+        }
+    }
+ });
+ // 发送请求
+ request.send();
+```
+
+我们还可以自定义Request类中Option的值，例如：
+
+```
+// 创建一个POST请求
+Request post = new Request(Code.POST);
+post.setPayload("Plain text");
+// 自定义Option的值
+post.getOptions()
+    .setContentFormat(MediaTypeRegistry.TEXT_PLAIN)
+    .setAccept(MediaTypeRegistry.TEXT_PLAIN)
+    .setIfNoneMatch(true);
+// 发起同步请求
+String response = post.send().waitForResponse().getPayloadString();
+```
