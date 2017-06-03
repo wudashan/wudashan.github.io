@@ -129,3 +129,37 @@ NoCacheKey = ((OptionNumber & 0x1e) == 0x1c)
  - UnSafe = (00000011 & 00000010) != 0，所以Uri-Host是不安全的；
  - NoCacheKey = (00000011 & 00011110) != 00011100，所以Uri-Host不是非缓存键。
 
+**OptionSet类**
+
+该类是一个POJO类，其含义为CoAP协议里消息体的Option集合，我们从它的成员变量就可以看出来：
+
+```
+public class OptionSet {
+    private List<byte[]> if_match_list;
+    private String       uri_host;
+    private List<byte[]> etag_list;
+    private boolean      if_none_match; // true if option is set
+    private Integer      uri_port; // null if no port is explicitly defined
+    private List<String> location_path_list;
+    private List<String> uri_path_list;
+    private Integer      content_format;
+    private Long         max_age; // (0-4 bytes)
+    private List<String> uri_query_list;
+    private Integer      accept;
+    private List<String> location_query_list;
+    private String       proxy_uri;
+    private String       proxy_scheme;
+    private BlockOption  block1;
+    private BlockOption  block2;
+    private Integer      size1;
+    private Integer      size2;
+    private Integer      observe;
+
+    // Arbitrary options
+    private List<Option> others;
+    
+    ...
+}
+```
+
+它涵盖了RFC 7252中定义的所有Option字段，包括上面提到的通用Option类和单独BlockOption类，也都统一的封装在该类中。
