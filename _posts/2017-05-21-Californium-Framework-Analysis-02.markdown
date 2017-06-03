@@ -181,7 +181,7 @@ public abstract class Message {
     // 表示消息是否已超时
     private boolean timedOut; // Important for CONs
     ...
-    }
+}
 ```
 
 该类使用了观察者设计模式。通过`Message.addMessageObserver()`加入观察者，当消息状态（应答、拒绝、取消、超时）出现变更时，会通知相应的MessageObserver类。从具体的内部实现代码即可发现：
