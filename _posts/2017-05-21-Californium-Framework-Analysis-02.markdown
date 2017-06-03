@@ -228,9 +228,9 @@ request.addMessageObserver(new MessageObserverAdapter() {
             // 错误处理
         }
     }
- });
- // 发送请求
- request.send();
+});
+// 发送请求
+request.send();
 ```
 
 我们还可以自定义Request类中Option的值，例如：
