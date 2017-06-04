@@ -21,6 +21,8 @@ tags:
 
 Californium开源框架由`californium-core`和`element-connector`两个jar包组成。其中`californium-core`是框架的核心实现，而`element-connector`则是从框架中独立出来的网络传输模块。话不多说，就让我们赶紧看看它们的内部结构吧！
 
+---
+
 # californium-core
 
 包图如下：
