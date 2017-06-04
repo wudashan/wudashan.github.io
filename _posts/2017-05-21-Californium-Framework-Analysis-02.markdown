@@ -357,3 +357,52 @@ public void sendRequest(Exchange exchange,final Request request) {
     
 }
 ```
+
+当服务端接收订阅请求，会先发送一个订阅成功的响应。而后续的响应消息将由客户端的`Matcher.receiveResponse()`方法进行处理，具体代码如下：
+
+```
+public Exchange receiveResponse(final Response response, final CorrelationContext responseContext) {
+
+    // 忽略非关键操作
+    ...
+    
+    // 根据响应消息中的token查找对应的订阅
+    final Observation obs = observationStore.get(response.getToken());
+    if (obs != null) {
+        // 获取之前发起的订阅请求消息
+        final Request request = obs.getRequest();
+        request.setDestination(response.getSource());
+        request.setDestinationPort(response.getSourcePort());
+        exchange = new Exchange(request, Origin.LOCAL, obs.getContext());
+        exchange.setRequest(request);
+        exchange.setObserver(exchangeObserver);
+        request.addMessageObserver(new MessageObserverAdapter() {
+
+            @Override
+            public void onTimeout() {
+                observationStore.remove(request.getToken());
+            }
+
+            @Override
+            public void onResponse(Response response) {
+                // 通知订阅监听器
+                notificationListener.onNotification(request, response);
+            }
+
+            @Override
+            public void onReject() {
+                observationStore.remove(request.getToken());
+            }
+
+            @Override
+            public void onCancel() {
+                observationStore.remove(request.getToken());
+            }
+        });
+    }
+    
+    // 忽略非关键操作
+    ...
+
+}
+```
