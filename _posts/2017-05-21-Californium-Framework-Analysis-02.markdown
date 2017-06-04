@@ -304,3 +304,11 @@ public abstract class MessageObserverAdapter implements MessageObserver {
 大家可能会比较疑惑框架为什么要提供一个这样看上去无意义的抽象类，其实是因为如果开发者在编写自己的MessageObserver实现类时，可能只关注onResponse()和onTimeout()方法，那么为了减少其他不必要的代码，可以直接继承MessageObserverAdapter抽象类，然后按需覆盖着两个方法。
 
 ---
+
+## observe包
+
+物联网时代，为了在设备监控的数据发生变化时能第一时间获取到，频繁地定时地向设备获取其数据是不现实的。一是会消耗设备的电量、二是会浪费不必要的带宽。其解决方案是：平台作为一个客户端向设备（服务端）的数据发起一个订阅请求，在设备数据发生变化时主动推送给平台。
+
+observe包为框架中实现客户端对服务端的资源订阅的模块。其过程为：客户端发起一个订阅请求；服务端接收请求，找到对应的资源来处理请求，并保存该订阅关系；当服务端的资源发生变化时，服务端主动发生响应给客户端；客户端根据之前的订阅接收该响应。observe包图如下：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/observe%E5%8C%85_01.png)
