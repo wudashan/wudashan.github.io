@@ -203,7 +203,7 @@ public void setCanceled(boolean canceled) {
 
 ### Request类
 
-该类继承自Message类，表示一个CoAP请求消息。其消息类型Type为CON或者NON，请求码Code为GET、PUT、POST、DELETE的其中一种。一个请求消息需要通过Endpoint类来发送到它的目的地去。若不指定Endpoint，则框架会通过EndpointManager来生成一个默认的Endpoint。通常由服务端回复一个Reponse类，即一个对应的CoAP响应消息。客户端可以发起一个同步请求：
+该类继承自Message类，表示一个CoAP请求消息。其消息类型Type为CON或者NON，请求码Code为GET、PUT、POST、DELETE的其中一种。一个请求消息需要通过Endpoint类来发送到它的目的地去。若不指定Endpoint，则框架会通过EndpointManager来生成一个默认的Endpoint。通常由服务端回复一个Response类，即一个对应的CoAP响应消息。客户端可以发起一个同步请求：
 
 ```
 // 创建一个GET请求并发送
