@@ -267,6 +267,10 @@ public static Response createResponse(Request request, ResponseCode code) {
 
 从静态工厂方法我们看到，只设置了响应消息的响应码、目的地地址和端口号，而Type、MID和token都没有进行赋值。这是因为，Type和MID通常会在`ReliabilityLayer`类里自动设置，token则通常在`Matcher`类里自动设置。
 
+### EmptyMessage类
+
+该类继承自Message类，表示一个CoAP空消息。一个空消息只能是ACK或者RST两种类型。所以该类也只提供了两个静态工厂方法：`EmptyMessage.newACK()`和`EmptyMessage.newRST()`。
+
 ### MessageObserver接口
 
 该接口是一个观察者，当事件发生变化时调用相应的方法：
