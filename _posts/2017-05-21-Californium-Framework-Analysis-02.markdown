@@ -275,6 +275,4 @@ public static Response createResponse(Request request, ResponseCode code) {
  - onTimeout() 当客户端停止重传且仍然没有从对端收到任何消息时回调
  - onCancel() 当消息被取消时回调
  
-正如我们前面在Message类所提到的，可以通过`Message.addMessageObserver()`方法来注册观察者。
-
-需要注意的是，CoAP协议支持客户端对服务端的资源Resource进行订阅（当资源发生变化时服务端主动发送响应消息给客户端），这种订阅是通过`NotificationListener`接口进行监听的，大家不要和这个类搞混了。
+正如我们前面在Message类所提到的，可以通过`Message.addMessageObserver()`方法来注册观察者。需要注意的是，CoAP协议支持客户端对服务端的资源Resource进行订阅（当资源发生变化时服务端主动发送响应消息给客户端），这种订阅是通过`NotificationListener`接口进行监听的，大家不要和这个类搞混了。
