@@ -358,7 +358,7 @@ public void sendRequest(Exchange exchange,final Request request) {
 }
 ```
 
-当服务端接收订阅请求，会先发送一个订阅成功的响应。而后续的响应消息将由客户端的`Matcher.receiveResponse()`方法进行处理，具体代码如下：
+当服务端接收订阅请求，会先发送一个订阅成功的响应。而后续的响应消息将由客户端的`Matcher.receiveResponse()`方法进行匹配检查，具体代码如下：
 
 ```
 public Exchange receiveResponse(final Response response, final CorrelationContext responseContext) {
