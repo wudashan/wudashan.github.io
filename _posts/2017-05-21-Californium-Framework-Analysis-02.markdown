@@ -249,3 +249,18 @@ post.getOptions()
 // 发起同步请求
 String response = post.send().waitForResponse().getPayloadString();
 ```
+
+### Response类
+
+该类继承自Message类，表示一个CoAP响应消息。一个响应消息可以是ACK、CON或NON三种类型。响应体里包含着响应码，这与HTTP响应码类似。该类还提供了一个静态工厂方法来生成Response类：
+
+```
+public static Response createResponse(Request request, ResponseCode code) {
+    Response response = new Response(code);
+    response.setDestination(request.getSource());
+    response.setDestinationPort(request.getSourcePort());
+    return response;
+}
+```
+
+从静态工厂方法我们看到，只设置了响应消息的响应码、目的地地址和端口号，而Type、MID和token都没有进行赋值。这是因为，Type和MID通常会在`ReliabilityLayer`类里自动设置，token则通常在`Matcher`类里自动设置。
