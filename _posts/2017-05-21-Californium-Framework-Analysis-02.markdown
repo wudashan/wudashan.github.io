@@ -335,7 +335,7 @@ public void sendRequest(Exchange exchange,final Request request) {
     if (request.getOptions().hasObserve() && request.getOptions().getObserve() == 0 && ...) {
         // 保存订阅请求到observationStore对象中
         observationStore.add(new Observation(request, null));
-        // 监听请求，当请求取消、被拒绝、超时时，从到observationStore对象中移除订阅请求
+        // 监听请求，当请求取消、被拒绝、超时时，从observationStore对象中移除订阅请求
         request.addMessageObserver(new MessageObserverAdapter() {
             @Override
             public void onCancel() {
@@ -379,25 +379,14 @@ public Exchange receiveResponse(final Response response, final CorrelationContex
         request.addMessageObserver(new MessageObserverAdapter() {
 
             @Override
-            public void onTimeout() {
-                observationStore.remove(request.getToken());
-            }
-
-            @Override
             public void onResponse(Response response) {
                 // 通知订阅监听器
                 notificationListener.onNotification(request, response);
             }
 
-            @Override
-            public void onReject() {
-                observationStore.remove(request.getToken());
-            }
+            // 其他情况从observationStore对象中移除订阅请求
+            ...
 
-            @Override
-            public void onCancel() {
-                observationStore.remove(request.getToken());
-            }
         });
     }
     
