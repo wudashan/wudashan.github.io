@@ -311,7 +311,7 @@ public abstract class MessageObserverAdapter implements MessageObserver {
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E8%AE%A2%E9%98%85%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
 
-observe包为框架中实现客户端对服务端的资源订阅的模块。其过程为：客户端发起一个订阅请求；服务端接收请求，找到对应的资源来处理请求，并保存该订阅关系；当服务端的资源发生变化时，服务端主动发生响应给客户端；客户端根据之前的订阅接收该响应。observe包图如下：
+observe包为框架中实现客户端对服务端的资源订阅的模块。其过程为：客户端发起一个订阅请求；服务端接收请求，找到对应的资源来处理请求，并保存该订阅关系；当服务端的资源发生变化时，服务端主动发送响应给客户端；客户端根据之前的订阅接收该响应。observe包图如下：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/observe%E5%8C%85_01.png)
 
