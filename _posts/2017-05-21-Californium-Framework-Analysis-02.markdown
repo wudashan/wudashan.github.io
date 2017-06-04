@@ -318,3 +318,42 @@ observe包为框架中实现客户端对服务端的资源订阅的模块。其�
 ### Observation类
 
 该类表示一个观察，内部封装了Request请求和CorrelationContext上下文。
+
+### ObservationStore接口
+
+该接口声明了对Observation对象进行存储，并对外提供了增删改查的公共方法。现在开发一个系统，为提高可靠性，通常都设计为多节点。框架提供该接口，就是希望开发者能够自己实现存储方式。例如，将Observation对象存储到数据库而不是内存，这样当系统中一个节点崩溃时，其他节点还能从数据库获取到Observation对象，即客户端还能处理之前订阅服务端后，服务端发来的响应消息。
+
+当客户端发送请求消息并携带observe字段时，框架会保存该订阅请求。具体实现在`Matcher.sendRequest()`方法中，源码如下：
+
+```
+public void sendRequest(Exchange exchange,final Request request) {
+
+    // 忽略非关键代码
+    ...
+    
+    // 处理订阅请求
+    if (request.getOptions().hasObserve() && request.getOptions().getObserve() == 0 && ...) {
+        // 保存订阅请求到observationStore对象中
+        observationStore.add(new Observation(request, null));
+        // 监听请求，当请求取消、被拒绝、超时时，从到observationStore对象中移除订阅请求
+        request.addMessageObserver(new MessageObserverAdapter() {
+            @Override
+            public void onCancel() {
+                observationStore.remove(request.getToken());
+            }
+            @Override
+            public void onReject() {
+                observationStore.remove(request.getToken());
+            }
+            @Override
+            public void onTimeout() {
+                observationStore.remove(request.getToken());
+            }
+        });
+    }
+    
+    // 忽略非关键代码
+    ...
+    
+}
+```
