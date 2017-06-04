@@ -19,6 +19,8 @@ tags:
 
 物联网时代，所有设备都可以接入我们的互联网。想想看只要有一台智能手机，就可以操控所有的设备，也可以获取到所有设备采集的信息。不过，并不是所有设备都支持HTTP协议的，而且让设备支持HTTP协议也不现实，因为对于设备来说，这个协议太重了，会消耗大量的带宽和电量。于是CoAP协议也就运应而生了，我们可以把它看为超简化版的HTTP协议。而Californium框架，就是对CoAP协议的Java实现。
 
+---
+
 # CoAP协议
 
 在阅读Californium框架之前，我们需要对CoAP协议有个大致的了解，已经懂得了的同学可以直接跳过本章节。
@@ -91,6 +93,7 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 至此，咱们的CoAP协议初学之路已到了终点，如果还想详细研究的同学，可以查阅[RFC 7252](https://tools.ietf.org/html/rfc7252)，这里就不再做详述了！那么，接下来就让我们对Californium开源框架一探究竟吧！
 
+---
 
 # 分析入口
 
@@ -203,6 +206,8 @@ public static void main(String[] args) throws URISyntaxException {
 ```
 
 通过前面分析，我们知道Endpoint是直接与网络进行交互的，那么客户端发起的GET请求，应该在服务端的Endpoint中收到。框架中Endpoint接口的实现类只有CoapEndpoint，让我们深入了解一下CoapEndpoint的内部实现，看看它是如何接收和处理请求的。
+
+---
 
 # CoapEndpoint类
 
@@ -369,6 +374,8 @@ public void receiveRequest(Exchange exchange, Request request) {
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
 
+---
+
 # MessageDeliverer接口
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/MessageDeliverer%E7%B1%BB%E5%9B%BE.png)
@@ -401,6 +408,7 @@ public void deliverRequest(final Exchange exchange) {
 
 当MessageDeliverer找到Request请求对应的Resource资源后，就会交由Resource资源来处理请求。（是不是很像Spring MVC中的DispatcherServlet，它也负责分发请求给对应的Controller，再由Controller自己处理请求）
 
+---
 
 # Resource接口
 
@@ -517,10 +525,13 @@ public void sendResponse(Exchange exchange, Response response) {
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
 
+---
+
 # 总结
 
 通过服务端的创建和启动，客户端发起GET请求，服务端接收请求并返回响应流程，我们对Californium框架有了一个整体的了解。俗话说，师父领进门，修行看个人。在分析这个流程的过程中，我省略了很多的细节，意在让大家对框架有个概念上的理解，在以后二次开发或定位问题时更能抓住重点，着重针对某个模块。最后，也不得不赞叹一下这款开源框架代码逻辑清晰，模块职责划分明确，灵活地使用设计模式，非常值得我们学习！
 
+---
 
 # 参考阅读
 
