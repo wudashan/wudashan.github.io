@@ -276,3 +276,23 @@ public static Response createResponse(Request request, ResponseCode code) {
  - onCancel() 当消息被取消时回调
  
 正如我们前面在Message类所提到的，可以通过`Message.addMessageObserver()`方法来注册观察者。需要注意的是，CoAP协议支持客户端对服务端的资源Resource进行订阅（当资源发生变化时服务端主动发送响应消息给客户端），这种订阅是通过`NotificationListener`接口进行监听的，大家不要和这个类搞混了。
+
+### MessageObserverAdapter类
+
+该类是一个抽象类，实现了MessageObserver接口。看这个类的名字，还以为使用到了适配器设计模式，仔细看源代码才发现，该类只是将MessageObserver接口中的所有方法都提供空实现：
+
+```
+public abstract class MessageObserverAdapter implements MessageObserver {
+    @Override
+    public void onResponse(Response response) {
+        // 什么也不做
+    }
+    @Override
+    public void onTimeout() {
+        // 什么也不做
+    }
+    ...
+}
+```
+
+大家可能会比较疑惑框架为什么要提供一个这样看上去无意义的抽象类，其实是因为如果开发者在编写自己的MessageObserver实现类时，可能关注onResponse()和onTimeout()方法，那么为了减少其他不必要的代码，可以直接继承MessageObserverAdapter抽象类，然后按需覆盖着两个方法。
