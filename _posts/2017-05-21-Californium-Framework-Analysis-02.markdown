@@ -408,4 +408,4 @@ NotificationListener具有全局性。当添加了监听器后，所有资源的
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/notificationListener%E4%B8%8EResource.png)
 
-当然框架也提供了一个一对一关系的回调，通过`CoapClient. observe(Request request, CoapHandler handler)`方法实现，这里就不展开了。
+当然框架也提供了一个一对一关系的回调，通过`CoapClient.observe(Request request, CoapHandler handler)`方法实现，这里就不展开了。
