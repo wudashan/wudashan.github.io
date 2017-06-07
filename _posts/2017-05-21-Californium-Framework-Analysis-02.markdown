@@ -399,3 +399,13 @@ public Exchange receiveResponse(final Response response, final CorrelationContex
 ### InMemoryObservationStore类
 
 该类实现了ObservationStore接口，从名字就可以看出它将Observation对象存储在内存中，通过ConcurrentHashMap保存数据，其中key为KeyToken，value为Observation。
+
+### NotificationListener接口
+
+客户端可以通过`Endpoint.addNotificationListener()`添加该监听器，当收到被订阅的服务端发来的响应时，`onNotification()`方法将会被回调。
+
+NotificationListener具有全局性。当添加了监听器后，所有资源的订阅响应都将回调，这是因为客户端订阅时是以服务端的资源为单位的，而监听器是在客户端的Endpoint里添加的，关系如下图：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/notificationListener%E4%B8%8EResource.png)
+
+当然框架也提供了一个一对一关系的回调，通过`CoapClient. observe(Request request, CoapHandler handler)`方法实现，这里就不展开了。
