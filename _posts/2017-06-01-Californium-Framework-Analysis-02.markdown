@@ -15,8 +15,6 @@ tags:
 
 > 项目源码地址：[https://github.com/eclipse/californium](https://github.com/eclipse/californium)
 
-
-
 # coap包
 
 coap包目录下，主要是CoAP协议中定义的常量和消息基本模型。
@@ -288,6 +286,8 @@ public abstract class MessageObserverAdapter implements MessageObserver {
 ```
 
 大家可能会比较疑惑框架为什么要提供一个这样看上去无意义的抽象类，其实是因为如果开发者在编写自己的MessageObserver实现类时，可能只关注onResponse()和onTimeout()方法，那么为了减少其他不必要的代码，可以直接继承MessageObserverAdapter抽象类，然后按需覆盖这两个方法。
+
+---
 
 # 系列文章
 
