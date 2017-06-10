@@ -114,7 +114,7 @@ public Exchange receiveResponse(final Response response, final CorrelationContex
 
 ### InMemoryObservationStore类
 
-该类实现了ObservationStore接口，从名字就可以看出它将Observation对象存储在内存中，通过ConcurrentHashMap保存数据，其中key为KeyToken，value为Observation。
+该类实现了ObservationStore接口，从名字就可以看出它将Observation对象简单地存储在内存中，通过ConcurrentHashMap保存数据，其中key为KeyToken，value为Observation。
 
 ### NotificationListener接口
 
