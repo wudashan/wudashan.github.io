@@ -15,11 +15,13 @@ tags:
 
 > 项目源码地址：[https://github.com/eclipse/californium](https://github.com/eclipse/californium)
 
-# 目录
+# 系列分析
 
-[Californium开源框架之源码分析（一）](http://wudashan.cn/2017/05/21/Californium-Framework-Analysis-01/)
+[Californium开源框架之源码分析（一）](http://wudashan.cn/2017/05/21/Californium-Framework-Analysis-01/) 
+
 [Californium开源框架之源码分析（二）](http://wudashan.cn/2017/06/01/Californium-Framework-Analysis-02/)
-[Californium开源框架之源码分析（三）](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/) <-- 当前位置
+
+[Californium开源框架之源码分析（三）](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/)
 
 # observe包
 
