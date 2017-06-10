@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Californium开源框架之源码分析（一）"
-subtitle:   "从整体到模块，从模块再到细节去欣赏一个优秀的开源框架。"
+subtitle:   "从整体到模块，从模块到细节，细节见卓越！"
 date:       2017-05-21 22:00:00
 author:     "Wudashan"
 header-img: "img/post-bg-californium-framework-analysis.jpg"
