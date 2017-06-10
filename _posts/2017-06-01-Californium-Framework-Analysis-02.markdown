@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Californium开源框架之源码分析（二）"
-subtitle:   "一个基于Java实现的CoAP技术框架。"
+subtitle:   "coap模块，协议中的常量定义与消息模型。"
 date:       2017-06-01 22:00:00
 author:     "Wudashan"
 header-img: "img/post-bg-californium-framework-analysis.jpg"
@@ -14,6 +14,12 @@ tags:
 ---
 
 > 项目源码地址：[https://github.com/eclipse/californium](https://github.com/eclipse/californium)
+
+# 目录
+
+[Californium开源框架之源码分析（一）](http://wudashan.cn/2017/05/21/Californium-Framework-Analysis-01/)  
+[Californium开源框架之源码分析（二）](http://wudashan.cn/2017/06/01/Californium-Framework-Analysis-02/) <-- 当前位置
+[Californium开源框架之源码分析（三）](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/)
 
 # coap包
 
