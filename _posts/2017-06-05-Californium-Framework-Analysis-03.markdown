@@ -29,11 +29,13 @@ observe包就是上面讲到的订阅功能模块，实现客户端对服务端�
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/observe%E5%8C%85_01.png)
 
-## Observation类
+## 客户端相关
+
+### Observation类
 
 该类表示一个观察，内部封装了Request请求和CorrelationContext上下文。
 
-## ObservationStore接口
+### ObservationStore接口
 
 该接口声明了对Observation对象进行存储，并对外提供了增删改查的公共方法。现在开发一个系统，为提高可靠性，通常都设计为多节点。框架提供该接口，就是希望开发者能够自己实现存储方式。例如，将Observation对象存储到数据库而不是内存，这样当系统中一个节点崩溃时，其他节点还能从数据库获取到Observation对象，即客户端还能处理之前订阅服务端后，服务端发来的响应消息。
 
@@ -110,11 +112,11 @@ public Exchange receiveResponse(final Response response, final CorrelationContex
 }
 ```
 
-## InMemoryObservationStore类
+### InMemoryObservationStore类
 
 该类实现了ObservationStore接口，从名字就可以看出它将Observation对象存储在内存中，通过ConcurrentHashMap保存数据，其中key为KeyToken，value为Observation。
 
-## NotificationListener接口
+### NotificationListener接口
 
 客户端可以通过`Endpoint.addNotificationListener()`添加该监听器，当收到被订阅的服务端发来的响应时，`onNotification()`方法将会被回调。
 
@@ -124,11 +126,13 @@ NotificationListener具有全局性。当添加了监听器后，所有资源的
 
 当然框架也提供了一个一对一关系的回调，通过`CoapClient.observe(Request request, CoapHandler handler)`方法实现，这里就不展开了。
 
-## ObserveRelation类
+## 服务端相关
+
+### ObserveRelation类
 
 由于客户端订阅服务端资源，所以服务端需要存储客户端的订阅信息。该类表示客户端的Endpoint与服务端的Resource对应关系。与下面我们要讲的`ObservingEndpoint类`关系紧密。
 
-## ObservingEndpoint类
+### ObservingEndpoint类
 
 该类表示客户端发起订阅的Endpoint，它包含着所有客户端与服务端建立的订阅关系。与`ObserveRelation类`是一个一对多的关系。为了形象化，画了下面这个图供大家参考：
 
