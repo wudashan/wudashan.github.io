@@ -27,6 +27,19 @@ californium-core是框架的核心实现，包图如下：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/californium-core%E5%8C%85%E5%9B%BE.png)
 
+## coap模块
+
+该模块包含了CoAP协议中定义的常量和消息基本模型。模块一共有以下类：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/coap%E5%8C%85%E7%B1%BB%E5%9B%BE.png)
+
+## observe模块
+
+该模块为CoAP协议的订阅模块，是协议一大功能。模块一共有以下类：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/observe%E5%8C%85_01.png)
+
+
 ---
 
 # element-connector.jar
