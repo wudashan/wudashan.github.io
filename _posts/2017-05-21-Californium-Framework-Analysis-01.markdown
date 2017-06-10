@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Californium开源框架分析（下）"
+title:      "Californium开源框架源码分析"
 subtitle:   "一个基于Java实现的CoAP技术框架。"
 date:       2017-05-21 22:00:00
 author:     "Wudashan"
