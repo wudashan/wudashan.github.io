@@ -140,4 +140,8 @@ NotificationListener具有全局性。当添加了监听器后，所有资源的
 
 当一个CON类型的订阅响应发送给客户端超时之后，服务端可以认为客户端已不可达，并解除所有已经建立的订阅关系。
 
+### ObserveManager类
 
+该类维持着`客户端对端地址（ip + port）`与`ObservingEndpoint类`的一一映射关系。它确保ObservingEndpoint类的唯一性，并且所有的订阅关系都存在里面。这种性质非常重要，比如当一个CON类型的订阅响应超时之后，需要获取客户端对应的ObservingEndpoint类，取消所有订阅关系。若不唯一，则无法保证取消了所有订阅关系而造成内存泄漏。
+
+需要注意的是，每个服务端有且只有一个ObserveManager对象。即使一个服务端绑定了多个Endpoint端口接收请求，也只会有一个ObserveManager对象（因为它是在ServerMessageDeliverer类里创建的）。
