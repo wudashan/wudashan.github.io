@@ -15,7 +15,7 @@ tags:
 
 > 项目源码地址：[https://github.com/eclipse/californium](https://github.com/eclipse/californium)
 
-# 摘要
+# 引言
 
 物联网时代，为了在设备监控的数据发生变化时平台能第一时间获取到，频繁地定时地向设备获取其数据是不现实的。一是会消耗设备的电量、二是会浪费不必要的带宽。其解决方案是：平台作为一个客户端向设备（服务端）的数据发起一个订阅请求，在设备数据发生变化时主动推送给平台。交互图如下：
 
@@ -140,12 +140,4 @@ NotificationListener具有全局性。当添加了监听器后，所有资源的
 
 当一个CON类型的订阅响应发送给客户端超时之后，服务端可以认为客户端已不可达，并解除所有已经建立的订阅关系。
 
----
 
-# 系列文章
-
-[Californium开源框架之源码分析（一）](http://wudashan.cn/2017/05/21/Californium-Framework-Analysis-01/) 
-
-[Californium开源框架之源码分析（二）](http://wudashan.cn/2017/06/01/Californium-Framework-Analysis-02/) 
-
-[Californium开源框架之源码分析（三）](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/) <-- 当前位置
