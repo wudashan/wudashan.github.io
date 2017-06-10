@@ -409,3 +409,15 @@ NotificationListener具有全局性。当添加了监听器后，所有资源的
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/notificationListener%E4%B8%8EResource.png)
 
 当然框架也提供了一个一对一关系的回调，通过`CoapClient.observe(Request request, CoapHandler handler)`方法实现，这里就不展开了。
+
+### ObserveRelation类
+
+由于客户端订阅服务端资源，所以服务端需要存储客户端的订阅信息。该类表示客户端的Endpoint与服务端的Resource对应关系。与下面我们要讲的`ObservingEndpoint类`关系紧密。
+
+### ObservingEndpoint类
+
+该类表示客户端发起订阅的Endpoint，它包含着所有客户端与服务端建立的订阅关系。与O`ObserveRelation类`是一个一对多的关系。为了形象化，画了下面这个图供大家参考：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/ObserveingEndpoint%E4%B8%8EObserveRelation.png)
+
+当一个CON类型的订阅响应发送给客户端超时之后，服务端可以认为客户端已不可达，并解除所有已经建立的订阅关系。
