@@ -144,7 +144,7 @@ NotificationListener具有全局性。当添加了监听器后，所有资源的
 
 该类维持着`客户端对端地址（ip + port）`与`ObservingEndpoint类`的一一映射关系。它确保ObservingEndpoint类的唯一性，并且所有的订阅关系都存在里面。这种性质非常重要，比如当一个CON类型的订阅响应超时之后，需要获取客户端对应的ObservingEndpoint类，取消所有订阅关系。若不唯一，则无法保证取消了所有订阅关系而造成内存泄漏。
 
-关于如何在并发的情况下保证唯一性，这里可以学习一下，首先看`ObserveManager.findObservingEndpoint()`方法:
+关于如何在并发的情况下保证唯一性，这里可以学习一下，首先看`findObservingEndpoint()`方法:
 
 ```
 public class ObserveManager {
