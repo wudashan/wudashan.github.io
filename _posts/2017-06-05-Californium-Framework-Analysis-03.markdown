@@ -144,4 +144,47 @@ NotificationListener具有全局性。当添加了监听器后，所有资源的
 
 该类维持着`客户端对端地址（ip + port）`与`ObservingEndpoint类`的一一映射关系。它确保ObservingEndpoint类的唯一性，并且所有的订阅关系都存在里面。这种性质非常重要，比如当一个CON类型的订阅响应超时之后，需要获取客户端对应的ObservingEndpoint类，取消所有订阅关系。若不唯一，则无法保证取消了所有订阅关系而造成内存泄漏。
 
+关于如何在并发的情况下保证唯一性，这里可以学习一下，首先看`ObserveManager.findObservingEndpoint()`方法:
+
+```
+public class ObserveManager {
+
+    // 并发HashMap
+    private final ConcurrentHashMap<InetSocketAddress, ObservingEndpoint> endpoints;
+    
+    // 提供根据对端地址获取ObservingEndpoint对象
+    public ObservingEndpoint findObservingEndpoint(InetSocketAddress address) {
+        // 从HashMap中查找
+        ObservingEndpoint ep = endpoints.get(address);
+        if (ep == null) {
+            // 若不存在则原子创建ObservingEndpoint对象，确保唯一性
+            ep = createObservingEndpoint(address);
+        }
+        return ep;
+    }
+}
+```
+
+那么我们的重点就是查看`createObservingEndpoint()`方法是如何实现的：
+
+```
+private ObservingEndpoint createObservingEndpoint(InetSocketAddress address) {
+    // 创建ObservingEndpoint对象
+    ObservingEndpoint ep = new ObservingEndpoint(address);
+
+    // 使用ConcurrentHashMap的putIfAbsent()方法
+    ObservingEndpoint previous = endpoints.putIfAbsent(address, ep);
+    if (previous != null) {
+        // 若其他线程已创建该对象，则返回之前创建的对象
+        return previous; 
+    } else {
+        // 当前线程是第一个将对象存入ConcurrentHashMap中的，返回对象
+        return ep;
+    }
+}
+```
+
+用到的是ConcurrentHashMap的putIfAbsent(key, value)方法，该方法的原理是若通过key查不出value时，将key-value键值对存入HashMap中；若通过key能查出对应的value时，直接返回之前存入的value。并且putIfAbsent()方法是原子操作。
+
+
 需要注意的是，每个服务端有且只有一个ObserveManager对象。即使一个服务端绑定了多个Endpoint端口接收请求，也只会有一个ObserveManager对象（因为它是在ServerMessageDeliverer类里创建的）。
