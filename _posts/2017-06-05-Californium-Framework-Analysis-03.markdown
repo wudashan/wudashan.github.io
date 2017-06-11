@@ -187,4 +187,4 @@ private ObservingEndpoint createObservingEndpoint(InetSocketAddress address) {
 用到的是ConcurrentHashMap的putIfAbsent(key, value)方法，该方法的原理是若通过key查不出value时，将key-value键值对存入HashMap中；若通过key能查出对应的value时，直接返回之前存入的value。并且putIfAbsent()方法是原子操作。
 
 
-需要注意的是，每个服务端有且只有一个ObserveManager对象。即使一个服务端绑定了多个Endpoint端口接收请求，也只会有一个ObserveManager对象（因为它是在ServerMessageDeliverer类里创建的）。
+需要注意的是，每个服务端有且只有一个ObserveManager对象。即使一个服务端绑定了多个Endpoint端口接收请求，也只会有一个ObserveManager对象。
