@@ -188,3 +188,5 @@ private ObservingEndpoint createObservingEndpoint(InetSocketAddress address) {
 
 
 需要注意的是，每个服务端有且只有一个ObserveManager对象。即使一个服务端绑定了多个Endpoint端口接收请求，也只会有一个ObserveManager对象。
+
+## 资源相关
