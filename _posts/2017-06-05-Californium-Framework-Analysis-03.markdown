@@ -190,3 +190,15 @@ private ObservingEndpoint createObservingEndpoint(InetSocketAddress address) {
 需要注意的是，每个服务端有且只有一个ObserveManager对象。即使一个服务端绑定了多个Endpoint端口接收请求，也只会有一个ObserveManager对象。
 
 ## 资源相关
+
+### ObserveRelationFilter接口
+
+该接口是一个过滤器，在`CoapResource.changed(ObserveRelationFilter filter)`方法里被调用。其使用场景为：当服务端的一个资源发生变化，需要通知已订阅的客户端时，只想通知给VIP用户。就好比天气预警，优先通知给付费用户。该过滤器只有一个方法：
+
+```
+public interface ObserveRelationFilter {
+    boolean accept(ObserveRelation relation);
+}
+```
+
+开发者可以自己编写一个ObserveRelationFilter实现类，对部分订阅进行过滤。
