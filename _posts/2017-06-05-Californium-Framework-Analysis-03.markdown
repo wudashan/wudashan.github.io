@@ -202,3 +202,10 @@ public interface ObserveRelationFilter {
 ```
 
 开发者可以自己编写一个ObserveRelationFilter实现类，对部分订阅进行过滤。
+
+### ObserveNotificationOrderer类
+
+该类主要有2个用途：
+
+ 1. 用于服务端，管理当前订阅的序号，每次资源发生变化需要通知订阅方时，序号+1。
+ 2. 用于客户端，在多播的情况下检测是否收到的是最新的订阅，若收到是旧的订阅则丢弃。
