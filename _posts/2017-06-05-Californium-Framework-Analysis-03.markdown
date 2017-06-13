@@ -209,3 +209,7 @@ public interface ObserveRelationFilter {
 
  1. 用于服务端，管理当前订阅的序号，每次资源发生变化需要通知订阅方时，序号+1。
  2. 用于客户端，在多播的情况下检测是否收到的是最新的订阅，若收到是旧的订阅则丢弃。
+
+ ### ObserveRelationContainer类
+
+该类是ObserveRelation类的容器，表示一个Resource下的所有订阅关系。当一个资源发生变化时，会通过该容器取出所有订阅方并通知。该类内部是通过ConcurrentHashMap存储ObserveRelation类。key值的唯一性判断为：`客户端ip + port + token`，所以一个客户端端点可以通过不同的token来对一个资源订阅多次。
