@@ -115,7 +115,7 @@ public void deliverResponse(Exchange exchange, Response response) {
 
 ### ResourceObserver接口
 
-这个接口使用的是设计模式中的观察者模式。通过`Resource.addObserver()`添加观察者。当资源的事件触发时会回调观察者的对应方法，该接口支持如下事件回调：
+这个接口使用的是设计模式中的观察者模式。通过`Resource.addObserver()`添加观察者。当资源的事件触发时会回调ResourceObserver接口的对应方法，该接口支持如下事件回调：
 
  - `changedName()` // 当资源的名称发生变化
  - `changedPath()` // 当资源的路径发生变化
