@@ -23,9 +23,9 @@ server包目录下，描述的是服务端和内嵌的资源。
 
 ---
 
-# 根目录
+## 根目录
 
-## ServerInterface接口
+### ServerInterface接口
 
 该接口描述了一个服务端需要提供什么功能：CoAP资源的运行环境。
 
@@ -57,7 +57,7 @@ public interface ServerInterface {
 
 该接口的是实现类是`CoapServer类`，但是不在这个目录下，后续我们再详细了解。
 
-## MessageDeliverer接口
+### MessageDeliverer接口
 
 该接口负责将接收到的CoAP消息分发给合适的对象去处理。该接口只有2个方法需要实现：
 
@@ -73,7 +73,7 @@ public interface MessageDeliverer {
 
 实现类需要根据请求消息的URI来分发给对应的资源。如果找不到对应的资源，实现类应该返回`4.04 NOT_FOUND`响应码。如果实现类接收到的是响应消息，则应该分发给对应的请求消息。
 
-## ServerMessageDeliverer类
+### ServerMessageDeliverer类
 
 该类实现MessageDeliverer接口，用于服务端分发CoAP消息。
 
@@ -111,9 +111,9 @@ public void deliverResponse(Exchange exchange, Response response) {
 }
 ```
 
-# resources包
+## resources包
 
-## ResourceObserver接口
+### ResourceObserver接口
 
 这个接口使用的是设计模式中的观察者模式。通过`Resource.addObserver()`添加观察者。当资源的事件触发时会回调ResourceObserver接口的对应方法，该接口支持如下事件回调：
 
@@ -125,7 +125,7 @@ public void deliverResponse(Exchange exchange, Response response) {
  - `removedObserveRelation()` // 当资源的订阅关系呗移除
  
 
-## ResourceAttributes类
+### ResourceAttributes类
 
 该类表示资源的属性，其数据结构如下图：
 
@@ -133,11 +133,11 @@ public void deliverResponse(Exchange exchange, Response response) {
 
 ResourceAttributes类包含CoAP协议定义的不同属性，如标题，资源类型或接口描述。这些属性也将包含在它们所属资源的链接描述中。例如，如果资源指定了标题，它的链接描述可能看起来像这样`</sensors>; title =“标题党”`。
 
-## RequestProcessor接口
+### RequestProcessor接口
 
 该接口只有一个`processRequest(Exchange exchange)`方法，但是并没有在框架中使用到，估计是发现与`Resource.handleRequest(Exchange exchange)`方法意思相同，所以就废弃了。
 
-## CoapExchange类
+### CoapExchange类
 
 该类包含一个Exchange类（表示一对请求和响应）和一个CoapResource类。CoapExchange类把它们封装了起来，并提供友好的API供开发者响应请求消息。
 
