@@ -53,4 +53,6 @@ public interface ServerInterface {
 
 ```
 
+该接口的是实现类是`CoapServer类`，但是不在这个目录下，后续我们再详细了解。
+
 
