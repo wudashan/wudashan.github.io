@@ -133,3 +133,6 @@ public void deliverResponse(Exchange exchange, Response response) {
 
 ResourceAttributes类包含CoAP协议定义的不同属性，如标题，资源类型或接口描述。这些属性也将包含在它们所属资源的链接描述中。例如，如果资源指定了标题，它的链接描述可能看起来像这样`</sensors>; title =“标题党”`。
 
+### RequestProcessor接口
+
+该接口只有一个`processRequest(Exchange exchange)`方法，但是并没有在框架中使用到，估计是发现与`Resource.handleRequest(Exchange exchange)`方法意思相同，所以就废弃了。
