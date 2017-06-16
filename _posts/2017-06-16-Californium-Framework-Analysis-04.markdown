@@ -125,5 +125,11 @@ public void deliverResponse(Exchange exchange, Response response) {
  - `removedObserveRelation()` // 当资源的订阅关系呗移除
  
 
+### ResourceAttributes类
 
+该类表示资源的属性，其数据结构如下图：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/ResourceAttributes.png)
+
+ResourceAttributes类包含CoAP协议定义的不同属性，如标题，资源类型或接口描述。这些属性也将包含在它们所属资源的链接描述中。例如，如果资源指定了标题，它的链接描述可能看起来像这样`</sensors>; title =“标题党”`。
 
