@@ -21,6 +21,8 @@ server包目录下，描述的是服务端和内嵌的资源。
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/server%E5%8C%85.png)
 
+---
+
 # 根目录
 
 ### ServerInterface接口
@@ -70,3 +72,41 @@ public interface MessageDeliverer {
 ```
 
 实现类需要根据请求消息的URI来分发给对应的资源。如果找不到对应的资源，实现类应该返回`4.04 NOT_FOUND`响应码。如果实现类接收到的是响应消息，则应该分发给对应的请求消息。
+
+### ServerMessageDeliverer类
+
+该类实现MessageDeliverer接口，用于服务端分发CoAP消息。
+
+当接收到请求消息时，该类根据URI找到对应的资源，并检查是否是订阅请求，若是订阅请求还需要保存订阅关系，这样在资源发生变化时，可以通过保存的订阅关系通知对应的客户端。找到资源后，将请求传递给资源，由资源处理请求。源码如下：
+
+```
+public void deliverRequest(final Exchange exchange) {
+
+    // 从exchange里获取request
+    Request request = exchange.getRequest();
+    
+    // 从request里获取请求路径
+    List<String> path = request.getOptions().getUriPath();
+    
+    // 找出请求路径对应的Resource
+    final Resource resource = findResource(path);
+    
+    // 检查是否是订阅请求，是的话还需要保存订阅关系
+    checkForObserveOption(exchange, resource);
+    
+    // 由Resource来真正地处理请求
+    resource.handleRequest(exchange);
+    
+    // 一些非关键操作
+    ...
+    
+}
+```
+
+当接收到响应消息时，该类将匹配对应的请求消息。源码如下：
+
+```
+public void deliverResponse(Exchange exchange, Response response) {
+    exchange.getRequest().setResponse(response);
+}
+```
