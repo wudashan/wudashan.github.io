@@ -136,3 +136,35 @@ ResourceAttributes类包含CoAP协议定义的不同属性，如标题，资源�
 ### RequestProcessor接口
 
 该接口只有一个`processRequest(Exchange exchange)`方法，但是并没有在框架中使用到，估计是发现与`Resource.handleRequest(Exchange exchange)`方法意思相同，所以就废弃了。
+
+### CoapExchange类
+
+该类包含一组交换信息（一个请求消息和一个响应消息），并且还有一个`CoapResource`成员变量，将它进行了封装，并提供友好的API供开发者响应请求消息。
+
+有多友好？该类一共提供了7个`respond(...)`响应请求消息的同名方法，就是为了方便开发者，可以直接调用所需要的方法。不过，其中6个都是进行简单地封装，然后调用第7个，所以我们可以直接看第7个响应方法：
+
+```
+public void respond(Response response) {
+        
+    // 检查入参
+    ...
+    
+    // 若成员变量不为null，则赋值到response对象中
+    if (locationPath != null) response.getOptions().setLocationPath(locationPath);
+    if (locationQuery != null) response.getOptions().setLocationQuery(locationQuery);
+    if (maxAge != 60) response.getOptions().setMaxAge(maxAge);
+    if (eTag != null) {
+        response.getOptions().clearETags();
+        response.getOptions().addETag(eTag);
+    }
+        
+    // 检查是否建立了订阅关系，是的话资源需要保存订阅关系
+    resource.checkObserveRelation(exchange, response);
+    
+    // 发送响应
+    exchange.sendResponse(response);
+    
+}
+```
+
+当然该类还提供了`accept()`方法和`reject()`方法响应请求。总之，对比Exchange类，你会发现还是CoapExchange类简单易上手，因为它屏蔽了不必要的细节。
