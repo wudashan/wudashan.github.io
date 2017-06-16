@@ -19,7 +19,7 @@ tags:
 
 server包目录下，描述的是服务端和内嵌的资源。
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/server%E5%8C%85.png)
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/server%E5%8C%85_01.png)
 
 ---
 
@@ -110,3 +110,7 @@ public void deliverResponse(Exchange exchange, Response response) {
     exchange.getRequest().setResponse(response);
 }
 ```
+
+### resources包
+
+
