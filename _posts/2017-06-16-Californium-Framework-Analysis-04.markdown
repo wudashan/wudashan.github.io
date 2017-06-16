@@ -55,4 +55,18 @@ public interface ServerInterface {
 
 该接口的是实现类是`CoapServer类`，但是不在这个目录下，后续我们再详细了解。
 
+### MessageDeliverer接口
 
+该接口负责将服务端接收到的CoAP消息分发给合适的资源去处理。该接口只有2个方法需要实现：
+
+```
+public interface MessageDeliverer {
+    // 分发请求消息给对应的资源
+    void deliverRequest(Exchange exchange);
+  
+    // 分发响应消息给对应的请求
+    void deliverResponse(Exchange exchange, Response response);
+}
+```
+
+实现类需要根据请求消息的URI来分发给对应的资源。如果找不到对应的资源，实现类应该返回`4.04 NOT_FOUND`响应码。如果实现类接收到的是响应消息，则应该分发给对应的请求消息。
