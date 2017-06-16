@@ -57,7 +57,7 @@ public interface ServerInterface {
 
 ### MessageDeliverer接口
 
-该接口负责将服务端接收到的CoAP消息分发给合适的资源去处理。该接口只有2个方法需要实现：
+该接口负责将接收到的CoAP消息分发给合适的对象去处理。该接口只有2个方法需要实现：
 
 ```
 public interface MessageDeliverer {
