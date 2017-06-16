@@ -139,7 +139,7 @@ ResourceAttributes类包含CoAP协议定义的不同属性，如标题，资源�
 
 ### CoapExchange类
 
-该类包含一个Exchange类（表示一对请求和响应），并且还有一个CoapResource类。CoapExchange类把它们封装了起来，并提供友好的API供开发者响应请求消息。
+该类包含一个Exchange类（表示一对请求和响应）和一个CoapResource类。CoapExchange类把它们封装了起来，并提供友好的API供开发者响应请求消息。
 
 有多友好？该类一共提供了7个`respond(...)`响应请求消息的同名方法，就是为了方便开发者，可以直接调用所需要的方法。不过，其中6个都是进行简单地封装，然后调用第7个，所以我们可以直接看第7个响应方法：
 
