@@ -72,5 +72,5 @@ element-connector则是从框架中独立出来的网络传输模块，其类如
 
 [Californium开源框架之源码分析（三）——observe包](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/)
 
-[Californium开源框架之源码分析（四）——server包](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-04/)
+[Californium开源框架之源码分析（四）——server包](http://wudashan.cn/2017/06/16/Californium-Framework-Analysis-04/)
 
