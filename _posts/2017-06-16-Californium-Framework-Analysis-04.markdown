@@ -75,7 +75,7 @@ public interface MessageDeliverer {
 
 该类实现MessageDeliverer接口，用于服务端分发CoAP消息。
 
-当接收到请求消息时，该类根据URI找到对应的资源，并检查是否是订阅请求，若是订阅请求还需要保存订阅关系，这样在资源发生变化时，可以通过保存的订阅关系通知对应的客户端。找到资源后，将请求传递给资源，由资源处理请求。源码如下：
+当接收到请求消息时，该类根据URI找到对应的资源，并检查请求是否与订阅相关，如果是建立订阅则保存订阅关系，如果是取消订阅则删除订阅关系。找到资源后，将请求传递给资源，由资源处理请求。源码如下：
 
 ```
 public void deliverRequest(final Exchange exchange) {
@@ -89,7 +89,7 @@ public void deliverRequest(final Exchange exchange) {
     // 找出请求路径对应的Resource
     final Resource resource = findResource(path);
     
-    // 检查是否是订阅请求，是的话还需要保存订阅关系
+    // 检查是否是订阅相关的请求
     checkForObserveOption(exchange, resource);
     
     // 由Resource来真正地处理请求
