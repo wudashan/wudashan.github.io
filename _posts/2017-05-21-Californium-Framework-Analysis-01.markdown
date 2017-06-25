@@ -39,6 +39,11 @@ californium-core是框架的核心实现，包图如下：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/observe%E5%8C%85_01.png)
 
+## server包
+
+该模块为Californium框架中的服务端，模块一共有以下类：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/server%E5%8C%85_01.png)
 
 ---
 
@@ -66,4 +71,6 @@ element-connector则是从框架中独立出来的网络传输模块，其类如
 [Californium开源框架之源码分析（二）——coap包](http://wudashan.cn/2017/06/01/Californium-Framework-Analysis-02/)
 
 [Californium开源框架之源码分析（三）——observe包](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/)
+
+[Californium开源框架之源码分析（四）——server包](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-04/)
 
