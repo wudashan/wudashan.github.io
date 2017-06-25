@@ -89,7 +89,7 @@ public void deliverRequest(final Exchange exchange) {
     // 找出请求路径对应的Resource
     final Resource resource = findResource(path);
     
-    // 检查是否是订阅相关的请求
+    // 检查是否是订阅相关的请求，是的话需要保存或删除订阅关系
     checkForObserveOption(exchange, resource);
     
     // 由Resource来真正地处理请求
