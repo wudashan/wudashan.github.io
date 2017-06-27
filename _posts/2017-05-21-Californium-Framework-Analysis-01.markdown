@@ -17,7 +17,15 @@ tags:
 
 # 引言
 
-在[《Californium开源框架分析（入门篇）》](http://wudashan.cn/2017/05/07/Californium-Framework-Analysis)博客中，我们通过模拟Debug + 源码走读的方式，对Californium框架有了一个整体的认识。本篇博客，我们将按框架的目录结构，对框架的结构进行分解，后续系列文章对每个包进行详细的分析和解读。Californium开源框架由`californium-core`和`element-connector`两个jar包组成。
+在[《Californium开源框架分析（入门篇）》](http://wudashan.cn/2017/05/07/Californium-Framework-Analysis)博客中，我们通过模拟Debug + 源码走读的方式，对Californium框架有了一个整体的认识。本篇博客，我们将按框架的目录结构，对框架的结构进行分解，后续系列文章对每个包进行详细的分析和解读。Californium开源框架由`californium-core`和`element-connector`两个jar包组成，分析的版本为`2.0.0-M1`，通过在pom.xml文件引入以下依赖即可查看源码：
+
+```
+<dependency>
+    <groupId>org.eclipse.californium</groupId>
+    <artifactId>californium-core</artifactId>
+    <version>2.0.0-M1</version>
+</dependency>
+```
 
 ---
 
