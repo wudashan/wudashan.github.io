@@ -185,3 +185,12 @@ public void respond(Response response) {
   bal.getPath() = "/foo/bar/"
   bal.getURI()  = "/foo/bar/bal"
 ```
+
+资源用于响应CoAP请求。请求被封装在`Exchange`类，该类包含着一些请求的额外信息。尽管CoAP协议里允许分块传输请求，但是到达Resource接口的都是完整的请求体。
+
+当一个请求到达服务端，`ServerMessageDeliverer`类会根据请求的URI搜索到对应的资源类，原理是通过调用`Resource.getChild(String)`获取子节点。当然，我们也可以覆盖这个方法来获取想要的子节点。比如请求的URI中包含通配符也可找到对应资源，或某些URI前缀都相同时交由同一个资源处理。
+
+一个资源可以有它自己的线程池。如果一个资源拥有自己的线程池，则请求将在它的线程池中被处理；如果没有，则转交由父资源的线程池处理。如果所有的父类都没有线程池，则由主线程处理请求。
+
+`CoapResource类`是`Resource接口`的实现类，奇怪的是，框架并没有把它放在同一个目录下。为了方便，下面一并介绍`CoapResource类`。
+
