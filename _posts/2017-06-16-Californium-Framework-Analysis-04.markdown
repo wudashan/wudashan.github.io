@@ -174,7 +174,7 @@ public void respond(Response response) {
 
 ```
 若树结构表示如下：
- 根
+  根
   |
   |-- foo
   |    `-- bar
