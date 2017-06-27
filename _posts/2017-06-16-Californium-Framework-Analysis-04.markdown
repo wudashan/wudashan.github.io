@@ -166,3 +166,22 @@ public void respond(Response response) {
 ```
 
 当然该类还提供了`accept()`方法和`reject()`方法响应请求。总之，对比Exchange类和CoapResource类，你会发现还是CoapExchange类简单易上手，因为它屏蔽了不必要的细节。
+
+
+### Resource接口
+
+资源是服务端中资源树的一个子节点，资源是服务端的重要组成部分（处理请求的类，能不重要吗=、=），由于是资源是以N叉树的数据结构存在，所以一个资源可能也有自己的子节点。一个资源必须要有自己的名称，并且它的URI是根据它的父节点名称 + 自己的名称组成的。具体定义可以看下面这个例子：
+
+```
+若树结构表示如下：
+ 根
+  |
+  |-- foo
+  |    `-- bar
+  |         `-- bal
+ 
+则对于资源bal来说：
+  bal.getName() = "bal"
+  bal.getPath() = "/foo/bar/"
+  bal.getURI()  = "/foo/bar/bal"
+```
