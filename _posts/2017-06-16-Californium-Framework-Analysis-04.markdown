@@ -194,3 +194,46 @@ public void respond(Response response) {
 
 `CoapResource类`是`Resource接口`的实现类，奇怪的是，框架并没有把它放在同一个目录下。为了方便，下面一并介绍`CoapResource类`。
 
+
+### CoapResource类
+
+CoapResource是Resource的基本实现类，我们可以继承它来编写自己的资源类。通过调用`CoapResource.add(CoapResource child)`方法可以很方便的构造出一个树形结构的资源类。
+
+CoapResource通过4个不同的方法处理请求：`handleGET()`、`handlePOST()`、`handlePUT()`和`handleDELETE()`。4个方法都有一个默认的实现，即返回4.05（方法不支持），我们可以根据需要覆盖这4个方法：
+```
+public class CoAPResourceExample extends CoapResource {
+ 
+    public CoAPResourceExample(String name) {
+        super(name);
+    }
+
+    @Override
+    public void handleGET(CoapExchange exchange) {
+        exchange.respond("hello world");
+    }
+ 
+    @Override 
+    public void handlePOST(CoapExchange exchange) {
+        exchange.accept();
+        exchange.respond(ResponseCode.CREATED);
+    }
+ 
+    @Override
+    public void handlePUT(CoapExchange exchange) {
+        exchange.respond(ResponseCode.CHANGED);
+        changed();  // 通知订阅方
+   }
+ 
+    @Override
+    public void handleDELETE(CoapExchange exchange) {
+        delete();
+        exchange.respond(ResponseCode.DELETED);
+    }
+}
+```
+
+CoapResource支持CoAP协议的订阅机制。如果调用了`setObservable(true)`方法，则该资源可以被CoAP客户端订阅。资源通过调用`changed()`方法表示自己已发生变化，并通知给订阅的客户端。`changed()`方法将会重新处理之前客户端发起的订阅请求。如果资源有自己的线程池，则请求会被线程池处理。`ObserveRelation类`表示资源和客户端的订阅关系，这在[Californium开源框架之源码分析（三）](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/)已经介绍过了。
+
+`ResourceObserver接口`与`CoapResource类`紧密相连，使用的是观察者设计模式。当资源发生变化时，ResourceObserver接口的方法将被回调。
+
+
