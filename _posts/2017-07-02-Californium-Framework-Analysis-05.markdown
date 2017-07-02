@@ -75,14 +75,20 @@ public static void setDefaults(NetworkConfig config) {
 
 ### NetworkConfigObserver接口
 
-观察者模式，对NetworkConfig对象进行监听，当参数配置发生变化时，回调下面对应的方法：
+观察者模式，对NetworkConfig对象进行监听，当参数配置发生变化时，回调下面的方法：
 
 ```
-public void changed(String key, Object value);
-public void changed(String key, String value);
-public void changed(String key, int value);
-public void changed(String key, long value);
-public void changed(String key, float value);
-public void changed(String key, double value);
-public void changed(String key, boolean value);
+public void changed(String key, T value);
 ```
+
+### NetworkConfigObserverAdapter类
+
+NetworkConfigObserver接口的实现类，注意不要被类名所迷惑，这里并没有使用到适配器模式。该类的所有实现方法都为空：
+
+```
+@Override
+public void changed(String key, T value) {
+    // do nothing
+}
+```
+
