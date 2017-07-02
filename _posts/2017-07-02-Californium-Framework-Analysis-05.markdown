@@ -2,7 +2,7 @@
 layout:     post
 title:      "Californium开源框架之源码分析（五）"
 subtitle:   "network模块，网络传输核心模块。"
-date:       2017-06-16 14:00:00
+date:       2017-07-02 14:00:00
 author:     "Wudashan"
 header-img: "img/post-bg-californium-framework-analysis.jpg"
 catalog: true
