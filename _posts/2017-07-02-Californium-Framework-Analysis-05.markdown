@@ -49,7 +49,7 @@ public void store(File file, String header) throws IOException {
 }
 ```
 
-悲哀的是，框架中自己调用了这个静态工厂方法。好在最新版本已经修复这个BUG。
+悲哀的是，框架中自己调用了这个静态工厂方法。好在最新版本已经修复这个BUG。你以为这样就没问题了？然而并不是，因为通过`NetworkConfig.getStandard()`返回的NetworkConfig对象是单例的，当其他地方修改了该对象将对全局造成影响。为了防止程序修改该对象，我们应该返回一个拷贝的对象。
 
 想要获取该配置类对应的配置参数，如下调用方法即可：
 
