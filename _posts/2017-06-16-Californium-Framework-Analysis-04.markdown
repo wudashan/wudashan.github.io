@@ -239,3 +239,50 @@ CoapResource支持CoAP协议的订阅机制。如果调用了`setObservable(true
 ### DiscoveryResource类
 
 该类继承自CoapResource类，它实现了CoAP的探索服务，其实就是当请求到达该资源时，它会返回给客户端该服务端存在的所有资源，可类比为把所有的HTTP接口告诉客户端。通常我们指定约束好的URI：`/.well-known/core`，来获取服务端的资源。需要注意的是，客户端应该发起一个GET请求。
+
+
+### ConcurrentCoapResource类
+
+该类也继承自CoapResource类，它拥有自己的线程池。当一个请求到达该资源时，将会被它自己的线程处理。如果请求到达的是该资源的子资源，且子资源没有线程池时，也会被它的线程处理。该类适合于资源需要单独的线程环境。
+
+下面我们用代码来介绍如何使用该类：
+```
+CoapServer server = new CoapServer();
+
+// 所有资源都使用服务端主线程处理请求
+server.add(new CoapResource("server-thread-1")
+            .add(new CoapResource("server-thread-1-1")
+            .add(new CoapResource("server-thread-1-2"))));
+
+// 每个资源使用自己的线程处理请求
+server.add(new ConcurrentResource("single-threaded-1", 1)
+            .add(new ConcurrentResource("single-threaded-1-1", 1)));
+
+// 2个子资源使用父资源的线程处理请求
+server.add(new ConcurrentResource("four-threaded", 4)
+            .add(new CoapResource("same-as-parent-1")
+            .add(new CoapResource("same-as-parent-2"))));
+
+// 静态工厂方法创建ConcurrentCoapResource类
+server.add(ConcurrentCoapResource.createConcurrentResourceBase(2, new LargeResource("large")));
+
+server.start();
+```
+
+其结果也可以用下面这个比较抽象的树来表示：
+```
+Root
+ |
+ |-- server-thread-1: 服务端主线程
+ |    `-- server-thread-1-1: 服务端主线程
+ |         `-- server-thread-1-2: 服务端主线程
+ |
+ |-- single-threaded-1: 自己的线程
+ |    `-- single-threaded-1-1: 自己的线程
+ |
+ |-- four-threaded: 自己的线程
+ |    `-- same-as-parent-1: 父节点的线程
+ |         `-- same-as-parent-2: 父节点的线程
+ |
+ |-- large: 值的线程
+```
