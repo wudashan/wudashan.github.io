@@ -23,3 +23,40 @@ network包目录下，是框架中网络传输的核心模块。
 
 ## config包
 
+## config包
+
+该目录下一共有4个类。
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-config%E5%8C%85.png)
+
+### NetworkConfig类
+
+该类表示框架的服务端、端点和连接器的配置参数。比如CoAP协议的端口号、ACK超时时间、去重策略等等。
+
+我们可以通过`NetworkConfig.getStandard()`静态工厂方法来获取到一个NetworkConfig对象，且该对象的配置参数为协议声明的默认值。
+
+但是，个人不建议直接调用这个方法，因为它会造成内存泄漏。内存泄漏的地方在于该静态工厂方法会生成或读取`Californium.properties`文件，并更新配置参数到properties配置文件里。有问题的代码如下：
+
+```
+// 读取文件时，没有关闭输入流
+public void load(File file) throws IOException {
+    InputStream inStream = new FileInputStream(file);
+    properties.load(inStream);
+}
+
+// 写入文件时，没有关闭输出流
+public void store(File file, String header) throws IOException {
+    Writer writer = new FileWriter(file);
+    properties.store(write, header);
+}
+```
+
+悲哀的是，框架中自己调用了这个静态工厂方法。好在最新版本已经修复这个BUG。
+
+想要获取该配置类对应的配置参数，如下调用方法即可：
+
+```
+NetworkConfig config = new NetworkConfig();
+// 获取默认的端口号
+int port = config.getInt(NetworkConfig.Keys.COAP_PORT);
+```
