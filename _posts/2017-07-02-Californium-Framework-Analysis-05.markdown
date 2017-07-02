@@ -57,4 +57,6 @@ public void store(File file, String header) throws IOException {
 NetworkConfig config = new NetworkConfig();
 // 获取默认的端口号
 int port = config.getInt(NetworkConfig.Keys.COAP_PORT);
+// 获取默认的ACK超时时间
+int timeout = config.getInt(NetworkConfig.Keys.ACK_TIMEOUT);
 ```
