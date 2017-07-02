@@ -284,5 +284,5 @@ Root
  |    `-- same-as-parent-1: 父节点的线程
  |         `-- same-as-parent-2: 父节点的线程
  |
- |-- large: 值的线程
+ |-- large: 自己的线程
 ```
