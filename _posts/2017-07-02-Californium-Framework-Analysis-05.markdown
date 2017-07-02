@@ -23,8 +23,6 @@ network包目录下，是框架中网络传输的核心模块。
 
 ## config包
 
-## config包
-
 该目录下一共有4个类。
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-config%E5%8C%85.png)
