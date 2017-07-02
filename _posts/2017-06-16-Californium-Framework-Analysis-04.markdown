@@ -236,4 +236,6 @@ CoapResource支持CoAP协议的订阅机制。如果调用了`setObservable(true
 
 `ResourceObserver接口`与`CoapResource类`紧密相连，使用的是观察者设计模式。当资源发生变化时，ResourceObserver接口的方法将被回调。
 
+### DiscoveryResource类
 
+该类继承自CoapResource类，它实现了CoAP的探索服务，其实就是当请求到达该资源时，它会返回给客户端该服务端存在的所有资源，可类比为把所有的HTTP接口告诉客户端。通常我们指定约束好的URI：`/.well-known/core`，来获取服务端的资源。需要注意的是，客户端应该发起一个GET请求。
