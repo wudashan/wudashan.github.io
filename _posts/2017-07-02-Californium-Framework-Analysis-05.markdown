@@ -60,3 +60,15 @@ int port = config.getInt(NetworkConfig.Keys.COAP_PORT);
 // 获取默认的ACK超时时间
 int timeout = config.getInt(NetworkConfig.Keys.ACK_TIMEOUT);
 ```
+
+### NetworkConfigDefaults类
+
+该类表示协议声明的默认参数，如CoAP协议的端口号、ACK超时时间、去重策略等等。该类只有一个`NetworkConfigDefaults.setDefaults(NetworkConfig config)`静态方法，将传入的NetworkConfig对象包含的参数设置为默认值。代码如下：
+
+```
+public static void setDefaults(NetworkConfig config) {
+    config.setInt(NetworkConfig.Keys.ACK_TIMEOUT, 2000);
+    config.setFloat(NetworkConfig.Keys.ACK_RANDOM_FACTOR, 1.5f);
+    ...
+}
+```
