@@ -100,7 +100,7 @@ public void changed(String key, T value) {
 
 ### Deduplicator接口
 
-该接口用于检测CON和NON报文是否重复收到。我们主要关注`findPrevious(KeyMID key, Exchange exchange)`方法，该方法根据CoAP报文的mid，检查之前是否收到了相同的报文。接口对该方法做了如下的要求：
+该接口用于检测CON和NON报文是否重复收到。我们主要关注`findPrevious(KeyMID key, Exchange exchange)`方法，该方法根据CoAP报文的MID，检查之前是否收到了相同的报文。接口对该方法做了如下的要求：
 
 ```
 if (!duplicator.containsKey(key)) {
