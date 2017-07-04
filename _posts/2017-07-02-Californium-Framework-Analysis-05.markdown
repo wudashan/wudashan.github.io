@@ -92,3 +92,22 @@ public void changed(String key, T value) {
 }
 ```
 
+## deduplication包
+
+该目录一共有以下类：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-deduplication%E5%8C%85.png)
+
+### Deduplicator接口
+
+该接口用于检测CON和NON报文是否重复收到。我们主要关注`findPrevious(KeyMID key, Exchange exchange)`方法。接口对该方法做了如下的要求：
+
+```
+if (!duplicator.containsKey(key)) {
+    return duplicator.put(key, value);
+} else {
+    return duplicator.get(key);
+}
+```
+
+乍一看好像没有啥特别的，无非是不包含key的时候存入key-value，包含key时直接取出对应的value。但是该方法专门说明了，上面这段代码需要实现为原子操作，即当有线程第一个插入了key-value，后续的线程只能取出对应的value。只有这样才能保证是否收到重复的报文。
