@@ -114,4 +114,4 @@ if (!duplicator.containsKey(key)) {
 
 ### NoDeduplicator类
 
-该类不对报文进行重传检查，每一个报文都认为不是重复的，即`findPrevious(KeyMID key, Exchange exchange)`方法返回的是`null`。如果使用了该类，则需要在应用层做报文重传的检查。
+该类不对报文进行重传检查，每一个报文都认为不是重复的，即`findPrevious(...)`方法返回的是`null`。如果使用了该类，则需要在应用层做报文重传的检查。
