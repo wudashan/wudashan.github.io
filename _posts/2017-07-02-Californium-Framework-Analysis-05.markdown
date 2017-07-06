@@ -182,3 +182,7 @@ private class SweepAlgorithm implements Runnable {
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CropRotation-%E6%B8%85%E7%90%86%E6%8A%A5%E6%96%87.png)
 
 可以总结为，每次清理，激活态和冻结态将顺时针移动一格，报文需要经过2个清理周期才会被完全清理。
+
+### DeduplicatorFactory类
+
+从名称可以看出，这是一个工厂类，使用的是抽象工厂设计模式。通过`createDeduplicator(NetworkConfig config)`方法返回具体的Deduplicator具体实现类，其原理就是根据NetworkConfig对象（默认为`Californium.properties`文件）配置的DEDUPLICATOR参数返回实现类。
