@@ -129,3 +129,44 @@ public Exchange findPrevious(KeyMID key, Exchange exchange) {
 ```
 
 通过`ConcurrentHashMap.putIfAbsent()`方法，可以确保在多线程的情况下，只有最先插入的线程可以插入成功，并返回null，后续想要插入的线程将会插入失败，并返回最先插入的对象。
+
+该类还有一个功能，就是定期清理过期的报文。其原理就是启动一个定时任务，清理过期的报文，清理完成后，继续启动定时任务，等待下一次清理。不过这个版本的代码有点问题，我放一下代码，大家可以找一下问题出在哪里：
+
+```
+// 定期清理的任务类
+private class SweepAlgorithm implements Runnable {
+
+    //定时任务
+    private ScheduledFuture<?> future;
+    
+    @Override
+    public void run() {
+        try {
+            // 清理过期的报文
+            sweep();
+        } catch (Throwable t) {
+            
+        } finally {
+            try {
+                // 启动定时任务
+                schedule();
+            } catch (Throwable t) {
+
+            }
+        }
+    }
+    
+    // 启动定时任务
+    private void schedule() {
+        future = executor.schedule(this, period, TimeUnit.MILLISECONDS);
+    }
+    
+    // 取消任务
+    private void cancel() {
+        if (future != null)
+            future.cancel(true);
+    }
+}
+```
+
+那么问题出在哪里呢？在取消任务的时候。这里考虑2种场景：第一种，取消任务的时候清理任务还没有执行，取消成功。第二种，取消任务的时候清理任务正在执行，则清理完成后将继续执行finally块里的语句，即再次调用schedule()方法，最终结果就是取消任务失败。
