@@ -186,3 +186,9 @@ private class SweepAlgorithm implements Runnable {
 ### DeduplicatorFactory类
 
 从名称可以看出，这是一个工厂类，使用的是抽象工厂设计模式。通过`createDeduplicator(NetworkConfig config)`方法返回具体的Deduplicator具体实现类，其原理就是根据NetworkConfig对象（默认为`Californium.properties`文件）配置的DEDUPLICATOR参数返回实现类。
+
+## interceptors包
+
+该目录下一共有3个类。
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-interceptors%E5%8C%85.png)
