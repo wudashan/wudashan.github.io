@@ -170,3 +170,15 @@ private class SweepAlgorithm implements Runnable {
 ```
 
 那么问题出在哪里呢？在取消任务的时候。这里考虑两种场景：第一种，取消任务的时候清理任务还没有执行，取消成功。第二种，取消任务的时候清理任务正在执行，则清理完成后将继续执行finally块里的语句，即再次调用schedule()方法，最终结果就是取消任务失败。
+
+### CropRotation类
+
+该类使用三个ConcurrentHashMap对象组成循环队列，其存储报文、报文重复检查和清理报文过程如下图：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CropRotation-%E5%AD%98%E5%82%A8%E6%8A%A5%E6%96%87.png)
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CropRotation-%E6%8A%A5%E6%96%87%E9%87%8D%E5%A4%8D%E6%A3%80%E6%9F%A5.png)
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CropRotation-%E6%B8%85%E7%90%86%E6%8A%A5%E6%96%87.png)
+
+可以总结为，每次清理，激活态和冻结态将顺时针移动一格，报文需要经过2个清理周期才会被完全清理。
