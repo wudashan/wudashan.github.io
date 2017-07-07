@@ -192,3 +192,14 @@ private class SweepAlgorithm implements Runnable {
 该目录下一共有3个类。
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-interceptors%E5%8C%85.png)
+
+
+### MessageInterceptor接口
+
+MessageInterceptor位于Connector和Matcher之间，如下图：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE_02.png)
+
+当CoAP消息从Connector传来时，对应的`receiveXXX()`方法将被回调；当CoAP消息要发送到Connector时，对应的`sendXXX()`方法将被回调。
+
+MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的消息，则不会传给Connector；如果取消准备接收的消息，则不会传给Matcher。
