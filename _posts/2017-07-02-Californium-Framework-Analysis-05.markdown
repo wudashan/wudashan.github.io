@@ -225,3 +225,7 @@ MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的�
 ### DataParser类
 
 该类通过`DatagramReader`对象读取字节流，并解析成Request、Response、EmptyMessage对象。解析过程可查看源码，这里不再详述。
+
+### DatagramWriter类
+
+该类内部封装了一个`ByteArrayOutputStream`对象，提供了`writeXXX()`方法将字节流写到输出流。
