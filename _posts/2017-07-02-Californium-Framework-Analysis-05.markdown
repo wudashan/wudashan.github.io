@@ -203,3 +203,7 @@ MessageInterceptor位于Connector和Matcher之间，如下图：
 当CoAP消息从Connector传来时，对应的`receiveXXX()`方法将被回调；当CoAP消息要发送到Connector时，对应的`sendXXX()`方法将被回调。
 
 MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的消息，则不会传给Connector；如果取消准备接收的消息，则不会传给Matcher。
+
+### MessageTracer类
+
+该类实现了MessageInterceptor接口，主要功能为消息日志跟踪。所有的`receiveXXX()`和`sendXXX()`方法都打印了INFO日志。
