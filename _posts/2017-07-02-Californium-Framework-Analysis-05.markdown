@@ -210,4 +210,4 @@ MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的�
 
 ### OriginTracer类
 
-该类实现了MessageInterceptor接口，实现对来自对端消息的日志跟踪。日志文件保存在`origin-trace`文件夹下面。
+该类实现了MessageInterceptor接口，只记录来自对端消息到日志里。日志文件保存在`origin-trace`文件夹下面。
