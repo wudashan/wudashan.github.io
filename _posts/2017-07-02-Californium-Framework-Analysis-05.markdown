@@ -207,3 +207,7 @@ MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的�
 ### MessageTracer类
 
 该类实现了MessageInterceptor接口，主要功能为消息日志跟踪。所有的`receiveXXX()`和`sendXXX()`方法都打印了INFO日志。
+
+### OriginTracer类
+
+该类实现了MessageInterceptor接口，实现对来自对端消息的日志跟踪。日志文件保存在`origin-trace`文件夹下面。
