@@ -220,4 +220,4 @@ MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的�
 
 ### DatagramReader类
 
-该类内部封装了一个`ByteArrayInputStream`对象，提供了`readXXX()`方法读取字节流。
+该类内部封装了一个`ByteArrayInputStream`对象，提供了`readXXX()`方法读取网络数据报的字节流。
