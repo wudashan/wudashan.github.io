@@ -233,3 +233,7 @@ MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的�
 ### DataSerializer类
 
 该类通过`DatagramWriter`把Request、Response、EmptyMessage对象转换成字节流。
+
+### Serializer类
+
+`DataSerializer`将CoAP消息对象序列化成字节流，但是`Connector`发送消息时，还需要其他额外的信息，所以该类又将字节流封装在了`RawData`对象中。
