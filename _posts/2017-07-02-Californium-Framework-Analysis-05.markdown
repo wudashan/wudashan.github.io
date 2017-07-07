@@ -211,3 +211,9 @@ MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的�
 ### OriginTracer类
 
 该类实现了MessageInterceptor接口，只记录来自对端消息到日志里。日志文件保存在`origin-trace`文件夹下面。
+
+## serialization包
+
+该目录下一共有5个类。
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-serialization%E5%8C%85.png)
