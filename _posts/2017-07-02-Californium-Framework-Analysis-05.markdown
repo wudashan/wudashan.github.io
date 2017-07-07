@@ -229,3 +229,7 @@ MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的�
 ### DatagramWriter类
 
 该类内部封装了一个`ByteArrayOutputStream`对象，提供了`writeXXX()`方法将字节流写到输出流。
+
+### DataSerializer类
+
+该类通过`DatagramWriter`把Request、Response、EmptyMessage对象转换成字节流。
