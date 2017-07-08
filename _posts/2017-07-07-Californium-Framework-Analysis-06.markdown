@@ -23,6 +23,10 @@ network包目录下，是框架中网络传输的核心模块。
 
 ## stack包
 
+该模块为CoAP协议栈，模块一共有以下类：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-stack%E5%8C%85.png)
+
 ### Layer接口
 
 该接口表示抽象的协议层，负责处理CoAP消息。当处理完后，会将消息往上层或下层传递，由它们继续处理。使用的是设计模式中的职责链模式。
