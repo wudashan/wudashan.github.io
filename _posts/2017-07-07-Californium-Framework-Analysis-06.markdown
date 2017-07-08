@@ -54,3 +54,6 @@ network包目录下，是框架中网络传输的核心模块。
 
 当传输的CoAP消息过大时，该层负责分解或组装消息。
 
+### BlockwiseStatus类
+
+该类表示一个请求消息或响应消息的分块传输的状态。该类的实例对象保存在Exchange里，并且只能被BlockwiseLayer访问和修改。
