@@ -45,3 +45,12 @@ network包目录下，是框架中网络传输的核心模块。
 ### AbstractLayer类
 
 该类是一个抽象类，实现了Layer接口的所有方法，`receiveXXX()`和`sendXXX()`方法默认将消息传递给下一个协议层处理。子类可以覆盖相应的方法并通过`super.receiveXXX()`或`super.sendXXX()`传递消息。
+
+### ObserveLayer类
+
+该类处理订阅相关的CoAP消息。
+
+### BlockwiseLayer类
+
+当传输的CoAP消息过大时，该层负责分解或组装消息。
+
