@@ -145,6 +145,6 @@ public void sendResponse(Exchange exchange, Response response);
 public void sendEmptyMessage(Exchange exchange, EmptyMessage emptyMessage);
 ```
 
-### Matcher接口
+### Matcher类
 
-该接口根据接收的CoAP消息，匹配对应的`Exchange`。
+该类根据接收的CoAP消息，匹配对应的`Exchange`。
