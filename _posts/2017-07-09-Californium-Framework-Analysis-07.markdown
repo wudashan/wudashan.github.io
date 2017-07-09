@@ -38,3 +38,7 @@ core根目录下，封装好了一些供开发者使用的类。
 ### CoapObserveRelation类
 
 该类用于`CoapClient`处理订阅关系，它表示一个客户端和服务端资源的订阅关系。该类提供了几个简单的public方法，如检测订阅关系是否建立或取消，重新注册以刷新订阅关系。
+
+### CoapClient类
+
+该类表示CoAP客户端，提供了很多方法供开发者使用，主要有`postXXX()`、`getXXX()`、`putXXX()`、`deleteXXX()`方法，同步和异步发送请求，发起订阅请求、发起ping请求和发起discover请求等等。
