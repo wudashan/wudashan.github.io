@@ -200,7 +200,7 @@ public void sendEmptyMessage(Exchange exchange, EmptyMessage emptyMessage);
  - contextEstablished(Exchange exchange); 当上下文被设置时回调。
 
 
- ### Exchange类
+### Exchange类
 
 该类表示一个请求和一个或多个响应的状态信息。Exchange有自己的生命周期，当最后一个响应对端收到，当请求或响应被对端拒绝，当请求被取消，当请求或响应超时时，Exchange都将被销毁。
 
