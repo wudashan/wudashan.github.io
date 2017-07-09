@@ -91,3 +91,6 @@ server.add(new CoapResource("hello-world") {
 server.start();
 ```
 
+### Utils类
+
+该类是一个工具类，提供了字节数组转十六进制的方法，还有美化请求与响应的内容打印。
