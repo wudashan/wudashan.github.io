@@ -130,3 +130,7 @@ public void destroyed(Endpoint endpoint); // 当Endpoint销毁后回调
 ### Endpoint接口
 
 一个Endpoint需要绑定指定的ip和port。客户端使用Endpoint来发送请求给服务端；服务端的资源与Endpoint相连接，处理来自客户端的请求。我们可以抽象地把它看成一个消息出入口。
+
+### EndpointManager类
+
+一个提供创建Endpoint对象的工厂类。通过`EndpointManager.getEndpointManager().getDefaultEndpoint()`方法，可以获得一个端口号随机的Endpoint对象，可用于客户端发送请求。CoAP协议是明文传输的，想要加密传输就得使用CoAPs协议，其底层使用的是DTLS加密。虽然EndpointManager提供了`getDefaultSecureEndpoint()`方法获取加密的Endpoint对象，但是该方法默认返回null，需要调用`setDefaultSecureEndpoint(Endpoint endpoint)`方法传入参数才能使用。
