@@ -206,9 +206,6 @@ public void sendEmptyMessage(Exchange exchange, EmptyMessage emptyMessage);
 
 Californium框架使用Exchange保存一组请求与响应的相关状态信息，该类只负责保存，不提供其他功能。`CoapStack`提供CoAP协议栈的功能，并负责维护每个Exchange。需要注意的是，该类和它的成员变量都是非线程安全的。
 
-### RemoteEndpoint类
-
-该类表示在启用拥塞控制时对端Endpoint的信息。
 
 ### RemoteEndpoint类
 
