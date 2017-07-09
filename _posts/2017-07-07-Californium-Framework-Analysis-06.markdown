@@ -148,3 +148,46 @@ public void sendEmptyMessage(Exchange exchange, EmptyMessage emptyMessage);
 ### Matcher类
 
 该类根据接收的CoAP消息，匹配对应的`Exchange`。
+
+### CoapEndpoint类
+
+该类实现了Endpoint接口，封装了CoAP协议栈。它会将接收的消息传递给MessageDeliverer处理，MessageDeliverer则将请求分发到对应的Resource。Resource处理完请求后，会把响应返回给同一个Endpoint。Endpoint则通过Connector把响应发送出去。Connector封装了运输层协议。
+
+下图显示了CoapEndpoint的结构：
+
+```
+ +-----------------------+
+ |   MessageDeliverer    +--> (Resource Tree)
+ +-------------A---------+
+               |
+             * A            
+ +-Endpoint--+-A---------+
+ |           v A         |
+ |           v A         |
+ | +---------v-+-------+ |
+ | | Stack Top         | |
+ | +-------------------+ |
+ | | ObserveLayer      | |
+ | +-------------------+ |
+ | | BlockwiseLayer    | |
+ | +-------------------+ |
+ | | ReliabilityLayer  | |
+ | +-------------------+ |
+ | | Stack Bottom      | |
+ | +--------+-+--------+ |
+ |          v A          |
+ |          v A          |
+ |        Matcher        |
+ |          v A          |
+ |   MessageInterceptor  |  
+ |          v A          |
+ |          v A          |
+ | +--------v-+--------+ |
+ +-|     Connector     |-+
+   +--------+-A--------+
+            v A
+            v A
+         (Network)
+```
+
+可以看到，该类是通过一层一层的组装实现CoAP通信的。接收和发送消息都需要经过层层过滤。Matcher记录发送出去的消息并负责匹配接收到的响应。MessageInterceptor则过滤所有的消息。
