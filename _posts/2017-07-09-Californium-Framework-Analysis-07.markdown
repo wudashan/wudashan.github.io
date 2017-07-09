@@ -50,3 +50,44 @@ core根目录下，封装好了一些供开发者使用的类。
 ### CoapResponse类
 
 该类将`Response`类进行了包装，并只提供了几个简单的public方法，如果需要直接读取其成员变量`Response`，则需要调用`advanced()`方法。
+
+
+### CoapServer类
+
+该类实现了`ServerInterface`接口，代表着包含CoAP资源的服务端。其结构如下图：
+
+```
+ +------------------------------------- CoapServer --------------------------------------+
+ |                                                                                       |
+ |                               +-----------------------+                               |
+ |                               |    MessageDeliverer   +--> (Resource Tree)            |
+ |                               +---------A-A-A---------+                               |
+ |                                         | | |                                         |
+ |                                         | | |                                         |
+ |                 .-------->>>------------' | '--------<<<------------.                 |
+ |                /                          |                          \                |
+ |               |                           |                           |               |
+ |             * A                         * A                         * A               |
+ | +-----------------------+   +-----------------------+   +-----------------------+     |
+ | |        Endpoint       |   |        Endpoint       |   |      Endpoint         |     |
+ | +-----------------------+   +-----------------------+   +-----------------------+     |
+ +------------v-A--------------------------v-A-------------------------v-A---------------+
+              v A                          v A                         v A            
+              v A                          v A                         v A         
+           (Network)                    (Network)                   (Network)
+```
+
+服务端持有一个树形结构的资源Resource，还包括多个绑定了网络端口的端点Endpoint。服务端可以启动和停止。当服务端停止时，端点需要释放其占用的端口，但是线程池需要保持运行以确保还能继续启动。
+
+通过如下代码，可以创建一个服务端，当客户端发起GET请求时，响应“hello world”：
+
+```
+CoapServer server = new CoapServer(port);
+server.add(new CoapResource("hello-world") {
+    public void handleGET(CoapExchange exchange) {
+        exchange.respond(ResponseCode.CONTENT, "hello world");
+    }
+});
+server.start();
+```
+
