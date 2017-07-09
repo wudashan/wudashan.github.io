@@ -30,3 +30,7 @@ core根目录下，封装好了一些供开发者使用的类。
 ### CaliforniumLogger类
 
 当`java.util.logging`没有使用配置文件时，该类可以作为一个辅助类控制`org.eclipse.californium.core`和`org.eclipse.californium.elements`包下的日志输出格式和级别。日志输出格式使用的是CaliforniumFormatter类。
+
+### CoapHandler接口
+
+该类用于`CoapClient`异步发送消息，需要对消息的后续结果进行处理的场景。当客户端收到响应时，回调`onLoad()`方法；当客户端发送的请求超时或服务端拒绝时，回调`onError()`方法。
