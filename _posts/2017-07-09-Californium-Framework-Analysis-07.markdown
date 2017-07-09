@@ -94,3 +94,7 @@ server.start();
 ### Utils类
 
 该类是一个工具类，提供了字节数组转十六进制的方法，还有美化请求与响应的内容打印。
+
+### WebLink类
+
+该类表示一个服务端的Resource对应的uri和属性，当调用`CoapClient.discover()`方法，会返回一个包含WebLink的列表。
