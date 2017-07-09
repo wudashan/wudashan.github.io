@@ -126,3 +126,7 @@ public void started(Endpoint endpoint); // 当Endpoint启动后回调
 public void stopped(Endpoint endpoint); // 当Endpoint停止后回调
 public void destroyed(Endpoint endpoint); // 当Endpoint销毁后回调
 ```
+
+### Endpoint接口
+
+一个Endpoint需要绑定指定的ip和port。客户端使用Endpoint来发送请求给服务端；服务端的资源与Endpoint相连接，处理来自客户端的请求。我们可以抽象地把它看成一个消息出入口。
