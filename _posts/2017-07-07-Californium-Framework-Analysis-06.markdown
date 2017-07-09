@@ -69,3 +69,44 @@ network包目录下，是框架中网络传输的核心模块。
 ### congestioncontrol包
 
 该目录下有`BasicRto`、`Cocoa`、`CocoaStrong`、`LinuxRto`、`PeakhopperRto`5个类，都继承了CongestionControlLayer抽象类，实现了具体的拥塞控制策略，每个类各有区别。由于本人能力有限，这里就不展开篇幅介绍，以防误导大家。
+
+### CoapStack类
+
+CoapStack类组装了上面介绍的几个协议层，形成了协议栈，用于处理CoAP消息。在框架中，完整的消息接收和发送处理过程如下图：
+
+```
+ +--------------------------+
+ | MessageDeliverer         |
+ +--------------A-----------+
+                A
+              * A
+ +------------+-A-----------+
+ |       CoAPEndpoint       |
+ |            v A           |
+ |            v A           |
+ | +----------v-+---------+ |
+ | | Stack Top            | |
+ | +----------------------+ |
+ | | ObserveLayer         | |
+ | +----------------------+ |
+ | | BlockwiseLayer       | |
+ | +----------------------+ |
+ | | ReliabilityLayer     | |
+ | +----------------------+ |
+ | | Stack Bottom         | |
+ | +----------+-A---------+ |
+ |            v A           |
+ |          Matcher         |
+ |            v A           |
+ |        Interceptor       |
+ |            v A           |
+ +------------v-A-----------+
+              v A 
+              v A 
+ +------------v-+-----------+
+ | Connector                |
+ +--------------------------+
+ 
+```
+
+其中`Stack Top`与`Stack Bottom`之间都属于CoapStack类。当`Stack Top`要向下发送消息时直接传递给下层，当接收到消息时向上传递给`MessageDeliverer`处理。当`Stack Bottom`要向下发送消息时传递给`Outbox`处理，当接收到消息时直接传递给上层。而`ObserveLayer`、`BlockwiseLayer`、`ReliabilityLayer`则各自履行自己的责任。
