@@ -116,3 +116,13 @@ CoapStack类组装了上面介绍的几个协议层，形成了协议栈，用�
 network根目录下，还有下面几个类：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-%E6%A0%B9%E7%9B%AE%E5%BD%95.png)
+
+### EndpointObserver接口
+
+该接口使用观察者设计模式，通过`Endpoint.addObserver()`方法注册并监听Endpoint的事件：
+
+```
+public void started(Endpoint endpoint); // 当Endpoint启动后回调
+public void stopped(Endpoint endpoint); // 当Endpoint停止后回调
+public void destroyed(Endpoint endpoint); // 当Endpoint销毁后回调
+```
