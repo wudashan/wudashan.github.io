@@ -42,3 +42,7 @@ core根目录下，封装好了一些供开发者使用的类。
 ### CoapClient类
 
 该类表示CoAP客户端，提供了很多方法供开发者使用，主要有`postXXX()`、`getXXX()`、`putXXX()`、`deleteXXX()`方法，同步和异步发送请求，发起订阅请求、发起ping请求和发起discover请求等等。
+
+### CoapResource类
+
+该类在[《Californium开源框架之源码分析（四）—— server包》](http://wudashan.cn/2017/06/16/Californium-Framework-Analysis-04/)已分析过。
