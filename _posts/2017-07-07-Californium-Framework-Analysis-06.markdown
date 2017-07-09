@@ -61,3 +61,7 @@ network包目录下，是框架中网络传输的核心模块。
 ### ReliabilityLayer类
 
 该类负责CON类型的消息的可靠性重传。
+
+### CongestionControlLayer类
+
+该类继承ReliabilityLayer类，在可靠性重传的基础上做了拥塞控制。该类为抽象类，将拥塞控制的一些公共方法封装了起来。`Californium.properties`配置文件默认是不开启拥塞控制的。
