@@ -65,3 +65,7 @@ network包目录下，是框架中网络传输的核心模块。
 ### CongestionControlLayer类
 
 该类继承ReliabilityLayer类，在可靠性重传的基础上做了拥塞控制。该类为抽象类，将拥塞控制的一些公共方法封装了起来。`Californium.properties`配置文件默认是不开启拥塞控制的。该类还提供了一个`newImplementation(NetworkConfig config)`静态工厂方法，根据配置信息返回一个具体的拥塞控制子类。
+
+### congestioncontrol包
+
+该目录下有`BasicRto`、`Cocoa`、`CocoaStrong`、`LinuxRto`、`PeakhopperRto`5个类，都继承了CongestionControlLayer抽象类，实现了具体的拥塞控制策略，每个类各有区别。由于本人能力有限，这里就不展开篇幅介绍，以防误导大家。
