@@ -191,3 +191,10 @@ public void sendEmptyMessage(Exchange exchange, EmptyMessage emptyMessage);
 ```
 
 可以看到，该类是通过一层一层的组装实现CoAP通信的。接收和发送消息都需要经过层层过滤。Matcher记录发送出去的消息并负责匹配接收到的响应。MessageInterceptor则过滤所有的消息。
+
+### ExchangeObserver接口
+
+该接口监听`Exchange`的两个事件：
+
+ - completed(Exchange exchange); 当Exchange对象已完成时回调，即响应已经发送并且对端收到，或者Exchange对象已超过生命周期需要销毁。
+ - contextEstablished(Exchange exchange); 当上下文被设置时回调。
