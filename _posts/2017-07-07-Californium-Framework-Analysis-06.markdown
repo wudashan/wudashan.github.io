@@ -198,3 +198,10 @@ public void sendEmptyMessage(Exchange exchange, EmptyMessage emptyMessage);
 
  - completed(Exchange exchange); 当Exchange对象已完成时回调，即响应已经发送并且对端收到，或者Exchange对象已超过生命周期需要销毁。
  - contextEstablished(Exchange exchange); 当上下文被设置时回调。
+
+
+ ### Exchange类
+
+该类表示一个请求和一个或多个响应的状态信息。Exchange有自己的生命周期，当最后一个响应对端收到，当请求或响应被对端拒绝，当请求被取消，当请求或响应超时时，Exchange都将被销毁。
+
+Californium框架使用Exchange保存一组请求与响应的相关状态信息，该类只负责保存，不提供其他功能。`CoapStack`提供CoAP协议栈的功能，并负责维护每个Exchange。需要注意的是，该类和它的成员变量都是非线程安全的。
