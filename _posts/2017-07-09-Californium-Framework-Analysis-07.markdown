@@ -21,3 +21,8 @@ core根目录下，封装好了一些供开发者使用的类。
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/core.png)
 
+## 根目录
+
+### CaliforniumFormatter类
+
+该类继承了`java.util.logging.Formatter`类，并重写了`format()`方法。对日志输出进行了格式化处理，默认给每条日志添加线程id、日志级别、类名、详细信息、源码行号、方法名、线程名信息，方便定位问题。
