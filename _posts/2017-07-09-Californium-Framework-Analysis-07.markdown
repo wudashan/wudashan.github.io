@@ -46,3 +46,7 @@ core根目录下，封装好了一些供开发者使用的类。
 ### CoapResource类
 
 该类在[《Californium开源框架之源码分析（四）—— server包》](http://wudashan.cn/2017/06/16/Californium-Framework-Analysis-04/)已分析过。
+
+### CoapResponse类
+
+该类将`Response`类进行了包装，并只提供了几个简单的public方法，如果需要直接读取其成员变量`Response`，则需要调用`advanced()`方法。
