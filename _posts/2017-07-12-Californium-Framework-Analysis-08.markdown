@@ -52,3 +52,27 @@ public DtlsCorrelationContext(String sessionId, String epoch, String cipher) {
 ### MessageCallback接口
 
 当建立DTLS会话时，该接口的唯一方法`onContextEstablished(CorrelationContext context)`将会被回调。
+
+### RawData类
+
+该类为一个简单的POJO类，包含着几个成员变量和对应的set/get方法，当`Connector`发送和接收消息时，使用的是该类。其成员变量如下：
+
+```
+// 真正要传输的CoAP报文
+public final byte[] bytes;
+
+// socket地址
+private InetSocketAddress address;
+
+// 是否使用广播形式
+private boolean multicast;
+
+// 加密鉴权方式
+private Principal senderIdentity;
+
+// 传输时的上下文信息
+private CorrelationContext correlationContext;
+
+// 消息回调对象
+private MessageCallback callback;
+```
