@@ -95,5 +95,24 @@ setRawDataReceiver(RawDataChannel messageHandler);
 ### ConnectorBase类
 
 该类实现了Connector接口，内部包含了一个发送线程、一个接收线程、一个阻塞队列和一个消息处理器。
+
 当调用send方法时，将要发送的消息放入队列中，由发送线程从队列循环取出消息执行`sendNext()`抽象方法，即生产者和消费者隔离。
+
 接收线程循环执行`receiveNext()`抽象方法从网络中接收数据，当获取到数据回调消息处理器的`receiveData()`方法。
+
+### UDPConnector类
+
+该类直接实现了Connector接口，没有继承ConnectorBase类，但原理还是一样的，使用发送线程发送UDP报文，使用接收线程接收UDP报文。
+
+### ConnectorFactory接口
+
+该接口使用了抽象工厂的设计模式，代码如下：
+
+```
+public interface ConnectorFactory {
+    // 根据socket地址返回Connector对象
+  Connector newConnector(InetSocketAddress socketAddress);
+}
+```
+
+实现类需要根据socket地址返回不加密的UDPConnector，或者返回加密的DTSConnector对象。本框架不涉及加密传输，所以没有实现该接口。
