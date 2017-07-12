@@ -33,7 +33,7 @@ element根目录下，定义了网络层通信的基本类。
 
 ### DtlsCorrelationContext类
 
-该类继承自MapBasedCorrelationContext类，该类包含着DTLS的特定信息。从构造方法可以看出，创建该类是就需要指定DTLS的相关信息：
+该类继承自MapBasedCorrelationContext类，该类包含着DTLS的特定信息。从构造方法可以看出，创建该类时就需要指定DTLS的相关信息：
 
 ```
 public DtlsCorrelationContext(String sessionId, String epoch, String cipher) {
