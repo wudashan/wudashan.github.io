@@ -91,3 +91,9 @@ setRawDataReceiver(RawDataChannel messageHandler);
 ```
 
 当发送数据时，调用send方法，同时要求send方法不会阻塞主线程。当接收数据时，使用setRawDataReceiver方法设置的RawDataChannel对象来处理数据。
+
+### ConnectorBase类
+
+该类实现了Connector接口，内部包含了一个发送线程、一个接收线程、一个阻塞队列和一个消息处理器。
+当调用send方法时，将要发送的消息放入队列中，由发送线程从队列循环取出消息执行`sendNext()`抽象方法，即生产者和消费者隔离。
+接收线程循环执行`receiveNext()`抽象方法从网络中接收数据，当获取到数据回调消息处理器的`receiveData()`方法。
