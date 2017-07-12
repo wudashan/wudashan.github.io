@@ -116,3 +116,23 @@ public interface ConnectorFactory {
 ```
 
 实现类需要根据socket地址返回不加密的UDPConnector，或者返回加密的DTSConnector对象。本框架不涉及加密传输，所以没有实现该接口。
+
+---
+
+# 系列文章
+
+[Californium开源框架之源码分析（一）—— 整体认识](http://wudashan.cn/2017/05/21/Californium-Framework-Analysis-01/) 
+
+[Californium开源框架之源码分析（二）—— coap包](http://wudashan.cn/2017/06/01/Californium-Framework-Analysis-02/) 
+
+[Californium开源框架之源码分析（三）—— observe包](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/) 
+
+[Californium开源框架之源码分析（四）—— server包](http://wudashan.cn/2017/06/16/Californium-Framework-Analysis-04/) 
+
+[Californium开源框架之源码分析（五）—— network包（上）](http://wudashan.cn/2017/07/02/Californium-Framework-Analysis-05/) 
+
+[Californium开源框架之源码分析（六）—— network包（下）](http://wudashan.cn/2017/07/07/Californium-Framework-Analysis-06/) 
+
+[Californium开源框架之源码分析（七）—— core包](http://wudashan.cn/2017/07/09/Californium-Framework-Analysis-07/) 
+
+[Californium开源框架之源码分析（八）—— element包](http://wudashan.cn/2017/07/12/Californium-Framework-Analysis-08/) <-- 当前位置

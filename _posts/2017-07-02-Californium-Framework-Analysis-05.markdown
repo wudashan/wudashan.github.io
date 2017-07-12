@@ -237,3 +237,23 @@ MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的�
 ### Serializer类
 
 `DataSerializer`将CoAP消息对象序列化成字节流，但是`Connector`发送消息时，还需要其他额外的信息，所以该类又将字节流封装在了`RawData`对象中。
+
+---
+
+# 系列文章
+
+[Californium开源框架之源码分析（一）—— 整体认识](http://wudashan.cn/2017/05/21/Californium-Framework-Analysis-01/) 
+
+[Californium开源框架之源码分析（二）—— coap包](http://wudashan.cn/2017/06/01/Californium-Framework-Analysis-02/) 
+
+[Californium开源框架之源码分析（三）—— observe包](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/) 
+
+[Californium开源框架之源码分析（四）—— server包](http://wudashan.cn/2017/06/16/Californium-Framework-Analysis-04/) 
+
+[Californium开源框架之源码分析（五）—— network包（上）](http://wudashan.cn/2017/07/02/Californium-Framework-Analysis-05/) <-- 当前位置
+
+[Californium开源框架之源码分析（六）—— network包（下）](http://wudashan.cn/2017/07/07/Californium-Framework-Analysis-06/)
+
+[Californium开源框架之源码分析（七）—— core包](http://wudashan.cn/2017/07/09/Californium-Framework-Analysis-07/)
+
+[Californium开源框架之源码分析（八）—— element包](http://wudashan.cn/2017/07/12/Californium-Framework-Analysis-08/)

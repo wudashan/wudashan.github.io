@@ -214,3 +214,23 @@ public interface ObserveRelationFilter {
 ### ObserveRelationContainer类
 
 该类是ObserveRelation类的容器，表示一个Resource下的所有订阅关系。当一个资源发生变化时，会通过该容器取出所有订阅方并通知。该类内部是通过ConcurrentHashMap存储ObserveRelation类。key值的唯一性判断为：`客户端ip + port + token`，所以一个客户端端点可以通过不同的token来对一个资源订阅多次。
+
+---
+
+# 系列文章
+
+[Californium开源框架之源码分析（一）—— 整体认识](http://wudashan.cn/2017/05/21/Californium-Framework-Analysis-01/) 
+
+[Californium开源框架之源码分析（二）—— coap包](http://wudashan.cn/2017/06/01/Californium-Framework-Analysis-02/) 
+
+[Californium开源框架之源码分析（三）—— observe包](http://wudashan.cn/2017/06/05/Californium-Framework-Analysis-03/) <-- 当前位置
+
+[Californium开源框架之源码分析（四）—— server包](http://wudashan.cn/2017/06/16/Californium-Framework-Analysis-04/)
+
+[Californium开源框架之源码分析（五）—— network包（上）](http://wudashan.cn/2017/07/02/Californium-Framework-Analysis-05/)
+
+[Californium开源框架之源码分析（六）—— network包（下）](http://wudashan.cn/2017/07/07/Californium-Framework-Analysis-06/)
+
+[Californium开源框架之源码分析（七）—— core包](http://wudashan.cn/2017/07/09/Californium-Framework-Analysis-07/)
+
+[Californium开源框架之源码分析（八）—— element包](http://wudashan.cn/2017/07/12/Californium-Framework-Analysis-08/)
