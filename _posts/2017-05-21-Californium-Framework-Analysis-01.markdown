@@ -53,22 +53,23 @@ californium-core是框架的核心实现，包图如下：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network%E5%8C%85.png)
 
+## 根目录
+
+core模块下，封装好了一些供开发者使用的类：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/core.png)
+
+
 ---
 
 # element-connector.jar
 
+## 根目录
+
 element-connector则是从框架中独立出来的网络传输模块，其类如下：
 
- - Connector接口
- - ConnectorBase类
- - ConnectorFactory接口
- - CorrelationContext接口
- - DtlsCorrelationContext类
- - MapBasedCorrelationContext类
- - MessageCallback接口
- - RawData类
- - RawDataChannel接口
- - UDPConnector类
+![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/elements%E5%8C%85.png)
+
 
 ---
 
@@ -87,4 +88,6 @@ element-connector则是从框架中独立出来的网络传输模块，其类如
 [Californium开源框架之源码分析（六）—— network包（下）](http://wudashan.cn/2017/07/07/Californium-Framework-Analysis-06/)
 
 [Californium开源框架之源码分析（七）—— core包](http://wudashan.cn/2017/07/09/Californium-Framework-Analysis-07/)
+
+[Californium开源框架之源码分析（七）—— element包](http://wudashan.cn/2017/07/12/Californium-Framework-Analysis-08/)
 
