@@ -48,3 +48,7 @@ public DtlsCorrelationContext(String sessionId, String epoch, String cipher) {
 
 }
 ```
+
+### MessageCallback接口
+
+当建立DTLS会话时，该接口的唯一方法`onContextEstablished(CorrelationContext context)`将会被回调。
