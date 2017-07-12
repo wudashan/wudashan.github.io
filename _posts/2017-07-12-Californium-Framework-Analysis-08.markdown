@@ -23,3 +23,28 @@ element根目录下，定义了网络层通信的基本类。
 
 ## 根目录
 
+### CorrelationContext接口
+
+一个提供上下文信息的接口，用于在发送和接收报文时存储特定的信息。该接口声明了`get(String key)`方法，返回String值。
+
+### MapBasedCorrelationContext类
+
+该类实现了CorrelationContext接口，内部通过一个HashMap实现信息的存储。
+
+### DtlsCorrelationContext类
+
+该类继承自MapBasedCorrelationContext类，该类包含着DTLS的特定信息。从构造方法可以看出，创建该类是就需要指定DTLS的相关信息：
+
+```
+public DtlsCorrelationContext(String sessionId, String epoch, String cipher) {
+
+    // 非空检查
+    ...
+
+    // 将三个形参传入内部HashMap中
+  put(KEY_SESSION_ID, sessionId);
+  put(KEY_EPOCH, epoch);
+  put(KEY_CIPHER, cipher);
+
+}
+```
