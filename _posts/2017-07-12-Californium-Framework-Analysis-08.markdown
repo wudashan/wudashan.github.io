@@ -80,3 +80,14 @@ private MessageCallback callback;
 ### RawDataChannel接口
 
 该接口表示一个接收来自网络层消息的处理器。需要预先调用`Connector.setRawDataReceiver(RawDataChannel channel)`设置对应处理器，当从网络层接收到消息时，框架调用`RawDataChannel.receiveData(RawData raw)`方法处理接收到的数据。该接口对`receiveData()`方法做了要求，要求处理器调用该方法后需要快速的返回，否则将会影响接收消息的吞吐量，其建议是单独使用线程池处理消息。
+
+### Connector接口
+
+该接口用于发送数据和接收数据，主要需要实现下面两个方法：
+
+```
+send(RawData msg);
+setRawDataReceiver(RawDataChannel messageHandler);
+```
+
+当发送数据时，调用send方法，同时要求send方法不会阻塞主线程。当接收数据时，使用setRawDataReceiver方法设置的RawDataChannel对象来处理数据。
