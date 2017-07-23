@@ -66,3 +66,82 @@ tags:
 ```
 
 有了上面声明的transactionManager、jobRepository、jobLauncher，我们就可以执行批量任务啦！不过，我们还需要创建一个任务。在Spring Batch框架中，一个任务Job由一个或者多个步骤Step，而步骤又由读操作Reader、处理操作Processor、写操作Writer组成，下面我们分别创建它们。
+
+## 创建Reader
+
+既然是读操作，那么肯定要有能读的数据源，方便起见，我们直接在resources目录下创建一个`batch-data.csv`文件，内容如下：
+
+```
+1,PENDING
+2,PENDING
+3,PENDING
+4,PENDING
+5,PENDING
+6,PENDING
+7,PENDING
+8,PENDING
+9,PENDING
+10,PENDING
+```
+
+非常简单，其中第一列代表着命令的id，第二列代表着命令的当前状态。也就是说，现在有10条缓存的命令，需要下发给设备。
+
+读操作需要实现ItemReader<T>接口，框架提供了一个现成的实现类——`FlatFileItemReader`类。使用该类需要设置`Resource`和`LineMapper`。Resource代表着数据源，即我们的batch-data.csv文件；LineMapper则表示如何将文件的每行数据转成对应的DTO对象。
+
+### 创建DTO对象
+
+由于我们的数据源是命令数据，所以我们需要创建一个`DeviceCommand.java`文件，代码如下：
+
+```
+public class DeviceCommand {
+
+    private String id;
+
+    private String status;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}
+```
+
+### 自定义LineMapper
+
+我们需要自己实现一个LineMapper实现类，用于将batch-data.csv文件的每行数据，例如第一行数据是“1,PENDING”，转成程序方便处理的DeviceCommand对象。
+
+```
+public class HelloLineMapper implements LineMapper<DeviceCommand> {
+
+    @Override
+    public DeviceCommand mapLine(String line, int lineNumber) throws Exception {
+        // 逗号分隔每一行
+        String[] args = line.split(",");
+        
+        // 创建DeviceCommand对象
+        DeviceCommand deviceCommand = new DeviceCommand();
+        
+        // 设置id值到对象中
+        deviceCommand.setId(args[0]);
+        
+        // 设置status值到对象中
+        deviceCommand.setStatus(args[1]);
+        
+        // 返回对象
+        return deviceCommand;
+
+    }
+
+}
+```
