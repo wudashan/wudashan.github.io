@@ -119,13 +119,14 @@ public class DeviceCommand {
 
 ### 自定义LineMapper
 
-我们需要自己实现一个LineMapper实现类，用于将batch-data.csv文件的每行数据，例如第一行数据是“1,PENDING”，转成程序方便处理的DeviceCommand对象。
+我们需要自己实现一个LineMapper实现类，用于将batch-data.csv文件的每行数据，转成程序方便处理的DeviceCommand对象。
 
 ```
 public class HelloLineMapper implements LineMapper<DeviceCommand> {
 
     @Override
     public DeviceCommand mapLine(String line, int lineNumber) throws Exception {
+
         // 逗号分隔每一行
         String[] args = line.split(",");
         
