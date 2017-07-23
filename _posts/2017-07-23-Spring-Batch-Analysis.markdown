@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Spring Batch批处理框架介绍（小白入门）"
+title:      "Spring Batch批处理框架介绍"
 subtitle:   "一款轻量的、全面的批处理框架，用于开发强大的批处理应用程序。"
 date:       2017-07-23 22:30:00
 author:     "Wudashan"
@@ -228,15 +228,14 @@ public class Main {
         flatFileItemWriter.setResource(new FileSystemResource("src/main/resources/batch-data.csv"));
         flatFileItemWriter.setLineAggregator(new HelloLineAggregator());
 
-
         // 创建Step
         StepBuilderFactory stepBuilderFactory = new StepBuilderFactory(jobRepository, transactionManager);
         Step step = stepBuilderFactory.get("step")
-                          .<DeviceCommand, DeviceCommand>chunk(1)
-                          .reader(flatFileItemReader)       // 读操作
-                          .processor(helloItemProcessor)    // 处理操作
-                          .writer(flatFileItemWriter)       // 写操作
-                          .build();
+                                      .<DeviceCommand, DeviceCommand>chunk(1)
+                                      .reader(flatFileItemReader)       // 读操作
+                                      .processor(helloItemProcessor)    // 处理操作
+                                      .writer(flatFileItemWriter)       // 写操作
+                                      .build();
 
         // 创建Job
         JobBuilderFactory jobBuilderFactory = new JobBuilderFactory(jobRepository);
