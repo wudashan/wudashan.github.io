@@ -146,3 +146,27 @@ public class HelloLineMapper implements LineMapper<DeviceCommand> {
 
 }
 ```
+
+## 创建Processor
+
+读完数据后，我们就需要处理数据了。既然我们前面从文件里读取了待下发的命令，那么在这里下发命令给设备是最好的时机。处理操作需要实现`ItemProcessor<I, O>`接口，我们自己实现一个`HelloItemProcessor.java`即可，代码如下：
+
+```
+public class HelloItemProcessor implements ItemProcessor<DeviceCommand, DeviceCommand> {
+
+    @Override
+    public DeviceCommand process(DeviceCommand deviceCommand) throws Exception {
+
+        // 模拟下发命令给设备
+        System.out.println("send command to device, id=" + deviceCommand.getId());
+
+        // 更新命令状态
+        deviceCommand.setStatus("SENT");
+
+        // 返回命令对象
+        return deviceCommand;
+        
+    }
+    
+}
+```
