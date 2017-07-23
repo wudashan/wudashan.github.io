@@ -27,7 +27,7 @@ tags:
 
 ## 引入依赖
 
-首先我们需要引入对`Spring Batch`的依赖，在pom.xml文件加入下面的代码：
+首先我们需要引入对`Spring Batch`的依赖，在`pom.xml`文件加入下面的代码：
 
 ```
 <dependency>
@@ -39,9 +39,8 @@ tags:
 
 ## 装载Bean
 
-其次，我们需要在resources目录下，创建applicationContext.xml文件，用于自动注入我们需要的类：
+其次，我们需要在resources目录下，创建`applicationContext.xml`文件，用于自动注入我们需要的类：
 
-applicationContext.xml
 ```
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
