@@ -86,7 +86,7 @@ tags:
 
 非常简单，其中第一列代表着命令的id，第二列代表着命令的当前状态。也就是说，现在有10条缓存的命令，需要下发给设备。
 
-读操作需要实现`ItemReader<T>`接口，框架提供了一个现成的实现类——`FlatFileItemReader`类。使用该类需要设置`Resource`和`LineMapper`。Resource代表着数据源，即我们的batch-data.csv文件；LineMapper则表示如何将文件的每行数据转成对应的DTO对象。
+读操作需要实现`ItemReader<T>`接口，框架提供了一个现成的实现类`FlatFileItemReader`。使用该类需要设置`Resource`和`LineMapper`。Resource代表着数据源，即我们的batch-data.csv文件；LineMapper则表示如何将文件的每行数据转成对应的DTO对象。
 
 ### 创建DTO对象
 
