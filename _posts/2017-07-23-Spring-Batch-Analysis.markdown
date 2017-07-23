@@ -195,3 +195,91 @@ public class HelloLineAggregator implements LineAggregator<DeviceCommand> {
 
 }
 ```
+
+## 主程序
+
+那么，完事具备，只欠东风！接下面我们在主程序`Main.java`里实现我们的批量命令下发功能！代码如下：
+
+```
+public class Main {
+
+
+    public static void main(String[] args) throws Exception {
+
+        // 加载上下文
+        String[] configLocations = {"applicationContext.xml"};
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(configLocations);
+
+        // 获取任务启动器
+        JobLauncher jobLauncher = applicationContext.getBean(JobLauncher.class);
+        JobRepository jobRepository = applicationContext.getBean(JobRepository.class);
+        PlatformTransactionManager transactionManager = applicationContext.getBean(PlatformTransactionManager.class);
+
+        // 创建reader
+        FlatFileItemReader<DeviceCommand> flatFileItemReader = new FlatFileItemReader<>();
+        flatFileItemReader.setResource(new FileSystemResource("src/main/resources/batch-data.csv"));
+        flatFileItemReader.setLineMapper(new HelloLineMapper());
+
+        // 创建processor
+        HelloItemProcessor helloItemProcessor = new HelloItemProcessor();
+
+        // 创建writer
+        FlatFileItemWriter<DeviceCommand> flatFileItemWriter = new FlatFileItemWriter<>();
+        flatFileItemWriter.setResource(new FileSystemResource("src/main/resources/batch-data.csv"));
+        flatFileItemWriter.setLineAggregator(new HelloLineAggregator());
+
+
+        // 创建Step
+        StepBuilderFactory stepBuilderFactory = new StepBuilderFactory(jobRepository, transactionManager);
+        Step step = stepBuilderFactory.get("step")
+                          .<DeviceCommand, DeviceCommand>chunk(1)
+                          .reader(flatFileItemReader)       // 读操作
+                          .processor(helloItemProcessor)    // 处理操作
+                          .writer(flatFileItemWriter)       // 写操作
+                          .build();
+
+        // 创建Job
+        JobBuilderFactory jobBuilderFactory = new JobBuilderFactory(jobRepository);
+        Job job = jobBuilderFactory.get("job")
+                                   .start(step)
+                                   .build();
+
+        // 启动任务
+        jobLauncher.run(job, new JobParameters());
+
+    }
+
+}
+```
+
+执行main方法之后，屏幕将会输出下面信息：
+
+```
+send command to device, id=1
+send command to device, id=2
+send command to device, id=3
+send command to device, id=4
+send command to device, id=5
+send command to device, id=6
+send command to device, id=7
+send command to device, id=8
+send command to device, id=9
+send command to device, id=10
+```
+
+再查看`batch-data.csv`文件，将会发现命令状态全部更新为SENT：
+
+```
+1,SENT
+2,SENT
+3,SENT
+4,SENT
+5,SENT
+6,SENT
+7,SENT
+8,SENT
+9,SENT
+10,SENT
+```
+
+至此，我们的批量命令下发全部成功！可以发现，使用Spring Batch框架来实现批处理非常的轻量，当然这只是它所有功能里的冰山一角。
