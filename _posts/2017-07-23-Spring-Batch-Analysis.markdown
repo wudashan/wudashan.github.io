@@ -170,3 +170,28 @@ public class HelloItemProcessor implements ItemProcessor<DeviceCommand, DeviceCo
     
 }
 ```
+
+## 创建Writer
+
+处理完数据后，我们需要更新命令状态到文件里，用于记录我们已经下发。与读文件类似，我们需要实现`ItemWriter<T>`接口，框架也提供了一个现成的实现类`FlatFileItemWriter`。使用该类需要设置`Resource`和`LineAggregator`。Resource代表着数据源，即我们的batch-data.csv文件；LineAggregator则表示如何将DTO对象转成字符串保存到文件的每行。
+
+### 自定义LineAggregator
+
+我们需要自己实现一个LineAggregator实现类，用于将DeviceCommand对象转成字符串，保存到batch-data.csv文件。
+
+```
+public class HelloLineAggregator implements LineAggregator<DeviceCommand> {
+
+    @Override
+    public String aggregate(DeviceCommand deviceCommand) {
+
+        StringBuffer sb = new StringBuffer();
+        sb.append(deviceCommand.getId());
+        sb.append(",");
+        sb.append(deviceCommand.getStatus());
+        return sb.toString();
+
+    }
+
+}
+```
