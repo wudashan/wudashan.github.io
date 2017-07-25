@@ -298,3 +298,9 @@ Spring Batch在官网是这样一句话介绍自己的：A lightweight, comprehe
  - Retry/Skip（重试/跳过）
  
 如果你的批处理程序需要使用上面的功能，那就大胆地使用它吧！
+
+## 框架全貌
+
+![](http://docs.spring.io/spring-batch/trunk/reference/html/images/spring-batch-reference-model.png.pagespeed.ce.TrtTC751hI.png)
+
+框架一共有4个主要角色：JobLauncher是任务启动器，通过它来启动任务，可以看做是程序的入口。Job代表着一个具体的任务。Step代表着一个具体的步骤，一个Job可以包含多个Step（想象把大象放进冰箱这个任务需要多少个步骤你就明白了）。JobLauncher是存储数据的地方，可以看做是一个数据库的接口，在任务执行的时候需要通过它来记录任务状态等等信息。
