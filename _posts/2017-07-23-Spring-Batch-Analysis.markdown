@@ -127,7 +127,7 @@ public class HelloLineMapper implements LineMapper<DeviceCommand> {
     @Override
     public DeviceCommand mapLine(String line, int lineNumber) throws Exception {
 
-        // 逗号分隔每一行
+        // 逗号分割每一行数据
         String[] args = line.split(",");
         
         // 创建DeviceCommand对象
@@ -282,3 +282,6 @@ send command to device, id=10
 ```
 
 至此，我们的批量命令下发全部成功！可以发现，使用Spring Batch框架来实现批处理非常的轻量，当然这只是它所有功能里的冰山一角。
+
+---
+
