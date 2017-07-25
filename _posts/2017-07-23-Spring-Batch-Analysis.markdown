@@ -297,4 +297,4 @@ Spring Batch在官网是这样一句话介绍自己的：A lightweight, comprehe
  - Start/Stop/Restart（启动/停止/再启动）
  - Retry/Skip（重试/跳过）
  
-如果你的批处理程序需要使用上面的功能，那就大胆地使用吧！
+如果你的批处理程序需要使用上面的功能，那就大胆地使用它吧！
