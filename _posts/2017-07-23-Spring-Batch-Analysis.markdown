@@ -285,3 +285,16 @@ send command to device, id=10
 
 ---
 
+# 正式介绍
+
+Spring Batch在官网是这样一句话介绍自己的：A lightweight, comprehensive batch framework designed to enable the development of robust batch applications vital for the daily operations of enterprise systems.（一款轻量的、全面的批处理框架，用于开发强大的日常运营的企业级批处理应用程序。）
+
+框架主要有以下功能：
+
+ - Transaction management（事务管理）
+ - Chunk based processing（基于块的处理）
+ - Declarative I/O（声明式的输入输出）
+ - Start/Stop/Restart（启动/停止/再启动）
+ - Retry/Skip（重试/跳过）
+ 
+如果你的批处理程序需要使用上面的功能，那就大胆地使用吧！
