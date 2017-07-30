@@ -25,7 +25,7 @@ tags:
 
 # 小试牛刀
 
-> Demo代码：[https://github.com/wudashan/spring-batch-demo.git](https://github.com/wudashan/spring-batch-demo.git)
+Demo代码：[https://github.com/wudashan/spring-batch-demo.git](https://github.com/wudashan/spring-batch-demo.git)
 
 ## 引入依赖
 
