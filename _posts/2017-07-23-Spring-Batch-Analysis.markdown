@@ -363,6 +363,20 @@ public interface ItemProcessor<I, O> {
 
 process方法的形参传入I类型的对象，通过处理后返回O型的对象。开发者可以实现自己的业务代码来对数据进行处理。
 
+### ItemWriter
+
+ItemReader代表着写操作，其接口如下：
+
+```
+public interface ItemWriter<T> {
+
+    void write(List<? extends T> items) throws Exception;
+
+}
+```
+
+框架已经提供了多种ItemWriter接口的实现类，包括对文本文件、XML文件、数据库、JMS消息等写的处理，当然我们也可以自己实现该接口。
+
 ---
 
 # 参考阅读
