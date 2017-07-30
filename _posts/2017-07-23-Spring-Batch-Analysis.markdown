@@ -377,6 +377,20 @@ public interface ItemWriter<T> {
 
 框架已经提供了多种ItemWriter接口的实现类，包括对文本文件、XML文件、数据库、JMS消息等写的处理，当然我们也可以自己实现该接口。
 
+
+## JobRepository
+
+JobRepository用于存储任务执行的状态信息，比如什么时候点执行了什么任务、任务执行结果如何等等。框架提供了2种实现，一种是通过Map形式保存在内存中，当Java程序重启后任务信息也就丢失了，并且在分布式下无法获取其他节点的任务执行情况；另一种是保存在数据库中，并且将数据保存在下面6张表里：
+
+ - BATCH_JOB_INSTANCE
+ - BATCH_JOB_EXECUTION_PARAMS
+ - BATCH_JOB_EXECUTION
+ - BATCH_STEP_EXECUTION
+ - BATCH_JOB_EXECUTION_CONTEXT
+ - BATCH_STEP_EXECUTION_CONTEXT
+
+Spring Batch框架的JobRepository支持主流的数据库：DB2、Derby、H2、HSQLDB、MySQL、Oracle、PostgreSQL、SQLServer、Sybase。可爱的是，我司的Gauss数据库也是支持的，只不过需要稍加配置。
+
 ---
 
 # 参考阅读
