@@ -335,6 +335,19 @@ Job代表着一个任务，一个Job与一个或者多个JobInstance相关联，
 
 一个Job任务可以分为几个Step步骤，与JobExection相同，每次执行Step的时候使用StepExecution来表示执行的步骤。每一个Step还包含着一个ItemReader、ItemProcessor、ItemWriter，下面分别介绍这三者。
 
+### ItemReader
+
+ItemReader代表着读操作，其接口如下：
+
+```
+public interface ItemReader<T> {
+
+    T read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException;
+
+}
+```
+
+框架已经提供了多种ItemReader接口的实现类，包括对文本文件、XML文件、数据库、JMS消息等读的处理，当然我们也可以自己实现该接口。
 
 ---
 
