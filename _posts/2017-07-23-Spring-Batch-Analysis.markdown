@@ -307,6 +307,20 @@ Spring Batch在官网是这样一句话介绍自己的：A lightweight, comprehe
 
 框架一共有4个主要角色：`JobLauncher`是任务启动器，通过它来启动任务，可以看做是程序的入口。`Job`代表着一个具体的任务。`Step`代表着一个具体的步骤，一个Job可以包含多个Step（想象把大象放进冰箱这个任务需要多少个步骤你就明白了）。`JobRepository`是存储数据的地方，可以看做是一个数据库的接口，在任务执行的时候需要通过它来记录任务状态等等信息。
 
+## JobLauncher
+
+JobLauncher是任务启动器，该接口只有一个run方法：
+
+```
+public interface JobLauncher {
+
+    public JobExecution run(Job job, JobParameters jobParameters) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException;
+
+}
+```
+
+除了传入Job对象之外，还需要传入JobParameters对象，后续讲到Job再解释为什么要多传一个JobParameters。通过JobLauncher可以在Java程序中调用批处理任务，也可以通过命令行或者其他框架（如定时调度框架Quartz、Web后台框架Spring MVC）中调用批处理任务。Spring Batch框架提供了一个JobLauncher的实现类SimpleJobLauncher。
+
 ---
 
 # 参考阅读
