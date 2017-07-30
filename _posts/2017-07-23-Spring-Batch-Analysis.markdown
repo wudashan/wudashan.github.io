@@ -321,6 +321,16 @@ public interface JobLauncher {
 
 除了传入Job对象之外，还需要传入JobParameters对象，后续讲到Job再解释为什么要多传一个JobParameters。通过JobLauncher可以在Java程序中调用批处理任务，也可以通过命令行或者其他框架（如定时调度框架Quartz、Web后台框架Spring MVC）中调用批处理任务。Spring Batch框架提供了一个JobLauncher的实现类SimpleJobLauncher。
 
+## Job
+
+Job代表着一个任务，一个Job与一个或者多个JobInstance相关联，而一个JobInstance又与一个或者多个JobExecution相关联：
+
+![](http://docs.spring.io/spring-batch/trunk/reference/html/images/job-stereotypes-parameters.png.pagespeed.ce.Gj3WseCPCG.png)
+
+考虑到任务可能不是只执行一次就再也不执行了，更多的情况可能是定时任务，如每天执行一次，每个星期执行一次等等，那么为了区分每次执行的任务，框架使用了JobInstance。如上图所示，Job是一个EndOfDay（每天最后时刻执行的任务），那么JobInstance就代表着2007年5月5日那天执行的任务实例。框架通过在执行`JobLauncher.run(Job, JobParameters)`方法时传入的JobParameters来区分是哪一天的任务。
+
+由于2007年5月5日那天执行的任务可能不会一次就执行完成，比如中途被停止，或者出现异常导致中断，需要多执行几次才能完成，所以框架使用了JobExecution来表示每次执行的任务。
+
 ---
 
 # 参考阅读
