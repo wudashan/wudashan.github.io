@@ -331,6 +331,11 @@ Job代表着一个任务，一个Job与一个或者多个JobInstance相关联，
 
 由于2007年5月5日那天执行的任务可能不会一次就执行完成，比如中途被停止，或者出现异常导致中断，需要多执行几次才能完成，所以框架使用了JobExecution来表示每次执行的任务。
 
+## Step
+
+一个Job任务可以分为几个Step步骤，与JobExection相同，每次执行Step的时候使用StepExecution来表示执行的步骤。每一个Step还包含着一个ItemReader、ItemProcessor、ItemWriter，下面分别介绍这三者。
+
+
 ---
 
 # 参考阅读
