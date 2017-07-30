@@ -25,6 +25,8 @@ tags:
 
 # 小试牛刀
 
+> Demo代码：[https://github.com/wudashan/spring-batch-demo.git](https://github.com/wudashan/spring-batch-demo.git)
+
 ## 引入依赖
 
 首先我们需要引入对`Spring Batch`的依赖，在`pom.xml`文件加入下面的代码：
