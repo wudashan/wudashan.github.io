@@ -349,6 +349,20 @@ public interface ItemReader<T> {
 
 框架已经提供了多种ItemReader接口的实现类，包括对文本文件、XML文件、数据库、JMS消息等读的处理，当然我们也可以自己实现该接口。
 
+### ItemProcessor
+
+ItemReader代表着处理操作，其接口如下：
+
+```
+public interface ItemProcessor<I, O> {
+
+    O process(I item) throws Exception;
+
+}
+```
+
+process方法的形参传入I类型的对象，通过处理后返回O型的对象。开发者可以实现自己的业务代码来对数据进行处理。
+
 ---
 
 # 参考阅读
