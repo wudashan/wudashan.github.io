@@ -306,3 +306,17 @@ Spring Batch在官网是这样一句话介绍自己的：A lightweight, comprehe
 ![](http://docs.spring.io/spring-batch/trunk/reference/html/images/spring-batch-reference-model.png.pagespeed.ce.TrtTC751hI.png)
 
 框架一共有4个主要角色：`JobLauncher`是任务启动器，通过它来启动任务，可以看做是程序的入口。`Job`代表着一个具体的任务。`Step`代表着一个具体的步骤，一个Job可以包含多个Step（想象把大象放进冰箱这个任务需要多少个步骤你就明白了）。`JobRepository`是存储数据的地方，可以看做是一个数据库的接口，在任务执行的时候需要通过它来记录任务状态等等信息。
+
+---
+
+# 参考阅读
+
+[[1] Spring Batch - Projects](https://projects.spring.io/spring-batch/)
+
+[[2] Spring Batch - Reference Documentation](http://docs.spring.io/spring-batch/trunk/reference/html/index.html)
+
+[[3] 《Spring Batch 批处理框架》](https://book.douban.com/subject/26319253/)
+
+[[4] Spring Batch参考文档中文版](https://www.gitbook.com/book/kimmking/springbatchreference/details)
+
+[[5] 一篇文章全面解析大数据批处理框架Spring Batch](http://www.infoq.com/cn/articles/analysis-of-large-data-batch-framework-spring-batch)
