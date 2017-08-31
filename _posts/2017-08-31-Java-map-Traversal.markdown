@@ -22,6 +22,18 @@ tags:
 
 # 遍历方法
 
+## 方法一 forEach
+
+使用Java 5提供的for-each，可以实现循环遍历Map。对于for-each需要注意，如果遍历一个null列表或集合，则会抛出NullPointerException异常。
+
+```
+private static void forEachTraversal(Map<String, String> map) {
+    for (Map.Entry<String, String> entry : map.entrySet()) {
+        System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+    }
+}
+```
+
 ---
 
 # 性能对比
