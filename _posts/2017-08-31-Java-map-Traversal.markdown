@@ -107,4 +107,10 @@ getValue | 20ms  | 94ms  | 790ms
 
 # 参考阅读
 
+[[1] Java中如何遍历Map对象的4种方法](http://blog.csdn.net/tjcyjd/article/details/11111401)
+
+[[2] 迭代器模式](http://www.runoob.com/design-pattern/iterator-pattern.html)
+
+[[3] JAVA UUID 生成](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
+
 ---
