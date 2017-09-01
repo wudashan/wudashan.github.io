@@ -93,7 +93,7 @@ public Map<String, String> generateMap() {
 
 性能测试结果如下：
 
-指标 | 10万 | 100万 | 1000万
+\ | 10万 | 100万 | 1000万
 ----|------|---- | ----
 forEach | 10ms  | 49ms  | 376ms
 Iterator | 11ms  | 50ms  | 368ms
