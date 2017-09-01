@@ -34,8 +34,25 @@ private static void forEachTraversal(Map<String, String> map) {
         System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
 
     }
-    
+
 }
+```
+
+## 方法二 Iterator
+
+使用迭代器也可以遍历Map，并且在遍历的过程中还可以调用iterator.remove()来删除元素。
+
+```
+private static void iteratorTraversal(Map<String, String> map) {
+
+        Iterator<Map.Entry<String, String>> entries = map.entrySet().iterator();
+        
+        while (entries.hasNext()) {
+            Map.Entry<String, String> entry = entries.next();
+            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        }
+
+    }
 ```
 
 ---
