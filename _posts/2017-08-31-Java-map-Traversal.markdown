@@ -27,7 +27,7 @@ tags:
 使用Java 5提供的for-each，可以实现循环遍历Map。对于for-each需要注意，如果遍历一个null列表或集合，则会抛出NullPointerException异常。
 
 ```
-private static void forEachTraversal(Map<String, String> map) {
+public void forEachTraversal(Map<String, String> map) {
 
     for (Map.Entry<String, String> entry : map.entrySet()) {
 
@@ -43,7 +43,7 @@ private static void forEachTraversal(Map<String, String> map) {
 使用迭代器也可以遍历Map，并且在遍历的过程中还可以调用iterator.remove()来删除元素。
 
 ```
-private static void iteratorTraversal(Map<String, String> map) {
+public void iteratorTraversal(Map<String, String> map) {
 
         Iterator<Map.Entry<String, String>> entries = map.entrySet().iterator();
         
