@@ -103,6 +103,8 @@ getValue | 20ms  | 94ms  | 790ms
 
 # 总结
 
+可以发现forEach和Iterator的性能不分上下，而getValue基本是前两者的两倍时间。
+
 ---
 
 # 参考阅读
