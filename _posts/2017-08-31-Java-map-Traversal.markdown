@@ -103,7 +103,9 @@ getValue | 20ms  | 94ms  | 790ms
 
 # 总结
 
-可以发现forEach和Iterator的性能不分上下，而getValue基本是前两者的两倍时间。
+可以发现forEach和Iterator的性能不分上下，而getValue基本是前两者的两倍时间。在实际项目中，可以使用forEach和Iterator来遍历Map，而getValue这种方法基本可以放弃，如果不小心使用了这个方式，通过执行`mvn clean compile  findbugs:findbugs findbugs:gui`命令，也可以检测出来：
+
+![](http://o7x0ygc3f.bkt.clouddn.com/getValue.png)
 
 ---
 
