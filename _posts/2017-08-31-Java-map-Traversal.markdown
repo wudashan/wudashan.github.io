@@ -60,7 +60,7 @@ public void iteratorTraversal(Map<String, String> map) {
 先使用keySet()方法可以获取到键集合，再通过get(key)方法获取到value。由于多一次get(key)操作，效率上差很多。
 
 ```
-private static void getValueTraversal(Map<String, String> map) {
+public void getValueTraversal(Map<String, String> map) {
 
     for (String key : map.keySet()) {
         String value = map.get(key);
@@ -73,6 +73,33 @@ private static void getValueTraversal(Map<String, String> map) {
 ---
 
 # 性能对比
+
+接下来，让我们以HashMap为标准，分别预置10万、100万、1000万数据，看看遍历整个Map需要多少时间。
+
+为确保样本随机，使用uuid作为键值，生成Map代码如下：
+
+```
+public Map<String, String> generateMap() {
+
+    int size = 10 * 10000;
+    
+    Map<String, String> map = new HashMap<>(size);
+    for (int i = 0; i < size; i++) {
+        map.put(UUID.randomUUID().toString(), String.valueOf(i));
+    }
+    
+    return map;
+    
+}
+```
+
+性能测试结果如下：
+
+* | 10万 | 100万 | 1000万
+----|------|---- | ----
+forEach | 10ms  | 49ms  | 376ms
+Iterator | 11ms  | 50ms  | 368ms
+getValue | 20ms  | 94ms  | 790ms
 
 ---
 
