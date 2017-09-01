@@ -107,10 +107,12 @@ getValue | 20ms  | 94ms  | 790ms
 
 # 参考阅读
 
-[[1] Java中如何遍历Map对象的4种方法](http://blog.csdn.net/tjcyjd/article/details/11111401)
+[[1] HashMap循环遍历方式及其性能对比](http://www.trinea.cn/android/hashmap-loop-performance/)
 
-[[2] 迭代器模式](http://www.runoob.com/design-pattern/iterator-pattern.html)
+[[2] Java中如何遍历Map对象的4种方法](http://blog.csdn.net/tjcyjd/article/details/11111401)
 
-[[3] JAVA UUID 生成](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
+[[3] 迭代器模式](http://www.runoob.com/design-pattern/iterator-pattern.html)
+
+[[4] JAVA UUID 生成](https://docs.oracle.com/javase/7/docs/api/java/util/UUID.html)
 
 ---
