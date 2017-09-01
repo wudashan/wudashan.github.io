@@ -74,9 +74,7 @@ public void getValueTraversal(Map<String, String> map) {
 
 # 性能对比
 
-接下来，让我们以HashMap为标准，分别预置10万、100万、1000万数据，看看遍历整个Map需要多少时间。
-
-为确保样本随机，使用uuid作为键值，生成Map代码如下：
+接下来，让我们以HashMap为标准，分别预置10万、100万、1000万数据，看看遍历整个Map需要多少时间。为确保样本随机，使用uuid作为键值，生成Map代码如下：
 
 ```
 public Map<String, String> generateMap() {
