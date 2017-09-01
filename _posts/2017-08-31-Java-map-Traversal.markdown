@@ -45,29 +45,29 @@ public void forEachTraversal(Map<String, String> map) {
 ```
 public void iteratorTraversal(Map<String, String> map) {
 
-        Iterator<Map.Entry<String, String>> entries = map.entrySet().iterator();
+    Iterator<Map.Entry<String, String>> entries = map.entrySet().iterator();
         
-        while (entries.hasNext()) {
-            Map.Entry<String, String> entry = entries.next();
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-        }
-
+    while (entries.hasNext()) {
+        Map.Entry<String, String> entry = entries.next();
+        System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
     }
+
+}
 ```
 
 ## 方法三 getValue
 
-先使用keySet()方法可以获取到键集合，再通过map.get(key)方法获取到value。由于多一次get(key)操作，效率上差很多。
+先使用keySet()方法可以获取到键集合，再通过get(key)方法获取到value。由于多一次get(key)操作，效率上差很多。
 
 ```
 private static void getValueTraversal(Map<String, String> map) {
 
-        for (String key : map.keySet()) {
-            String value = map.get(key);
-            System.out.println("Key = " + key + ", Value = " + value);
-        }
-
+    for (String key : map.keySet()) {
+        String value = map.get(key);
+        System.out.println("Key = " + key + ", Value = " + value);
     }
+
+}
 ```
 
 ---
