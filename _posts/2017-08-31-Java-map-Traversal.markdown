@@ -12,7 +12,7 @@ tags:
 ---
 
 
-> java version "1.8.0_111"
+> 本篇博客基于`java1.8.0_111`版本。
 
 # 前言
 
@@ -40,7 +40,7 @@ public void forEachTraversal(Map<String, String> map) {
 
 ## 方法二 Iterator
 
-使用迭代器也可以遍历Map，并且在遍历的过程中还可以调用iterator.remove()来删除元素。
+使用迭代器也可以遍历Map，并且在遍历的过程中还可以调用iterator.remove()来删除元素。迭代器是一种设计模式，这种模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。
 
 ```
 public void iteratorTraversal(Map<String, String> map) {
@@ -50,6 +50,21 @@ public void iteratorTraversal(Map<String, String> map) {
         while (entries.hasNext()) {
             Map.Entry<String, String> entry = entries.next();
             System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        }
+
+    }
+```
+
+## 方法三 getValue
+
+先使用keySet()方法可以获取到键集合，再通过map.get(key)方法获取到value。由于多一次get(key)操作，效率上差很多。
+
+```
+private static void getValueTraversal(Map<String, String> map) {
+
+        for (String key : map.keySet()) {
+            String value = map.get(key);
+            System.out.println("Key = " + key + ", Value = " + value);
         }
 
     }
