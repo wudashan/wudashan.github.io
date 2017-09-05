@@ -48,3 +48,16 @@ boolean[][] map = new boolean[][] {
     {false, false, false, false, false, false, false, false, false}
 };
 ```
+
+对与地图上的每一个点，我们用一个简单类来表示：
+
+```
+public class Pos {
+
+    private int x;  // 横坐标
+    private int y;  // 纵坐标
+    
+    // get、set、construct方法省略
+    
+}
+```
