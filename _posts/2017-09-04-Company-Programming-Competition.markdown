@@ -32,3 +32,19 @@ tags:
 # 深度优先搜索算法
 
 拿到这道题，脑袋里第一个想到的就是深度优先搜索算法，每次往八个方向递归，当不能继续走向去的时候保存路径，并回退到能继续行走的点，继续递归直到结束。
+
+首先我们初始化地图，使用布尔类型的二维数组表示：
+
+```
+boolean[][] map = new boolean[][] {
+    {false, false, false, false, false, false, false, false, false},
+    {false, false, false, false, false, false, true , true , false},
+    {false, false, false, true , false, false, true , true , false},
+    {false, false, true , true , false, false, false, false, false},
+    {false, false, true , false, false, false, false, false, false},
+    {false, false, true , false, false, false, false, false, false},
+    {false, false, false, true , false, true , false, false, false},
+    {false, false, false, false, true , true , false, false, false},
+    {false, false, false, false, false, false, false, false, false}
+};
+```
