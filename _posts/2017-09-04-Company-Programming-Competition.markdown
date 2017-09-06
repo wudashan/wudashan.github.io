@@ -67,8 +67,112 @@ public class Pos {
 那么起点上方的果实坐标就是[3, 2]（横坐标为3，纵坐标为2），但是对应着二维数组为map[2][3]（第二行，第三列）。
 
 ---
-
 # 深度优先搜索算法
 
-拿到这道题，脑袋里第一个想到的就是深度优先搜索算法，每次往八个方向递归，当不能继续走向去的时候保存路径，并回退到能继续行走的点，继续递归直到结束。
+拿到这道题，脑袋里第一个想到的就是深度优先搜索算法，每次往八个方向递归，当不能继续走向去的时候保存路径，并回退到能继续行走的点，继续递归直到结束。接下来就是我们的深度优先搜索代码：
+
+```
+/**
+ * 深度优先搜索
+ * @param pos 当前节点
+ * @param map 地图
+ * @param path 当前路径
+ * @param result 所有路径结果集
+ */
+public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<List<Pos>> result) {
+
+    // 将当前节点加入当前路径
+    path.add(pos);
+
+    // 设置当前节点不能再经过
+    map[pos.getY()][pos.getX()] = false;
+
+    // 记录当前八个方向的节点是否经过
+    boolean[] through = new boolean[8];
+
+    // 向左行走
+    Pos left = new Pos(pos.getX() - 1, pos.getY());
+    if (inMap(map, left) && !visited(map, left)) {
+        through[0] = true;
+        dfs(left, map, path, result);
+        map[left.getY()][left.getX()] = true;
+    }
+
+    // 向左上行走
+    Pos leftUp = new Pos(pos.getX() - 1, pos.getY() - 1);
+    if (inMap(map, leftUp) && !visited(map, leftUp)) {
+        through[1] = true;
+        dfs(leftUp, map, path, result);
+        map[leftUp.getY()][leftUp.getX()] = true;
+    }
+
+    // 向上行走
+    Pos up = new Pos(pos.getX(), pos.getY() - 1);
+    if (inMap(map, up) && !visited(map, up)) {
+        through[2] = true;
+        dfs(up, map, path, result);
+        map[up.getY()][up.getX()] = true;
+    }
+
+    // 向右上行走
+    Pos rightUp = new Pos(pos.getX() + 1, pos.getY() - 1);
+    if (inMap(map, rightUp) && !visited(map, rightUp)) {
+        through[3] = true;
+        dfs(rightUp, map, path, result);
+        map[rightUp.getY()][rightUp.getX()] = true;
+    }
+
+    // 向右行走
+    Pos right = new Pos(pos.getX() + 1, pos.getY());
+    if (inMap(map, right) && !visited(map, right)) {
+        through[4] = true;
+        dfs(right, map, path, result);
+        map[right.getY()][right.getX()] = true;
+    }
+
+    // 向右下行走
+    Pos rightDown = new Pos(pos.getX() + 1, pos.getY() + 1);
+    if (inMap(map, rightDown) && !visited(map, rightDown)) {
+        through[5] = true;
+        dfs(rightDown, map, path, result);
+        map[rightDown.getY()][rightDown.getX()] = true;
+    }
+
+    // 向下行走
+    Pos down = new Pos(pos.getX(), pos.getY() + 1);
+    if (inMap(map, down) && !visited(map, down)) {
+        through[6] = true;
+        dfs(down, map, path, result);
+        map[down.getY()][down.getX()] = true;
+    }
+
+    // 向左下行走
+    Pos leftDown = new Pos(pos.getX() - 1, pos.getY() + 1);
+    if (inMap(map, leftDown) && !visited(map, leftDown)) {
+        through[7] = true;
+        dfs(leftDown, map, path, result);
+        map[leftDown.getY()][leftDown.getX()] = true;
+    }
+
+
+
+    // 检查是否已无路可走
+    if ((visited(map, left) || through[0]) && (visited(map, leftUp) || through[1]) &&
+            (visited(map, up) || through[2]) && (visited(map, rightUp) || through[3]) &&
+            (visited(map, right) || through[4]) && (visited(map, rightDown) || through[5]) &&
+            (visited(map, down) || through[6]) && (visited(map, leftDown) || through[7])) {
+
+        // 周围能走的节点都经过时表示无路可走，保存路径
+        if (!through[0] && !through[1] && !through[2] && !through[3] && !through[4] && !through[5] && !through[6] && !through[7]) {
+            result.add(new ArrayList<>(path));
+        }
+            
+        // 当前正在回退，需要将当前节点移除当前路径
+        path.remove(pos);
+    }
+
+
+}
+```
+
 
