@@ -175,4 +175,43 @@ public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<List<Pos>>
 }
 ```
 
+上述算法还需要下面两个辅助函数，一个检查当前节点是否已经经过，一个检查当前节点是否在地图内：
 
+```
+
+/**
+ * 检查当前节点是否已经经过
+ */
+private static boolean visited(boolean[][] map, Pos pos) {
+
+    // 不在图的点默认走过
+    if (!inMap(map, pos)) {
+        return true;
+    }
+
+    // true表示没有走过
+    if (map[pos.getY()][pos.getX()]) {
+        return false;
+    } else {
+        return true;
+    }
+
+}
+
+/**
+ * 检查当前节点是否在地图内
+ */
+private static boolean inMap(boolean[][] map, Pos pos) {
+
+    if (pos.getY() < 0 || pos.getY() >= map.length) {
+        return false;
+    }
+
+    if (pos.getX() < 0 || pos.getX() >= map[0].length) {
+        return false;
+    }
+
+    return true;
+
+}
+```
