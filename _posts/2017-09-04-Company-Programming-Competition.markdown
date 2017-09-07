@@ -85,122 +85,118 @@ public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<List<Pos>>
     // 将当前节点加入当前路径
     path.add(pos);
 
-    // 设置当前节点不能再经过
-    map[pos.getY()][pos.getX()] = false;
-
-    // 记录当前八个方向的节点是否经过
-    boolean[] through = new boolean[8];
+    // 记录当前节点的周围是否经过
+    List<Pos> visited = new ArrayList<>();
 
     // 向左行走
     Pos left = new Pos(pos.getX() - 1, pos.getY());
-    if (inMap(map, left) && !visited(map, left)) {
-        through[0] = true;
+    if (inMap(map, left) && !path.contains(left) && map[left.getY()][left.getX()]) {
+        visited.add(left);
         dfs(left, map, path, result);
-        map[left.getY()][left.getX()] = true;
     }
 
     // 向左上行走
     Pos leftUp = new Pos(pos.getX() - 1, pos.getY() - 1);
-    if (inMap(map, leftUp) && !visited(map, leftUp)) {
-        through[1] = true;
+    if (inMap(map, leftUp) && !path.contains(leftUp) && map[leftUp.getY()][leftUp.getX()]) {
+        visited.add(leftUp);
         dfs(leftUp, map, path, result);
-        map[leftUp.getY()][leftUp.getX()] = true;
     }
 
     // 向上行走
     Pos up = new Pos(pos.getX(), pos.getY() - 1);
-    if (inMap(map, up) && !visited(map, up)) {
-        through[2] = true;
+    if (inMap(map, up) && !path.contains(up) && map[up.getY()][up.getX()]) {
+        visited.add(up);
         dfs(up, map, path, result);
-        map[up.getY()][up.getX()] = true;
     }
 
     // 向右上行走
     Pos rightUp = new Pos(pos.getX() + 1, pos.getY() - 1);
-    if (inMap(map, rightUp) && !visited(map, rightUp)) {
-        through[3] = true;
+    if (inMap(map, rightUp) && !path.contains(rightUp) && map[rightUp.getY()][rightUp.getX()]) {
+        visited.add(rightUp);
         dfs(rightUp, map, path, result);
-        map[rightUp.getY()][rightUp.getX()] = true;
     }
 
     // 向右行走
     Pos right = new Pos(pos.getX() + 1, pos.getY());
-    if (inMap(map, right) && !visited(map, right)) {
-        through[4] = true;
+    if (inMap(map, right) && !path.contains(right) && map[right.getY()][right.getX()]) {
+        visited.add(right);
         dfs(right, map, path, result);
-        map[right.getY()][right.getX()] = true;
     }
 
     // 向右下行走
     Pos rightDown = new Pos(pos.getX() + 1, pos.getY() + 1);
-    if (inMap(map, rightDown) && !visited(map, rightDown)) {
-        through[5] = true;
+    if (inMap(map, rightDown) && !path.contains(rightDown) && map[rightDown.getY()][rightDown.getX()]) {
+        visited.add(rightDown);
         dfs(rightDown, map, path, result);
-        map[rightDown.getY()][rightDown.getX()] = true;
     }
 
     // 向下行走
     Pos down = new Pos(pos.getX(), pos.getY() + 1);
-    if (inMap(map, down) && !visited(map, down)) {
-        through[6] = true;
+    if (inMap(map, down) && !path.contains(down) && map[down.getY()][down.getX()]) {
+        visited.add(down);
         dfs(down, map, path, result);
-        map[down.getY()][down.getX()] = true;
     }
 
     // 向左下行走
     Pos leftDown = new Pos(pos.getX() - 1, pos.getY() + 1);
-    if (inMap(map, leftDown) && !visited(map, leftDown)) {
-        through[7] = true;
+    if (inMap(map, leftDown) && !path.contains(leftDown) && map[leftDown.getY()][leftDown.getX()]) {
+        visited.add(leftDown);
         dfs(leftDown, map, path, result);
-        map[leftDown.getY()][leftDown.getX()] = true;
     }
 
+    // 当前无路可走时保存路径
+    if (visited.isEmpty()) {
+        result.add(new ArrayList<>(path));
+    }
 
+    // 回退的状态为：八个方向不能行走
+    if (    !canPath(map, path, left, visited) &&
+            !canPath(map, path, right, visited) &&
+            !canPath(map, path, up, visited) &&
+            !canPath(map, path, down, visited) &&
+            !canPath(map, path, leftUp, visited) &&
+            !canPath(map, path, leftDown, visited) &&
+            !canPath(map, path, rightUp, visited) &&
+            !canPath(map, path, rightDown, visited)) {
 
-    // 检查是否已无路可走
-    if ((visited(map, left) || through[0]) && (visited(map, leftUp) || through[1]) &&
-            (visited(map, up) || through[2]) && (visited(map, rightUp) || through[3]) &&
-            (visited(map, right) || through[4]) && (visited(map, rightDown) || through[5]) &&
-            (visited(map, down) || through[6]) && (visited(map, leftDown) || through[7])) {
-
-        // 周围能走的节点都经过时表示无路可走，保存路径
-        if (!through[0] && !through[1] && !through[2] && !through[3] && !through[4] && !through[5] && !through[6] && !through[7]) {
-            result.add(new ArrayList<>(path));
-        }
-            
-        // 当前正在回退，需要将当前节点移除当前路径
+        // 移除当前路径
         path.remove(pos);
+
     }
 
 
 }
 ```
 
-上述算法还需要下面两个辅助函数，一个检查当前节点是否已经经过，一个检查当前节点是否在地图内：
+上述算法还需要下面两个辅助函数，一个检查当前节点是否可以行走，一个检查当前节点是否在地图内：
 
 ```
 
 /**
- * 检查当前节点是否已经经过
+ * 判断当前节点是否可以行走
  */
-private static boolean visited(boolean[][] map, Pos pos) {
+private static boolean canPath(boolean[][] map, List<Pos> path, Pos pos, List<Pos> visited) {
 
-    // 不在图的点默认走过
+    // 不在地图里，不能行走
     if (!inMap(map, pos)) {
-        return true;
-    }
-
-    // true表示没有走过
-    if (map[pos.getY()][pos.getX()]) {
         return false;
-    } else {
-        return true;
     }
 
+    // 空白格子，不能行走
+    if (!map[pos.getY()][pos.getX()]) {
+        return false;
+    }
+
+    // 已经在路径中或经过，不能行走
+    if (path.contains(pos) || visited.contains(pos)) {
+        return false;
+    }
+
+    return true;
 }
 
 /**
- * 检查当前节点是否在地图内
+ * 判断当前节点是否在地图内
  */
 private static boolean inMap(boolean[][] map, Pos pos) {
 
