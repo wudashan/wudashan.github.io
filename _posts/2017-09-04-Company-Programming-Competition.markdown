@@ -56,6 +56,25 @@ public class Pos {
     private int y;  // 纵坐标
     
     // get、set、construct方法省略
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pos pos = (Pos) o;
+
+        if (x != pos.x) return false;
+        return y == pos.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
+    }
+
     
 }
 ```
@@ -149,15 +168,15 @@ public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<List<Pos>>
         result.add(new ArrayList<>(path));
     }
 
-    // 回退的状态为：八个方向不能行走
-    if (    !canPath(map, path, left, visited) &&
-            !canPath(map, path, right, visited) &&
-            !canPath(map, path, up, visited) &&
-            !canPath(map, path, down, visited) &&
-            !canPath(map, path, leftUp, visited) &&
-            !canPath(map, path, leftDown, visited) &&
-            !canPath(map, path, rightUp, visited) &&
-            !canPath(map, path, rightDown, visited)) {
+    // 当八个方向都不能行走时回退到上一步
+    if (!canPath(map, path, left, visited) &&
+        !canPath(map, path, right, visited) &&
+        !canPath(map, path, up, visited) &&
+        !canPath(map, path, down, visited) &&
+        !canPath(map, path, leftUp, visited) &&
+        !canPath(map, path, leftDown, visited) &&
+        !canPath(map, path, rightUp, visited) &&
+        !canPath(map, path, rightDown, visited)) {
 
         // 移除当前路径
         path.remove(pos);
@@ -166,11 +185,6 @@ public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<List<Pos>>
 
 
 }
-```
-
-上述算法还需要下面两个辅助函数，一个检查当前节点是否可以行走，一个检查当前节点是否在地图内：
-
-```
 
 /**
  * 判断当前节点是否可以行走
