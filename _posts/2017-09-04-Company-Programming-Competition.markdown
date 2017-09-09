@@ -138,60 +138,17 @@ public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<List<Pos>>
     // 记录当前节点的周围是否经过
     List<Pos> visited = new ArrayList<>();
 
-    // 向左行走
-    Pos left = new Pos(pos.getX() - 1, pos.getY());
-    if (inMap(map, left) && !path.contains(left) && map[left.getY()][left.getX()]) {
-        visited.add(left);
-        dfs(left, map, path, result);
-    }
+    // 保存当前节点八个方向的点
+    Pos[] neighbours = new Pos[8];
 
-    // 向左上行走
-    Pos leftUp = new Pos(pos.getX() - 1, pos.getY() - 1);
-    if (inMap(map, leftUp) && !path.contains(leftUp) && map[leftUp.getY()][leftUp.getX()]) {
-        visited.add(leftUp);
-        dfs(leftUp, map, path, result);
-    }
-
-    // 向上行走
-    Pos up = new Pos(pos.getX(), pos.getY() - 1);
-    if (inMap(map, up) && !path.contains(up) && map[up.getY()][up.getX()]) {
-        visited.add(up);
-        dfs(up, map, path, result);
-    }
-
-    // 向右上行走
-    Pos rightUp = new Pos(pos.getX() + 1, pos.getY() - 1);
-    if (inMap(map, rightUp) && !path.contains(rightUp) && map[rightUp.getY()][rightUp.getX()]) {
-        visited.add(rightUp);
-        dfs(rightUp, map, path, result);
-    }
-
-    // 向右行走
-    Pos right = new Pos(pos.getX() + 1, pos.getY());
-    if (inMap(map, right) && !path.contains(right) && map[right.getY()][right.getX()]) {
-        visited.add(right);
-        dfs(right, map, path, result);
-    }
-
-    // 向右下行走
-    Pos rightDown = new Pos(pos.getX() + 1, pos.getY() + 1);
-    if (inMap(map, rightDown) && !path.contains(rightDown) && map[rightDown.getY()][rightDown.getX()]) {
-        visited.add(rightDown);
-        dfs(rightDown, map, path, result);
-    }
-
-    // 向下行走
-    Pos down = new Pos(pos.getX(), pos.getY() + 1);
-    if (inMap(map, down) && !path.contains(down) && map[down.getY()][down.getX()]) {
-        visited.add(down);
-        dfs(down, map, path, result);
-    }
-
-    // 向左下行走
-    Pos leftDown = new Pos(pos.getX() - 1, pos.getY() + 1);
-    if (inMap(map, leftDown) && !path.contains(leftDown) && map[leftDown.getY()][leftDown.getX()]) {
-        visited.add(leftDown);
-        dfs(leftDown, map, path, result);
+    // 依次向八个方向行走
+    for (int i = 0; i < moveOffset.length; i++) {
+        Pos next = new Pos(pos.getX() + moveOffset[i].getX(), pos.getY() + moveOffset[i].getY());
+        neighbours[i] = next;
+        if (inMap(map, next) && !path.contains(next) && map[next.getY()][next.getX()]) {
+            visited.add(next);
+            dfs(next, map, path, result, moveOffset);
+        }
     }
 
     // 当前无路可走时保存路径
@@ -200,20 +157,12 @@ public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<List<Pos>>
     }
 
     // 当八个方向都不能行走时回退到上一步
-    if (!canPath(map, path, left, visited) &&
-        !canPath(map, path, right, visited) &&
-        !canPath(map, path, up, visited) &&
-        !canPath(map, path, down, visited) &&
-        !canPath(map, path, leftUp, visited) &&
-        !canPath(map, path, leftDown, visited) &&
-        !canPath(map, path, rightUp, visited) &&
-        !canPath(map, path, rightDown, visited)) {
-
-        // 移除当前路径
-        path.remove(pos);
-
+    for (Pos neighbour : neighbours) {
+        if (canPath(map, path, neighbour, visited)) {
+            return;
+        }
     }
-
+    path.remove(pos);
 
 }
 
