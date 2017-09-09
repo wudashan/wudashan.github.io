@@ -224,12 +224,22 @@ public static void main(String[] args) {
         {false, false, false, false, true , true , false, false, false},
         {false, false, false, false, false, false, false, false, false}
     };
+    Pos[] moveOffset = new Pos[] {
+        new Pos(-1,  0),    // 向左移动
+        new Pos(-1, -1),    // 向左上移动
+        new Pos( 0, -1),    // 向上移动
+        new Pos( 1, -1),    // 向右上移动
+        new Pos( 1,  0),    // 向右移动
+        new Pos( 1,  1),    // 向右下移动
+        new Pos( 0,  1),    // 向下移动
+        new Pos(-1,  1)     // 向左下移动
+    };
     Pos start = new Pos(3, 3);
     List<Pos> path = new ArrayList<>();
     List<List<Pos>> result = new ArrayList<>();
 
     // 执行深度优先算法
-    dfs(start, map, path, result);
+    dfs(start, map, path, result, moveOffset);
 
     // 找出最长路径
     List<Pos> maxPath = new ArrayList<>();
