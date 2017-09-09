@@ -349,6 +349,49 @@ private static Map<Integer, Pos> wayCost(Pos pos, boolean[][] map, Pos[] moveOff
 }
 ```
 
+写好算法之后，我迫不及待地验证一下结果了！
+
+```
+public static void main(String[] args) {
+
+    // 初始化参数
+    boolean[][] map = new boolean[][] {
+        {false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, true , true , false},
+        {false, false, false, true , false, false, true , true , false},
+        {false, false, true , false, false, false, false, false, false},
+        {false, false, true , false, false, false, false, false, false},
+        {false, false, true , false, false, false, false, false, false},
+        {false, false, false, true , false, true , false, false, false},
+        {false, false, false, false, true , true , false, false, false},
+        {false, false, false, false, false, false, false, false, false}
+    };
+    Pos[] moveOffset = new Pos[] {
+        new Pos(-1,  0),    // 向左移动
+        new Pos(-1, -1),    // 向左上移动
+        new Pos( 0, -1),    // 向上移动
+        new Pos( 1, -1),    // 向右上移动
+        new Pos( 1,  0),    // 向右移动
+        new Pos( 1,  1),    // 向右下移动
+        new Pos( 0,  1),    // 向下移动
+        new Pos(-1,  1)     // 向左下移动
+    };
+    Pos start = new Pos(3, 3);
+    List<Pos> path = new ArrayList<>();
+    List<Pos> result = new ArrayList<>();
+
+    // 执行深度优先算法
+    chain(start, map, path, result, moveOffset);
+
+    // 打印路径
+    System.out.print(result);
+
+}
+```
+
+执行Main函数之后，控制台将输出[Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=7}, Pos{x=5, y=6}]，除了不包含起点之外，路径长度与深度优先搜索算法一致，即也能找到最长路径。
+
+
 
 
 ---
