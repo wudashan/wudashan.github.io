@@ -285,7 +285,69 @@ boolean[][] map2 = new boolean[][] {
 
 贪婪算法则采用这样一种思路：尽量先走出路比较少的格子，这样，后面的步骤可选择的余地就大，最优解的概率也就大的多。
 
+## 代码示例
 
+下面便是贪心算法的代码：
+
+```
+/**
+ * 贪心算法
+ * @param pos 当前节点
+ * @param map 地图
+ * @param path 当前路径
+ * @param result 最终结果
+ * @param moveOffset 八个方向的偏移量
+ */
+public static void chain(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
+
+    // 按出路最小的节点进行排序
+    Map<Integer, Pos> costs = wayCost(pos, map, moveOffset);
+        
+    if (costs.size() != 0) {
+        // 递归搜寻路径
+        for (Map.Entry<Integer, Pos> entry : costs.entrySet()) {
+            Pos next = entry.getValue();
+            map[next.getY()][next.getX()] = false;
+            path.add(next);
+            chain(next, map, path, result, moveOffset);
+            path.remove(next);
+            map[next.getY()][next.getX()] = true;
+        }
+    } else {
+        // 当前无路可走时保存最长路径
+        if (path.size() > result.size()) {
+            result.clear();
+            result.addAll(path);
+        }
+    }
+
+}
+
+/**
+ * 计算当前节点周围节点的出路
+ */
+private static Map<Integer, Pos> wayCost(Pos pos, boolean[][] map, Pos[] moveOffset) {
+
+    Map<Integer, Pos> costs = new TreeMap<>();
+        
+    for (int i = 0; i < moveOffset.length; i++) {
+        Pos next = new Pos(pos.getX() + moveOffset[i].getX(), pos.getY() + moveOffset[i].getY());
+        if (inMap(map, next) && map[next.getY()][next.getX()]) {
+            int w = -1;
+            for (int j = 0; j < moveOffset.length; j++) {
+                Pos nextNext = new Pos(next.getX() + moveOffset[j].getX(), next.getY() + moveOffset[j].getY());
+                if (inMap(map, nextNext) && map[nextNext.getY()][nextNext.getX()]) {
+                    w++;
+                }
+            }
+            costs.put(w, next);
+        }
+    }
+        
+    return costs;
+
+}
+```
 
 ---
 
