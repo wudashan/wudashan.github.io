@@ -31,6 +31,8 @@ tags:
 
 # 前置条件
 
+## 地图表示
+
 首先我们将上面的地图使用布尔类型的二维数组表示，其中true表示可以行走的格子，false表示不能行走的格子：
 
 ```
@@ -46,6 +48,8 @@ boolean[][] map = new boolean[][] {
     {false, false, false, false, false, false, false, false, false}
 };
 ```
+
+## 节点表示
 
 对于地图上的每一个点，我们用一个简单类来表示：
 
