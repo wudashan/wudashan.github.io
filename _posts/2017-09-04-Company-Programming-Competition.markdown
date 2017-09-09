@@ -349,7 +349,7 @@ private static Map<Integer, Pos> wayCost(Pos pos, boolean[][] map, Pos[] moveOff
 }
 ```
 
-写好算法之后，我迫不及待地验证一下结果了！
+写好算法之后，我已经迫不及待地验证一下结果了！
 
 ```
 public static void main(String[] args) {
@@ -391,8 +391,12 @@ public static void main(String[] args) {
 
 执行Main函数之后，控制台将输出`[Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=7}, Pos{x=5, y=6}]`，除了不包含起点之外，路径长度与深度优先搜索算法一致，即也能找到最长路径。
 
-那么在复杂一点的地图上，贪心算法的结果怎么样呢？
+那么在复杂一点的地图上，贪心算法的结果怎么样呢？在我的机器上，计算结果如下：
 
+\ | map | map2 
+----|------|---- 
+深度优先搜索算法 | 最长路径为8步，计算时间为1ms  | 最长路径为34步，计算时间为5254ms 
+贪心算法 |  最长路径为8步，计算时间为1ms  | 最长路径为32步，计算时间为38ms 
 
 ---
 
