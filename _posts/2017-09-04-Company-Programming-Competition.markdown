@@ -274,4 +274,4 @@ public static void main(String[] args) {
 }
 ```
 
-
+执行Main函数之后，控制台将输出`[Pos{x=3, y=3}, Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=6}, Pos{x=5, y=7}]`，即行走的最长路径。
