@@ -235,3 +235,43 @@ private static boolean inMap(boolean[][] map, Pos pos) {
 
 }
 ```
+
+接下来，就让我们在主函数里验证一下结果吧！
+
+```
+public static void main(String[] args) {
+
+    // 初始化参数
+    boolean[][] map = new boolean[][] {
+        {false, false, false, false, false, false, false, false, false},
+        {false, false, false, false, false, false, true , true , false},
+        {false, false, false, true , false, false, true , true , false},
+        {false, false, true , false, false, false, false, false, false},
+        {false, false, true , false, false, false, false, false, false},
+        {false, false, true , false, false, false, false, false, false},
+        {false, false, false, true , false, true , false, false, false},
+        {false, false, false, false, true , true , false, false, false},
+        {false, false, false, false, false, false, false, false, false}
+    };
+    Pos start = new Pos(3, 3);
+    List<Pos> path = new ArrayList<>();
+    List<List<Pos>> result = new ArrayList<>();
+
+    // 执行深度优先算法
+    dfs(start, map, path, result);
+
+    // 找出最长路径
+    List<Pos> maxPath = new ArrayList<>();
+    for (List<Pos> poss : result) {
+        if (poss.size() > maxPath.size()) {
+            maxPath = poss;
+        }
+    }
+
+    // 打印路径
+    System.out.print(maxPath);
+
+}
+```
+
+
