@@ -128,7 +128,7 @@ Pos[] moveOffset = new Pos[] {
  * @param pos 当前节点
  * @param map 地图
  * @param path 当前路径
- * @param result 所有路径结果集
+ * @param result 最终结果
  * @param moveOffset 八个方向的偏移量
  */
 public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<List<Pos>> result, Pos[] moveOffset) {
