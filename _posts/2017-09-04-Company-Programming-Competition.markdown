@@ -34,7 +34,6 @@ tags:
 ## 地图表示
 
 首先我们将上面的地图使用布尔类型的二维数组表示，其中true表示可以行走的格子，false表示不能行走的格子：
-<h2 id="map"></h2>
 ```
 boolean[][] map = new boolean[][] {
     {false, false, false, false, false, false, false, false, false},
@@ -48,6 +47,7 @@ boolean[][] map = new boolean[][] {
     {false, false, false, false, false, false, false, false, false}
 };
 ```
+<span id="map"></span>
 
 ## 节点表示
 
@@ -254,7 +254,6 @@ public static void main(String[] args) {
 执行Main函数之后，控制台将输出`[Pos{x=3, y=3}, Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=6}, Pos{x=5, y=7}]`，即行走的最长路径。
 
 虽然深度优先搜索算法可以计算出最长路径，但是它的时间复杂度却高得惊人！已知每次可以走8步，最多可以走m × n步（地图的长和宽），那么时间复杂度就是 O（8<sup>mn</sup>）。由于我们的地图可以走的选择比较单一，所以在我的电脑上`1ms`就可以算出结果。感兴趣的童鞋可以试试这个地图在你们的电脑上需要多久出结果：
-<h2 id="map2"></h2>
 ```
 boolean[][] map2 = new boolean[][] {
     {false, true,  true,  false, false, true,  true,  false, true},
@@ -268,6 +267,7 @@ boolean[][] map2 = new boolean[][] {
     {false, true,  true,  false, false, true,  true,  false, true}
 };
 ```
+<span id="map"></span>
 
 至少，在我的电脑上需要`5471ms`才能得出结果，非常的夸张！由于产品线比赛要求每次计算时间不能超过`1000ms`，所以使用该算法基本不可行。除非对算法进行优化，如剪枝或者限制递归深度。那么是否有时间复杂度更小的算法呢？别走开，答案就在下面。
 
