@@ -389,7 +389,7 @@ public static void main(String[] args) {
     List<Pos> path = new ArrayList<>();
     List<Pos> result = new ArrayList<>();
 
-    // 执行深度优先算法
+    // 执行贪心算法
     chain(start, map, path, result, moveOffset);
 
     // 打印路径
