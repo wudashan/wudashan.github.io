@@ -152,9 +152,12 @@ public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<List<Pos>>
         }
     }
 
-    // 当前无路可走时保存路径
+    // 当前无路可走时保存最长路径
     if (visited.isEmpty()) {
-        result.add(new ArrayList<>(path));
+        if (path.size() > result.size()) {
+            result.clear();
+            result.addAll(path);
+        }
     }
 
     // 当八个方向都不能行走时回退到上一步
@@ -237,21 +240,13 @@ public static void main(String[] args) {
     };
     Pos start = new Pos(3, 3);
     List<Pos> path = new ArrayList<>();
-    List<List<Pos>> result = new ArrayList<>();
+    List<Pos> result = new ArrayList<>();
 
     // 执行深度优先算法
     dfs(start, map, path, result, moveOffset);
 
-    // 找出最长路径
-    List<Pos> maxPath = new ArrayList<>();
-    for (List<Pos> poss : result) {
-        if (poss.size() > maxPath.size()) {
-            maxPath = poss;
-        }
-    }
-
     // 打印路径
-    System.out.print(maxPath);
+    System.out.print(result);
 
 }
 ```
@@ -274,4 +269,4 @@ boolean[][] map2 = new boolean[][] {
 };
 ```
 
-至少，在我的电脑上需要`10599ms`才能得出结果，非常的夸张！由于产品线比赛要求每次计算时间不能超过`1000ms`，所以使用该算法基本不可行。除非对算法进行优化，如剪枝或者限制递归深度，但是这样可能得不到最优解。那么是否有时间复杂度更小的算法呢？答案是肯定的，就是接下来要介绍的贪心算法。
+至少，在我的电脑上需要`5471ms`才能得出结果，非常的夸张！由于产品线比赛要求每次计算时间不能超过`1000ms`，所以使用该算法基本不可行。除非对算法进行优化，如剪枝或者限制递归深度，但是这样可能得不到最优解。那么是否有时间复杂度更小的算法呢？答案是肯定的，就是接下来要介绍的贪心算法。
