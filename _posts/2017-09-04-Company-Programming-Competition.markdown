@@ -58,6 +58,15 @@ public class Pos {
     // get、set、construct方法省略
 
     @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Pos{");
+        sb.append("x=").append(x);
+        sb.append(", y=").append(y);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
