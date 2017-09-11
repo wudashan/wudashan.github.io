@@ -413,10 +413,10 @@ public static void main(String[] args) {
 
 # 参考阅读
 
-[[1] 哈密顿图 - 维基百科](https://zh.wikipedia.org/wiki/哈密顿图)
+[[1] 哈密顿图 - 维基百科](https://zh.wikipedia.org/wiki/%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE)
 
 [[2] 贪婪算法求解哈密尔顿路径问题 - 51CTO博客](http://mengliao.blog.51cto.com/876134/539522/)
 
 [[3] 什么是P问题、NP问题和NPC问题](http://www.matrix67.com/blog/archives/105)
 
-
+[[4] 最长路径问题 - 维基百科](https://zh.wikipedia.org/wiki/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98)
