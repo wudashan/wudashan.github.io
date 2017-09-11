@@ -417,4 +417,6 @@ public static void main(String[] args) {
 
 [[2] 贪婪算法求解哈密尔顿路径问题 - 51CTO博客](http://mengliao.blog.51cto.com/876134/539522/)
 
+[[3] 什么是P问题、NP问题和NPC问题](http://www.matrix67.com/blog/archives/105)
+
 
