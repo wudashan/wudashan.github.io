@@ -411,6 +411,12 @@ public static void main(String[] args) {
 
 ---
 
+# 总结
+
+其实求最长路径问题可以看成是`哈密尔顿路径问题`，但由于寻找哈密尔顿路径是一个典型的NPC问题，所以不能在多项式时间内得到最优解。
+
+---
+
 # 参考阅读
 
 [[1] 哈密顿图 - 维基百科](https://zh.wikipedia.org/wiki/%E5%93%88%E5%AF%86%E9%A1%BF%E5%9B%BE)
