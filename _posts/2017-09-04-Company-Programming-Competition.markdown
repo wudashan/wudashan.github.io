@@ -143,20 +143,18 @@ Pos[] moveOffset = new Pos[] {
  */
 public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
 
-    // 将当前节点加入当前路径
-    path.add(pos);
-
     // 记录当前节点的周围是否经过
     List<Pos> visited = new ArrayList<>();
 
     // 保存当前节点八个方向的点
-    Pos[] neighbours = new Pos[8];
+    Pos[] neighbours = new Pos[moveOffset.length];
 
     // 依次向八个方向行走
     for (int i = 0; i < moveOffset.length; i++) {
         Pos next = new Pos(pos.getX() + moveOffset[i].getX(), pos.getY() + moveOffset[i].getY());
         neighbours[i] = next;
         if (inMap(map, next) && !path.contains(next) && map[next.getY()][next.getX()]) {
+            path.add(next);
             visited.add(next);
             dfs(next, map, path, result, moveOffset);
         }
@@ -261,7 +259,7 @@ public static void main(String[] args) {
 }
 ```
 
-执行Main函数之后，控制台将输出`[Pos{x=3, y=3}, Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=6}, Pos{x=5, y=7}]`，即行走的最长路径。
+执行Main函数之后，控制台将输出`[Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=6}, Pos{x=5, y=7}]`，即行走的最长路径。
 
 <span id="complexMap"></span>
 
@@ -398,7 +396,7 @@ public static void main(String[] args) {
 }
 ```
 
-执行Main函数之后，控制台将输出`[Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=7}, Pos{x=5, y=6}]`，除了不包含起点之外，路径长度与深度优先搜索算法一致，即也能找到最长路径。
+执行Main函数之后，控制台将输出`[Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=7}, Pos{x=5, y=6}]`，路径长度与深度优先搜索算法一致，即也能找到最长路径。
 
 那么在复杂一点的地图上，与深度优先搜索相比，贪心算法的结果怎么样呢？在我的机器上，计算结果如下：
 
