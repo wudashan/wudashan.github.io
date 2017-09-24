@@ -134,22 +134,37 @@ Pos[] moveOffset = new Pos[] {
 
 ```
 /**
- * 深度优先搜索
+ * 通过深度优先搜索获取最长路径
+ * @param map 地图
+ * @param start 起点
+ * @param moveOffset 方向偏移量
+ * @return 最长路径
+ */
+public static List<Pos> getLongestPathByDFS(boolean[][] map, Pos start, Pos[] moveOffset) {
+
+    List<Pos> longestPath = new ArrayList<>();
+    dfs(start, map, new ArrayList<>(), longestPath, moveOffset);
+    return longestPath;
+
+}
+
+/**
+ * 递归进行深度优先搜索
  * @param pos 当前节点
  * @param map 地图
  * @param path 当前路径
  * @param result 最终结果
- * @param moveOffset 八个方向的偏移量
+ * @param moveOffset 方向偏移量
  */
-public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
+private static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
 
     // 记录当前节点的周围是否经过
     List<Pos> visited = new ArrayList<>();
 
-    // 保存当前节点八个方向的点
+    // 保存当前节点的周围节点
     Pos[] neighbours = new Pos[moveOffset.length];
 
-    // 依次向八个方向行走
+    // 依次向周围行走
     for (int i = 0; i < moveOffset.length; i++) {
         Pos next = new Pos(pos.getX() + moveOffset[i].getX(), pos.getY() + moveOffset[i].getY());
         neighbours[i] = next;
@@ -168,7 +183,7 @@ public static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> resul
         }
     }
 
-    // 当八个方向都不能行走时回退到上一步
+    // 当周围节点都不能行走时回退到上一步
     for (Pos neighbour : neighbours) {
         if (canPath(map, path, neighbour, visited)) {
             return;
@@ -247,14 +262,12 @@ public static void main(String[] args) {
         new Pos(-1,  1)     // 向左下移动
     };
     Pos start = new Pos(3, 3);
-    List<Pos> path = new ArrayList<>();
-    List<Pos> result = new ArrayList<>();
 
     // 执行深度优先算法
-    dfs(start, simpleMap, path, result, moveOffset);
+    List<Pos> longestPath = getLongestPathByDFS(simpleMap, start, moveOffset);
 
     // 打印路径
-    System.out.print(result);
+    System.out.print(longestPath);
 
 }
 ```
