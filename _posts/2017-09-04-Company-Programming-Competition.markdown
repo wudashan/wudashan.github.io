@@ -505,7 +505,7 @@ public static List<Pos> getLongestPathBySA(boolean[][] map, Pos start, Pos[] mov
                 path.clear();
                 path.addAll(newPath);
             } else {
-                // 以概率替换
+                // 以一定的概率替换
                 double p = 1 / (1 + Math.exp(-(newResult - result) / temperature));
                 if (Math.random() < p) {
                     path.clear();
