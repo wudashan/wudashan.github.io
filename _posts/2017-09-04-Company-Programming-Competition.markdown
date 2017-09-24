@@ -13,7 +13,7 @@ tags:
 ---
 
 
-> 代码链接：`https://github.com/wudashan/longest-path-problem`
+> 算法源码地址：`https://github.com/wudashan/longest-path-problem`
 
 # 前言
 
