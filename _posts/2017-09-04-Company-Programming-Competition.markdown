@@ -271,7 +271,7 @@ public static void main(String[] args) {
 
 <span id="complexMap"></span>
 
-虽然深度优先搜索算法可以计算出最长路径，但是它的时间复杂度却高得惊人！已知每次可以向8个方向移动，最多可以走m × n步（地图的长和宽），那么时间复杂度就是 O（8<sup>mn</sup>）。由于我们的地图可以走的选择比较单一，所以在我的电脑上`1ms`就可以算出结果。感兴趣的童鞋可以试试这个地图在你们的电脑上需要多久出结果：
+虽然深度优先搜索算法可以计算出最长路径，但是它的时间复杂度却高得惊人！已知每次可以向8个方向移动，最多可以走m × n步（地图的长和宽），那么时间复杂度就是 O（8<sup>mn</sup>）。由于我们上面的地图可以走的选择比较单一，所以在我的电脑上`1ms`就可以算出结果。感兴趣的童鞋可以试试下面这个地图在你们的电脑上需要多久出结果：
 
 
 
@@ -309,7 +309,7 @@ boolean[][] complexMap = new boolean[][] {
  * 通过贪心算法获取最长路径
  * @param map 地图
  * @param start 起点
- * @param moveOffset 方向偏移量
+ * @param moveOffset 移动偏移量
  * @return 最长路径
  */
 public static List<Pos> getLongestPathByChain(boolean[][] map, Pos start, Pos[] moveOffset) {
@@ -323,11 +323,6 @@ public static List<Pos> getLongestPathByChain(boolean[][] map, Pos start, Pos[] 
 
 /**
  * 递归实现贪心算法
- * @param pos 当前位置
- * @param map 地图
- * @param path 当前路径
- * @param result 最终结果
- * @param moveOffset 方向偏移量
  */
 private static void chain(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
 
@@ -350,7 +345,7 @@ private static void chain(Pos pos, boolean[][] map, List<Pos> path, List<Pos> re
 }
 
 /**
- * 获取当前格子周围最小出路的格子
+ * 获取当前格子周围出路最小的格子
  */
 private static Pos getMinWayPos(Pos pos, boolean[][] map, Pos[] moveOffset) {
 
@@ -378,7 +373,7 @@ private static Pos getMinWayPos(Pos pos, boolean[][] map, Pos[] moveOffset) {
     }
 
     if (minWayPoss.size() != 0) {
-        // 随机返回一个最小出路的格子
+        // 随机返回一个出路最小的格子
         return minWayPoss.get((int) (Math.random() * minWayPoss.size()));
     } else {
         return null;
@@ -420,7 +415,7 @@ public static void main(String[] args) {
     List<Pos> longestPath = getLongestPathByChain(simpleMap, start, moveOffset);
 
     // 打印路径
-    System.out.print(longestPath);
+    System.out.println(longestPath);
 
 }
 ```
@@ -457,12 +452,12 @@ public static void main(String[] args) {
  * 通过模拟退火算法获取最长路径
  * @param map 地图
  * @param start 起点
- * @param moveOffset 方向偏移量
+ * @param moveOffset 移动偏移量
  * @return 最长路径
  */
 public static List<Pos> getLongestPathBySA(boolean[][] map, Pos start, Pos[] moveOffset) {
 
-    // 初始化参数
+    // 初始化退火参数
     double temperature = 100.0;
     double endTemperature = 1e-8;
     double descentRate = 0.98;
@@ -492,7 +487,7 @@ public static List<Pos> getLongestPathBySA(boolean[][] map, Pos start, Pos[] mov
             List<Pos> newPath = getNewPath(cloneMap, path, moveOffset, count / total);
             int newResult = caculateResult(newPath);
 
-            // 判断是否替换解
+            // 根据函数结果判断是否替换解
             if (newResult - result < 0) {
                 // 替换
                 path.clear();
@@ -513,7 +508,7 @@ public static List<Pos> getLongestPathBySA(boolean[][] map, Pos start, Pos[] mov
 
     }
 
-    // 返回一条最长的路径
+    // 返回一条最长路径
     for (int i = 0; i < paths.size(); i++) {
         if (paths.get(i).size() > longestPath.size()) {
             longestPath = paths.get(i);
@@ -538,15 +533,13 @@ private static boolean[][] deepCloneMap(boolean[][] map) {
  * 初始化路径
  */
 private static List<Pos> initPath(boolean[][] map, Pos start, Pos[] moveOffset) {
-
     List<Pos> path = new ArrayList<>();
     getPath(map, start, path, moveOffset);
     return path;
-
 }
 
 /**
- * 根据当前路径继续行走到底，采用随机行走策略
+ * 根据当前路径继续移动到底，采用随机移动策略
  */
 private static void getPath(boolean[][] map, Pos current, List<Pos> path, Pos[] moveOffset) {
 
@@ -579,7 +572,7 @@ private static int caculateResult(List<Pos> path) {
 
 
 /**
- * 根据当前路径和降温率，生成一条新路径
+ * 根据当前路径和降温进度，生成一条新路径
  */
 private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveOffset, double ratio) {
 
@@ -624,7 +617,9 @@ private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveO
 
 # 总结
 
-求最长路径问题可以看成是`哈密尔顿路径问题`，但由于寻找哈密尔顿路径是一个典型的NPC问题，所以不能在多项式时间内得到最优解。我们可以通过深度优先搜索得到最优解，也可以通过贪心算法得到一个局部最优解，还可以通过模拟退火算法得到一个近似解。
+求最长路径问题可以看成是`哈密尔顿路径问题`，但由于寻找哈密尔顿路径是一个典型的NPC问题，所以不能在多项式时间内得到最优解，感兴趣的小伙伴可以去详细地看一下相关的知识。
+
+我们可以通过深度优先搜索得到最优解，但是时间复杂度是指数级的；也可以通过贪心算法得到一个局部最优解，时间复杂度是线性级的，但往往得到的解不稳定；还可以通过模拟退火算法得到一个近似解，这个时间复杂度也是线性级的，只要退火参数配置得当，其解是稳定地，且是一个趋向最优解的近似解。
 
 
 
