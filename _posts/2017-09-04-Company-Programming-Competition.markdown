@@ -102,9 +102,9 @@ public class Pos {
 
 那么**起点上方的果实**坐标就是[3, 2]（横坐标为3，纵坐标为2），但是对应着二维数组为map[2][3]（第二行，第三列），即横坐标对应着二维数组的列，纵坐标对应着二维数组的行。
 
-## 方向表示
+## 移动表示
 
-为了程序简洁，我们给八个方向定义对应的偏移量，这样每次行走只要对偏移量数组进行for循环就可以了。
+为了程序简洁，我们给八个方向的移动定义对应的偏移量，这样每次行走只要对偏移量数组进行for循环就可以了。
 
 ```
 Pos[] moveOffset = new Pos[] {
@@ -137,7 +137,7 @@ Pos[] moveOffset = new Pos[] {
  * 通过深度优先搜索算法获取最长路径
  * @param map 地图
  * @param start 起点
- * @param moveOffset 方向偏移量
+ * @param moveOffset 移动偏移量
  * @return 最长路径
  */
 public static List<Pos> getLongestPathByDFS(boolean[][] map, Pos start, Pos[] moveOffset) {
@@ -150,21 +150,16 @@ public static List<Pos> getLongestPathByDFS(boolean[][] map, Pos start, Pos[] mo
 
 /**
  * 递归实现深度优先搜索
- * @param pos 当前位置
- * @param map 地图
- * @param path 当前路径
- * @param result 最终结果
- * @param moveOffset 方向偏移量
  */
 private static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
 
-    // 记录当前位置的周围格子是否经过
+    // 记录当前位置向周围格子移动的记录
     List<Pos> visited = new ArrayList<>();
 
-    // 保存当前节点的周围格子
+    // 保存当前位置的周围格子
     Pos[] neighbours = new Pos[moveOffset.length];
 
-    // 依次向周围行走
+    // 依次向周围移动
     for (int i = 0; i < moveOffset.length; i++) {
         Pos next = new Pos(pos.getX() + moveOffset[i].getX(), pos.getY() + moveOffset[i].getY());
         neighbours[i] = next;
@@ -175,7 +170,7 @@ private static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> resu
         }
     }
 
-    // 当前无路可走时保存最长路径
+    // 若在当前位置下，没有向周围的格子移动过时，保存最长路径
     if (visited.isEmpty()) {
         if (path.size() > result.size()) {
             result.clear();
@@ -183,7 +178,7 @@ private static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> resu
         }
     }
 
-    // 当周围格子都不能行走时回退到上一步
+    // 周围的格子都不可以移动时回退到上一格子
     for (Pos neighbour : neighbours) {
         if (canPath(map, path, neighbour, visited)) {
             return;
@@ -194,21 +189,21 @@ private static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> resu
 }
 
 /**
- * 判断当前格子是否可以行走
+ * 判断格子是否可以移动
  */
 private static boolean canPath(boolean[][] map, List<Pos> path, Pos pos, List<Pos> visited) {
 
-    // 不在地图里，不能行走
+    // 不在地图里，不能移动
     if (!inMap(map, pos)) {
         return false;
     }
 
-    // 空白格子，不能行走
+    // 空白格子，不能移动
     if (!map[pos.getY()][pos.getX()]) {
         return false;
     }
 
-    // 已经在路径中或经过，不能行走
+    // 已经在路径中或经过，不能移动
     if (path.contains(pos) || visited.contains(pos)) {
         return false;
     }
@@ -217,7 +212,7 @@ private static boolean canPath(boolean[][] map, List<Pos> path, Pos pos, List<Po
 }
 
 /**
- * 判断当前格子是否在地图内
+ * 判断格子是否在地图内
  */
 private static boolean inMap(boolean[][] map, Pos pos) {
 
@@ -267,7 +262,7 @@ public static void main(String[] args) {
     List<Pos> longestPath = getLongestPathByDFS(simpleMap, start, moveOffset);
 
     // 打印路径
-    System.out.print(longestPath);
+    System.out.println(longestPath);
 
 }
 ```
