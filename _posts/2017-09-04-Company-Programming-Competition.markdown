@@ -454,6 +454,165 @@ public static void main(String[] args) {
 
 ## 代码示例
 
+由于是高端算法，所以代码会比较多，但据说能看完模拟算法代码的人智商都超过180！
+
+```
+
+/**
+ * 通过模拟退火算法获取最长路径
+ * @param map 地图
+ * @param start 起点
+ * @param moveOffset 方向偏移量
+ * @return 最长路径
+ */
+public static List<Pos> getLongestPathBySA(boolean[][] map, Pos start, Pos[] moveOffset) {
+
+    // 初始化参数
+    double temperature = 100.0;
+    double endTemperature = 1e-8;
+    double descentRate = 0.98;
+    double count = 0;
+    double total = Math.log(endTemperature / temperature) / Math.log(descentRate);
+    int iterations = map.length * map[0].length * 5;
+    List<Pos> longestPath = new ArrayList<>();
+    List<List<Pos>> paths = new ArrayList<>();
+    for (int i = 0; i < iterations; i++) {
+        boolean[][] cloneMap = deepCloneMap(map);
+        List<Pos> path = initPath(cloneMap, start, moveOffset);
+        paths.add(path);
+    }
+
+    // 降温过程
+    while (temperature > endTemperature) {
+
+        // 迭代过程
+        for (int i = 0; i < iterations; i++) {
+
+            // 取出当前解，并计算函数结果
+            List<Pos> path = paths.get(i);
+            int result = caculateResult(path);
+
+            // 在邻域内产生新的解，并计算函数结果
+            boolean[][] cloneMap = deepCloneMap(map);
+            List<Pos> newPath = getNewPath(cloneMap, path, moveOffset, count / total);
+            int newResult = caculateResult(newPath);
+
+            // 判断是否替换解
+            if (newResult - result < 0) {
+                // 替换
+                path.clear();
+                path.addAll(newPath);
+            } else {
+                // 以概率替换
+                double p = 1 / (1 + Math.exp(-(newResult - result) / temperature));
+                if (Math.random() < p) {
+                    path.clear();
+                    path.addAll(newPath);
+                }
+            }
+
+        }
+
+        count++;
+        temperature = temperature * descentRate;
+
+    }
+
+    // 返回一条最长的路径
+    for (int i = 0; i < paths.size(); i++) {
+        if (paths.get(i).size() > longestPath.size()) {
+            longestPath = paths.get(i);
+        }
+    }
+    return longestPath;
+
+}
+
+/**
+ * 深拷贝地图
+ */
+private static boolean[][] deepCloneMap(boolean[][] map) {
+    boolean[][] cloneMap = new boolean[map.length][];
+    for (int i = 0; i < map.length; i++) {
+        cloneMap[i] = map[i].clone();
+    }
+    return cloneMap;
+}
+
+/**
+ * 初始化路径
+ */
+private static List<Pos> initPath(boolean[][] map, Pos start, Pos[] moveOffset) {
+
+    List<Pos> path = new ArrayList<>();
+    getPath(map, start, path, moveOffset);
+    return path;
+
+}
+
+/**
+ * 根据当前路径继续行走到底，采用随机行走策略
+ */
+private static void getPath(boolean[][] map, Pos current, List<Pos> path, Pos[] moveOffset) {
+
+    boolean end = true;
+    List<Pos> neighbours = new ArrayList<>();
+    for (int i = 0; i < moveOffset.length; i++) {
+        Pos neighbour = new Pos(current.getX() + moveOffset[i].getX(), current.getY() + moveOffset[i].getY());
+        if (inMap(map, neighbour) && map[neighbour.getY()][neighbour.getX()]) {
+            end = false;
+            neighbours.add(neighbour);
+            map[neighbour.getY()][neighbour.getX()] = false;
+        }
+    }
+    if (end) {
+        return;
+    } else {
+        Pos random = neighbours.get((int) (Math.random() * neighbours.size()));
+        path.add(random);
+        getPath(map, random, path, moveOffset);
+    }
+
+}
+
+/**
+ * 计算函数结果，函数结果为路径负长度
+ */
+private static int caculateResult(List<Pos> path) {
+    return -path.size();
+}
+
+
+/**
+ * 根据当前路径和降温率，生成一条新路径
+ */
+private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveOffset, double ratio) {
+
+    int size = (int) (path.size() * ratio);
+    if (size == 0) {
+        size = 1;
+    }
+    if (size > path.size()) {
+        size = path.size();
+    }
+
+    List<Pos> newPath = new ArrayList<>();
+    for (int i = 0; i < size; i++) {
+        Pos pos = path.get(i);
+        newPath.add(pos);
+        map[pos.getY()][pos.getX()] = false;
+    }
+
+    getPath(map, newPath.get(newPath.size() - 1), newPath, moveOffset);
+    return newPath;
+
+}
+
+
+```
+
+
+
 ---
 
 # 总结
