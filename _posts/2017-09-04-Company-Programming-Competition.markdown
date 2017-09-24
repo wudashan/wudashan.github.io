@@ -53,9 +53,9 @@ boolean[][] simpleMap = new boolean[][] {
 ```
 
 
-## 节点表示
+## 格子表示
 
-对于地图上的每一个点，我们用一个简单类来表示：
+对于地图上的每一个格子，我们用一个简单类来表示：
 
 ```
 public class Pos {
@@ -96,7 +96,7 @@ public class Pos {
 }
 ```
 
-由于我们是使用横纵坐标而不是几行几列来表示一个点（没错，我就是这么傲娇），那么我们就需要给地图定义横纵坐标方向。方向如下图所示：
+由于我们是使用横纵坐标而不是几行几列来表示一个格子（没错，我就是这么傲娇），那么我们就需要给地图定义横纵坐标方向。方向如下图所示：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-8.png)
 
@@ -126,7 +126,7 @@ Pos[] moveOffset = new Pos[] {
 
 ## 算法思想
 
-拿到这道题，脑袋里第一个想到的就是深度优先搜索算法，其思想为每次往八个方向递归，当不能继续走下去的时候保存最长路径，并回退到能继续行走的点，继续递归直到结束。
+拿到这道题，脑袋里第一个想到的就是深度优先搜索算法，其思想为每次往八个方向递归，当不能继续走下去的时候保存最长路径，并回退到能继续行走的格子，继续递归直到结束。
 
 ## 代码示例
 
@@ -150,7 +150,7 @@ public static List<Pos> getLongestPathByDFS(boolean[][] map, Pos start, Pos[] mo
 
 /**
  * 递归实现深度优先搜索
- * @param pos 当前节点
+ * @param pos 当前位置
  * @param map 地图
  * @param path 当前路径
  * @param result 最终结果
@@ -158,10 +158,10 @@ public static List<Pos> getLongestPathByDFS(boolean[][] map, Pos start, Pos[] mo
  */
 private static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
 
-    // 记录当前节点的周围是否经过
+    // 记录当前位置的周围格子是否经过
     List<Pos> visited = new ArrayList<>();
 
-    // 保存当前节点的周围节点
+    // 保存当前节点的周围格子
     Pos[] neighbours = new Pos[moveOffset.length];
 
     // 依次向周围行走
@@ -183,7 +183,7 @@ private static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> resu
         }
     }
 
-    // 当周围节点都不能行走时回退到上一步
+    // 当周围格子都不能行走时回退到上一步
     for (Pos neighbour : neighbours) {
         if (canPath(map, path, neighbour, visited)) {
             return;
@@ -194,7 +194,7 @@ private static void dfs(Pos pos, boolean[][] map, List<Pos> path, List<Pos> resu
 }
 
 /**
- * 判断当前节点是否可以行走
+ * 判断当前格子是否可以行走
  */
 private static boolean canPath(boolean[][] map, List<Pos> path, Pos pos, List<Pos> visited) {
 
@@ -217,7 +217,7 @@ private static boolean canPath(boolean[][] map, List<Pos> path, Pos pos, List<Po
 }
 
 /**
- * 判断当前节点是否在地图内
+ * 判断当前格子是否在地图内
  */
 private static boolean inMap(boolean[][] map, Pos pos) {
 
@@ -329,7 +329,7 @@ public static List<Pos> getLongestPathByChain(boolean[][] map, Pos start, Pos[] 
 
 /**
  * 递归实现贪心算法
- * @param pos 当前节点
+ * @param pos 当前位置
  * @param map 地图
  * @param path 当前路径
  * @param result 最终结果
@@ -337,7 +337,7 @@ public static List<Pos> getLongestPathByChain(boolean[][] map, Pos start, Pos[] 
  */
 private static void chain(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
 
-    // 获取出路最小的节点
+    // 获取出路最小的格子
     Pos minWayPos = getMinWayPos(pos, map, moveOffset);
 
     if (minWayPos != null) {
@@ -356,7 +356,7 @@ private static void chain(Pos pos, boolean[][] map, List<Pos> path, List<Pos> re
 }
 
 /**
- * 获取当前节点周围最小出路的节点
+ * 获取当前格子周围最小出路的格子
  */
 private static Pos getMinWayPos(Pos pos, boolean[][] map, Pos[] moveOffset) {
 
@@ -384,7 +384,7 @@ private static Pos getMinWayPos(Pos pos, boolean[][] map, Pos[] moveOffset) {
     }
 
     if (minWayPoss.size() != 0) {
-        // 随机返回一个最小出路的节点
+        // 随机返回一个最小出路的格子
         return minWayPoss.get((int) (Math.random() * minWayPoss.size()));
     } else {
         return null;
@@ -452,7 +452,7 @@ public static void main(String[] args) {
 
 模拟退火算法的灵感是来自物理学里的固体退火原理：将固体加热时，固体内部粒子随温度上升变为无序状态，内能不断增大；当慢慢冷却时内部粒子逐渐有序，在每个温度都达到平衡态，最后在常温时达到基态，内能减为最小。
 
-用计算机语言来描述的话就是：模拟退火算法在不断迭代的过程中，以一定的概率来接受一个比当前解要差的新解，因此有可能会跳出这个局部的最优解，达到全局的最优解。
+用计算机语言来描述的话就是：在函数不断迭代的过程中，以一定的概率来接受一个比当前解要差的新解，因此有可能会跳出这个局部最优解，从而达到全局最优解。
 
 ## 代码示例
 
