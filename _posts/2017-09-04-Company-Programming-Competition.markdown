@@ -303,36 +303,48 @@ boolean[][] complexMap = new boolean[][] {
 
 ## 算法思想
 
-贪心算法采用的是这样一种思想：尽量先走出路比较少的格子，且相同出路的格子只走一次，这样，后面的步骤可选择的余地就大，最优解的概率也就大的多。
+贪心算法采用的是这样一种思想：每次都走出路最少的格子，这样，后面的步骤可选择的余地就大，最优解的概率也就大的多。
 
 ## 代码示例
 
 下面便是贪心算法的代码：
 
 ```
+
 /**
- * 贪心算法
+ * 通过贪心算法获取最长路径
+ * @param map 地图
+ * @param start 起点
+ * @param moveOffset 方向偏移量
+ * @return 最长路径
+ */
+public static List<Pos> getLongestPathByChain(boolean[][] map, Pos start, Pos[] moveOffset) {
+
+    List<Pos> longestPath = new ArrayList<>();
+    chain(start, map, new ArrayList<>(), longestPath, moveOffset);
+    return longestPath;
+
+}
+
+
+/**
+ * 递归实现贪心算法
  * @param pos 当前节点
  * @param map 地图
  * @param path 当前路径
  * @param result 最终结果
- * @param moveOffset 八个方向的偏移量
+ * @param moveOffset 方向偏移量
  */
-public static void chain(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
+private static void chain(Pos pos, boolean[][] map, List<Pos> path, List<Pos> result, Pos[] moveOffset) {
 
-    // 按出路最小的节点进行排序
-    Map<Integer, Pos> costs = wayCost(pos, map, moveOffset);
-        
-    if (costs.size() != 0) {
+    // 获取出路最小的节点
+    Pos minWayPos = getMinWayPos(pos, map, moveOffset);
+
+    if (minWayPos != null) {
         // 递归搜寻路径
-        for (Map.Entry<Integer, Pos> entry : costs.entrySet()) {
-            Pos next = entry.getValue();
-            map[next.getY()][next.getX()] = false;
-            path.add(next);
-            chain(next, map, path, result, moveOffset);
-            path.remove(next);
-            map[next.getY()][next.getX()] = true;
-        }
+        path.add(minWayPos);
+        map[minWayPos.getY()][minWayPos.getX()] = false;
+        chain(minWayPos, map, path, result, moveOffset);
     } else {
         // 当前无路可走时保存最长路径
         if (path.size() > result.size()) {
@@ -344,12 +356,13 @@ public static void chain(Pos pos, boolean[][] map, List<Pos> path, List<Pos> res
 }
 
 /**
- * 计算当前节点周围节点的出路
+ * 获取当前节点周围最小出路的节点
  */
-private static Map<Integer, Pos> wayCost(Pos pos, boolean[][] map, Pos[] moveOffset) {
+private static Pos getMinWayPos(Pos pos, boolean[][] map, Pos[] moveOffset) {
 
-    Map<Integer, Pos> costs = new TreeMap<>();
-        
+    int minWayCost = Integer.MAX_VALUE;
+    List<Pos> minWayPoss = new ArrayList<>();
+
     for (int i = 0; i < moveOffset.length; i++) {
         Pos next = new Pos(pos.getX() + moveOffset[i].getX(), pos.getY() + moveOffset[i].getY());
         if (inMap(map, next) && map[next.getY()][next.getX()]) {
@@ -360,11 +373,22 @@ private static Map<Integer, Pos> wayCost(Pos pos, boolean[][] map, Pos[] moveOff
                     w++;
                 }
             }
-            costs.put(w, next);
+            if (minWayCost > w) {
+                minWayCost = w;
+                minWayPoss.clear();
+                minWayPoss.add(next);
+            } else if (minWayCost == w) {
+                minWayPoss.add(next);
+            }
         }
     }
-        
-    return costs;
+
+    if (minWayPoss.size() != 0) {
+        // 随机返回一个最小出路的节点
+        return minWayPoss.get((int) (Math.random() * minWayPoss.size()));
+    } else {
+        return null;
+    }
 
 }
 ```
@@ -397,14 +421,12 @@ public static void main(String[] args) {
         new Pos(-1,  1)     // 向左下移动
     };
     Pos start = new Pos(3, 3);
-    List<Pos> path = new ArrayList<>();
-    List<Pos> result = new ArrayList<>();
 
     // 执行贪心算法
-    chain(start, simpleMap, path, result, moveOffset);
+    List<Pos> longestPath = getLongestPathByChain(simpleMap, start, moveOffset);
 
     // 打印路径
-    System.out.print(result);
+    System.out.print(longestPath);
 
 }
 ```
@@ -416,9 +438,9 @@ public static void main(String[] args) {
 \ | [simpleMap](#simpleMap) | [complexMap](#complexMap) 
 ----|------|---- 
 深度优先搜索算法 | 最长路径为8步，计算时间为1ms  | 最长路径为34步，计算时间为5254ms 
-贪心算法 |  最长路径为8步，计算时间为1ms  | 最长路径为32步，计算时间为38ms 
+贪心算法 |  最长路径为8步，计算时间为1ms  | 最长路径为4/9/20步，计算时间为1ms 
 
-由于贪心算法并没有遍历所有路径，而是先走出路少的格子，相同的出路的格子只走一次，所以时间上快很多，但是其结果却不一定是最优路径！
+从结果上可以发现，由于贪心算法并没有遍历所有路径，而是每次都往出路最少的格子走，所以时间上快很多，但是其结果却非常地不稳定，这是因为贪心算法容易陷入局部最优解的情况！
 
 ---
 
