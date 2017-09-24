@@ -473,7 +473,7 @@ public static List<Pos> getLongestPathBySA(boolean[][] map, Pos start, Pos[] mov
     double descentRate = 0.98;
     double count = 0;
     double total = Math.log(endTemperature / temperature) / Math.log(descentRate);
-    int iterations = map.length * map[0].length * 5;
+    int iterations = map.length * map[0].length;
     List<Pos> longestPath = new ArrayList<>();
     List<List<Pos>> paths = new ArrayList<>();
     for (int i = 0; i < iterations; i++) {
@@ -562,13 +562,13 @@ private static void getPath(boolean[][] map, Pos current, List<Pos> path, Pos[] 
         if (inMap(map, neighbour) && map[neighbour.getY()][neighbour.getX()]) {
             end = false;
             neighbours.add(neighbour);
-            map[neighbour.getY()][neighbour.getX()] = false;
         }
     }
     if (end) {
         return;
     } else {
         Pos random = neighbours.get((int) (Math.random() * neighbours.size()));
+        map[random.getY()][random.getX()] = false;
         path.add(random);
         getPath(map, random, path, moveOffset);
     }
