@@ -643,3 +643,7 @@ private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveO
 [[3] 什么是P问题、NP问题和NPC问题](http://www.matrix67.com/blog/archives/105)
 
 [[4] 最长路径问题 - 维基百科](https://zh.wikipedia.org/wiki/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98)
+
+[[5] 模拟退火 - 维基百科](https://zh.wikipedia.org/wiki/%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB)
+
+[[6] 大白话解析模拟退火算法 - 博客园](http://www.cnblogs.com/heaad/archive/2010/12/20/1911614.html)
