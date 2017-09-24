@@ -614,7 +614,7 @@ private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveO
 
 测试代码我就不再列出了，最后让我们看一下这三种算法在两种地图上的执行结果：
 
-```
+
 
 \ | [simpleMap](#simpleMap) | [complexMap](#complexMap) 
 ----|------|---- 
@@ -622,7 +622,7 @@ private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveO
 贪心算法 |  最长路径为8步，计算时间为1ms  | 最长路径为4/9/20步，计算时间为1ms 
 模拟退火算法 | 最长路径为8步，计算时间为147ms  | 最长路径为30~33步，计算时间为212ms 
 
-```
+
 
 
 
