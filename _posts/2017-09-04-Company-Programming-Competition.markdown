@@ -618,11 +618,11 @@ private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveO
 
 
 
-\ | [simpleMap](#simpleMap) | [complexMap](#complexMap) 
-----|------|---- 
-深度优先搜索算法 | 最长路径为8步，计算时间为1ms  | 最长路径为33步，计算时间为5254ms 
-贪心算法 |  最长路径为8步，计算时间为1ms  | 最长路径为4/9/20步，计算时间为1ms 
-模拟退火算法 | 最长路径为8步，计算时间为147ms  | 最长路径为30~33步，计算时间为212ms 
+|  | [simpleMap](#simpleMap) | [complexMap](#complexMap) 
+|----|------|---- 
+|深度优先搜索算法 | 最长路径为8步，计算时间为1ms  | 最长路径为33步，计算时间为5254ms 
+|贪心算法 |  最长路径为8步，计算时间为1ms  | 最长路径为4/9/20步，计算时间为1ms 
+|模拟退火算法 | 最长路径为8步，计算时间为147ms  | 最长路径为30~33步，计算时间为212ms 
 
 
 
