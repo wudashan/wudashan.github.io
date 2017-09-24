@@ -13,7 +13,7 @@ tags:
 ---
 
 
-> 从深度优先搜索到贪心算法。
+> 从深度优先搜索到贪心算法，再到模拟退火算法。
 
 # 前言
 
@@ -149,7 +149,7 @@ public static List<Pos> getLongestPathByDFS(boolean[][] map, Pos start, Pos[] mo
 }
 
 /**
- * 递归进行深度优先搜索
+ * 递归实现深度优先搜索
  * @param pos 当前节点
  * @param map 地图
  * @param path 当前路径
