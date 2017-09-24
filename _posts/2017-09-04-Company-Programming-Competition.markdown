@@ -310,7 +310,6 @@ boolean[][] complexMap = new boolean[][] {
 下面便是贪心算法的代码：
 
 ```
-
 /**
  * 通过贪心算法获取最长路径
  * @param map 地图
@@ -459,7 +458,6 @@ public static void main(String[] args) {
 由于是高端算法，所以代码会比较多，但据说能看完模拟退火算法代码的人智商都超过180！
 
 ```
-
 /**
  * 通过模拟退火算法获取最长路径
  * @param map 地图
@@ -609,7 +607,6 @@ private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveO
     return newPath;
 
 }
-
 
 ```
 
