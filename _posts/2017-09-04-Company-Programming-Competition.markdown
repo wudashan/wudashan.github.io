@@ -611,6 +611,61 @@ private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveO
 
 ```
 
+写完之后，先验证在简单地图上是否能得到最长路径：
+
+```
+
+public static void main(String[] args) {
+
+        // 初始化参数
+        boolean[][] simpleMap = new boolean[][] {
+                {false, false, false, false, false, false, false, false, false},
+                {false, false, false, false, false, false, true , true , false},
+                {false, false, false, true , false, false, true , true , false},
+                {false, false, true , false, false, false, false, false, false},
+                {false, false, true , false, false, false, false, false, false},
+                {false, false, true , false, false, false, false, false, false},
+                {false, false, false, true , false, true , false, false, false},
+                {false, false, false, false, true , true , false, false, false},
+                {false, false, false, false, false, false, false, false, false}
+        };
+        Pos[] moveOffset = new Pos[] {
+                new Pos(-1,  0),    // 向左移动
+                new Pos(-1, -1),    // 向左上移动
+                new Pos( 0, -1),    // 向上移动
+                new Pos( 1, -1),    // 向右上移动
+                new Pos( 1,  0),    // 向右移动
+                new Pos( 1,  1),    // 向右下移动
+                new Pos( 0,  1),    // 向下移动
+                new Pos(-1,  1)     // 向左下移动
+        };
+        Pos start = new Pos(3, 3);
+
+        // 执行模拟退火算法
+        List<Pos> longestPath = getLongestPathBySA(simpleMap, start, moveOffset);
+
+        // 打印路径
+        System.out.println(longestPath);
+
+    }
+
+
+```
+
+执行Main函数之后，控制台将输出`[Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=6}, Pos{x=5, y=7}]`，路径长度与深度优先搜索算法、贪心算法一致，即也能找到最长路径。
+
+最后让我们比较一下三个算法在两种地图上的执行结果：
+
+```
+
+\ | [simpleMap](#simpleMap) | [complexMap](#complexMap) 
+----|------|---- 
+深度优先搜索算法 | 最长路径为8步，计算时间为1ms  | 最长路径为33步，计算时间为5254ms 
+贪心算法 |  最长路径为8步，计算时间为1ms  | 最长路径为4/9/20步，计算时间为1ms 
+模拟退火算法 | 最长路径为8步，计算时间为147ms  | 最长路径为30~33步，计算时间为212ms 
+
+```
+
 
 
 ---
