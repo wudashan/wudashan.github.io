@@ -13,7 +13,7 @@ tags:
 ---
 
 
-> 从深度优先搜索到贪心算法，再到模拟退火算法。
+> 从深度优先搜索算法到贪心算法，再到模拟退火算法。
 
 # 前言
 
@@ -633,6 +633,8 @@ private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveO
 # 总结
 
 求最长路径问题可以看成是`哈密尔顿路径问题`，但由于寻找哈密尔顿路径是一个典型的NPC问题，所以不能在多项式时间内得到最优解。我们可以通过深度优先搜索得到最优解，也可以通过贪心算法得到一个局部最优解，还可以通过模拟退火算法得到一个近似解。
+
+三种算法的代码已经上传至Github，欢迎小伙伴们点赞关注：`https://github.com/wudashan/longest-path-problem`
 
 ---
 
