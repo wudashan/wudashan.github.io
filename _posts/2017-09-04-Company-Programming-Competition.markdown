@@ -21,7 +21,7 @@ tags:
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-5.png)
 
-为了提升攻击力，我们需要尽可能地吃最多的果实，所以路线可以这样规划：
+为了提升攻击力，我们需要尽可能地一次吃最多的果实，所以路线可以这样规划：
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-9.png)
 
