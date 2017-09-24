@@ -611,50 +611,8 @@ private static List<Pos> getNewPath(boolean[][] map, List<Pos> path, Pos[] moveO
 
 ```
 
-写完之后，先验证在简单地图上是否能得到最长路径：
 
-```
-
-public static void main(String[] args) {
-
-        // 初始化参数
-        boolean[][] simpleMap = new boolean[][] {
-                {false, false, false, false, false, false, false, false, false},
-                {false, false, false, false, false, false, true , true , false},
-                {false, false, false, true , false, false, true , true , false},
-                {false, false, true , false, false, false, false, false, false},
-                {false, false, true , false, false, false, false, false, false},
-                {false, false, true , false, false, false, false, false, false},
-                {false, false, false, true , false, true , false, false, false},
-                {false, false, false, false, true , true , false, false, false},
-                {false, false, false, false, false, false, false, false, false}
-        };
-        Pos[] moveOffset = new Pos[] {
-                new Pos(-1,  0),    // 向左移动
-                new Pos(-1, -1),    // 向左上移动
-                new Pos( 0, -1),    // 向上移动
-                new Pos( 1, -1),    // 向右上移动
-                new Pos( 1,  0),    // 向右移动
-                new Pos( 1,  1),    // 向右下移动
-                new Pos( 0,  1),    // 向下移动
-                new Pos(-1,  1)     // 向左下移动
-        };
-        Pos start = new Pos(3, 3);
-
-        // 执行模拟退火算法
-        List<Pos> longestPath = getLongestPathBySA(simpleMap, start, moveOffset);
-
-        // 打印路径
-        System.out.println(longestPath);
-
-    }
-
-
-```
-
-执行Main函数之后，控制台将输出`[Pos{x=3, y=2}, Pos{x=2, y=3}, Pos{x=2, y=4}, Pos{x=2, y=5}, Pos{x=3, y=6}, Pos{x=4, y=7}, Pos{x=5, y=6}, Pos{x=5, y=7}]`，路径长度与深度优先搜索算法、贪心算法一致，即也能找到最长路径。
-
-最后让我们比较一下三个算法在两种地图上的执行结果：
+测试代码我就不再列出了，最后让我们看一下这三种算法在两种地图上的执行结果：
 
 ```
 
@@ -672,7 +630,7 @@ public static void main(String[] args) {
 
 # 总结
 
-其实求最长路径问题可以看成是`哈密尔顿路径问题`，但由于寻找哈密尔顿路径是一个典型的NPC问题，所以不能在多项式时间内得到最优解。我们可以通过深度优先搜索得到最优解，也可以通过贪心算法得到一个局部最优解，还可以通过模拟退火算法得到一个近似解。
+求最长路径问题可以看成是`哈密尔顿路径问题`，但由于寻找哈密尔顿路径是一个典型的NPC问题，所以不能在多项式时间内得到最优解。我们可以通过深度优先搜索得到最优解，也可以通过贪心算法得到一个局部最优解，还可以通过模拟退火算法得到一个近似解。
 
 ---
 
