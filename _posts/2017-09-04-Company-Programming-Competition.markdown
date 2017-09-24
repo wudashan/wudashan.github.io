@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "华为公司编程竞赛之最长路径问题"
+title:      "公司编程竞赛之最长路径问题"
 subtitle:   "从深度优先搜索算法到贪心算法，再到模拟退火算法"
 date:       2017-09-04 23:00:00
 author:     "Wudashan"
