@@ -71,7 +71,7 @@ Demo代码：[https://github.com/wudashan/spring-batch-demo.git](https://github.
 
 ## 创建Reader
 
-既然是读操作，那么肯定要有能读的数据源，方便起见，我们直接在resources目录下创建一个`batch-data.csv`文件，内容如下：
+既然是读操作，那么肯定要有能读的数据源，方便起见，我们直接在resources目录下创建一个`batch-data-source.csv`文件，内容如下：
 
 ```
 1,PENDING
@@ -88,7 +88,7 @@ Demo代码：[https://github.com/wudashan/spring-batch-demo.git](https://github.
 
 非常简单，其中第一列代表着命令的id，第二列代表着命令的当前状态。也就是说，现在有10条缓存的命令，需要下发给设备。
 
-读操作需要实现`ItemReader<T>`接口，框架提供了一个现成的实现类`FlatFileItemReader`。使用该类需要设置`Resource`和`LineMapper`。Resource代表着数据源，即我们的batch-data.csv文件；LineMapper则表示如何将文件的每行数据转成对应的DTO对象。
+读操作需要实现`ItemReader<T>`接口，框架提供了一个现成的实现类`FlatFileItemReader`。使用该类需要设置`Resource`和`LineMapper`。Resource代表着数据源，即我们的batch-data-source.csv文件；LineMapper则表示如何将文件的每行数据转成对应的DTO对象。
 
 ### 创建DTO对象
 
@@ -121,7 +121,7 @@ public class DeviceCommand {
 
 ### 自定义LineMapper
 
-我们需要自己实现一个LineMapper实现类，用于将batch-data.csv文件的每行数据，转成程序方便处理的DeviceCommand对象。
+我们需要自己实现一个LineMapper实现类，用于将batch-data-source.csv文件的每行数据，转成程序方便处理的DeviceCommand对象。
 
 ```
 public class HelloLineMapper implements LineMapper<DeviceCommand> {
@@ -175,11 +175,11 @@ public class HelloItemProcessor implements ItemProcessor<DeviceCommand, DeviceCo
 
 ## 创建Writer
 
-处理完数据后，我们需要更新命令状态到文件里，用于记录我们已经下发。与读文件类似，我们需要实现`ItemWriter<T>`接口，框架也提供了一个现成的实现类`FlatFileItemWriter`。使用该类需要设置`Resource`和`LineAggregator`。Resource代表着数据源，即我们的batch-data.csv文件；LineAggregator则表示如何将DTO对象转成字符串保存到文件的每行。
+处理完数据后，我们需要更新命令状态到文件里，用于记录我们已经下发。与读文件类似，我们需要实现`ItemWriter<T>`接口，框架也提供了一个现成的实现类`FlatFileItemWriter`。使用该类需要设置`Resource`和`LineAggregator`。Resource代表着输出源，我们可以输出到batch-data-target.csv文件；LineAggregator则表示如何将DTO对象转成字符串保存到文件的每行。
 
 ### 自定义LineAggregator
 
-我们需要自己实现一个LineAggregator实现类，用于将DeviceCommand对象转成字符串，保存到batch-data.csv文件。
+我们需要自己实现一个LineAggregator实现类，用于将DeviceCommand对象转成字符串，保存到batch-data-target.csv文件。
 
 ```
 public class HelloLineAggregator implements LineAggregator<DeviceCommand> {
@@ -219,7 +219,7 @@ public class Main {
 
         // 创建reader
         FlatFileItemReader<DeviceCommand> flatFileItemReader = new FlatFileItemReader<>();
-        flatFileItemReader.setResource(new FileSystemResource("src/main/resources/batch-data.csv"));
+        flatFileItemReader.setResource(new FileSystemResource("src/main/resources/batch-data-source.csv"));
         flatFileItemReader.setLineMapper(new HelloLineMapper());
 
         // 创建processor
@@ -227,7 +227,7 @@ public class Main {
 
         // 创建writer
         FlatFileItemWriter<DeviceCommand> flatFileItemWriter = new FlatFileItemWriter<>();
-        flatFileItemWriter.setResource(new FileSystemResource("src/main/resources/batch-data.csv"));
+        flatFileItemWriter.setResource(new FileSystemResource("src/main/resources/batch-data-target.csv"));
         flatFileItemWriter.setLineAggregator(new HelloLineAggregator());
 
         // 创建Step
@@ -268,7 +268,7 @@ send command to device, id=9
 send command to device, id=10
 ```
 
-再查看`batch-data.csv`文件，将会发现命令状态全部更新为SENT：
+再查看`batch-data-target.csv`文件，将会发现命令状态全部更新为SENT：
 
 ```
 1,SENT
