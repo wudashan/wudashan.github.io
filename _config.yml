@@ -104,5 +104,9 @@ friends: [
     {
         title: "littleatp",
         href: "http://www.cnblogs.com/littleatp/"
+    },
+    {
+        title: "javadoop",
+        href: "http://javadoop.com/"
     }
 ]
