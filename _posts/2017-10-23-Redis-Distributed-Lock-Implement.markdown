@@ -20,3 +20,11 @@ tags:
 
 
 **未完待续...**
+
+---
+
+# 参考阅读
+
+[[1] Distributed locks with Redis](https://redis.io/topics/distlock)
+
+
