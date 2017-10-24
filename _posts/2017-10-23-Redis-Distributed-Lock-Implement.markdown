@@ -45,6 +45,32 @@ tags:
 </dependency>
 ```
 
+## 加锁代码
+
+先展示代码，再带大家慢慢解释为什么这样实现，以及网上其他博客的问题在哪里：
+
+```
+public class RedisTool {
+
+    private static final String LOCK_SUCCESS = "OK";
+    private static final String SET_IF_NOT_EXIST = "NX";
+    private static final String SET_WITH_EXPIRE_TIME = "PX";
+
+    public static boolean tryGetDistributedLock(Jedis jedis, String lockKey, String requestId, int expireTime) {
+
+        String result = jedis.set(lockKey, requestId, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);
+
+        if (LOCK_SUCCESS.equals(result)) {
+            return true;
+        }
+        return false;
+
+    }
+
+}
+```
+
+
 **未完待续...**
 
 ---
