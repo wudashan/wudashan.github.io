@@ -71,6 +71,32 @@ public class RedisTool {
 ```
 
 
+## 解锁代码
+
+还是先展示代码，再带大家慢慢解释为什么这样实现，以及网上其他博客的问题在哪里：
+
+```
+public class RedisTool {
+
+    private static final Long RELEASE_SUCCESS = 1L;
+
+    public static boolean releaseDistributedLock(Jedis jedis, String lockKey, String requestId) {
+
+        String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
+        Object result = jedis.eval(script, Collections.singletonList(lockKey), Collections.singletonList(requestId));
+        
+        if (RELEASE_SUCCESS.equals(result)) {
+            return true;
+        }
+        return false;
+
+    }
+
+}
+```
+
+
+
 **未完待续...**
 
 ---
