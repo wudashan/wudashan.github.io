@@ -29,7 +29,21 @@ tags:
 3. **具有容错性。**只要大部分的Redis节点正常运行，客户端就可以加锁和解锁。
 4. **解铃还是系铃人。**加锁和解锁必须是同一个客户端，客户端自己不能把别人加的锁给解了。
 
+---
 
+# 代码实现
+
+## 组件依赖
+
+首先我们要通过Maven引入`Jedis`开源组件，在`pom.xml`文件加入下面的代码：
+
+```
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+    <version>2.9.0</version>
+</dependency>
+```
 
 **未完待续...**
 
