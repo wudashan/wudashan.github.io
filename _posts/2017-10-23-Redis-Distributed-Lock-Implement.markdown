@@ -47,7 +47,9 @@ tags:
 
 ## 加锁代码
 
-先展示代码，再带大家慢慢解释为什么这样实现，以及网上其他博客的问题在哪里：
+### 正确姿势
+
+先展示代码，再带大家慢慢解释为什么这样实现
 
 ```
 public class RedisTool {
@@ -93,6 +95,25 @@ public class RedisTool {
 总的来说，执行上面的set()方法就只会导致两种结果：1. 当前没有锁（key不存在），那么就进行加锁操作，并对锁加个有效期，同时value表示加锁的客户端。2. 已有锁存在，不做任何操作。
 
 心细的童鞋就会发现了，我们的加锁代码满足我们**可靠性**里描述的三个条件。首先，set()加入了NX参数，可以保证如果已有key存在，则函数不会调用成功，也就是只有一个客户端能持有锁，满足互斥性。其次，由于我们对锁设置了过期时间，即使锁的持有者后续发生崩溃而没有解锁，锁也会因为到了过期时间而自动解锁（即key被删除），不会发生死锁。最后，因为我们将value赋值为requestId，代表加锁的客户端请求标识，那么在客户端在解锁的时候就可以进行校验是否是同一个客户端。由于我们只考虑Redis单机部署的场景，所以容错性我们暂不考虑。
+
+
+### 错误示例1
+
+比较常见的错误示例就是使用`jedis.setnx()`和`jedis.expire()`组合实现加锁，代码如下：
+
+```
+public static void wrongGetLock(Jedis jedis, String lockKey, String requestId, int expireTime) {
+
+    Long result = jedis.setnx(lockKey, requestId);
+    if (result == 1) {
+        // 若在这里程序突然崩溃，则无法设置过期时间，将发生死锁
+        jedis.expire(lockKey, expireTime);
+    }
+
+}
+```
+
+setnx()方法作用就是SET IF NOT EXIST，expire()方法就是给锁加一个过期时间。咋一看好像和上面set()方法结果一样，然而由于这是两条redis命令，不具有原子性，程序在执行完setnx()之后突然崩溃，导致锁没有设置过期时间。那么将会发生死锁。
 
 
 ## 解锁代码
