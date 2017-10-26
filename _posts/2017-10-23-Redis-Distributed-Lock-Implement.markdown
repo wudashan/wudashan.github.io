@@ -102,7 +102,7 @@ public class RedisTool {
 比较常见的错误示例就是使用`jedis.setnx()`和`jedis.expire()`组合实现加锁，代码如下：
 
 ```
-public static void wrongGetLock(Jedis jedis, String lockKey, String requestId, int expireTime) {
+public static void wrongGetLock1(Jedis jedis, String lockKey, String requestId, int expireTime) {
 
     Long result = jedis.setnx(lockKey, requestId);
     if (result == 1) {
