@@ -80,7 +80,7 @@ public class RedisTool {
 }
 ```
 
-可以看到，我们加锁就一行代码：`jedis.set(String key, String value, String nxxx, String expx, int time)`。这个set()方法一共有五个形参：
+可以看到，我们加锁就一行代码：`jedis.set(String key, String value, String nxxx, String expx, int time)`，这个set()方法一共有五个形参：
 
 - 第一个为key，我们使用key来当锁，因为key是唯一的。
 
@@ -113,7 +113,7 @@ public static void wrongGetLock1(Jedis jedis, String lockKey, String requestId, 
 }
 ```
 
-setnx()方法作用就是SET IF NOT EXIST，expire()方法就是给锁加一个过期时间。咋一看好像和上面set()方法结果一样，然而由于这是两条redis命令，不具有原子性，如果程序在执行完setnx()之后突然崩溃，导致锁没有设置过期时间。那么将会发生死锁。
+setnx()方法作用就是SET IF NOT EXIST，expire()方法就是给锁加一个过期时间。咋一看好像和正确姿势里的set()方法结果一样，然而由于这是两条redis命令，不具有原子性，如果程序在执行完setnx()之后突然崩溃，导致锁没有设置过期时间。那么将会发生死锁。
 
 
 ## 解锁代码
