@@ -241,4 +241,6 @@ public static void wrongReleaseLock2(Jedis jedis, String lockKey, String request
 
 [[1] Distributed locks with Redis](https://redis.io/topics/distlock)
 
-[[2] Redisson](https://github.com/redisson/redisson)
+[[2] EVAL command](https://redis.io/commands/eval)
+
+[[3] Redisson](https://github.com/redisson/redisson)
