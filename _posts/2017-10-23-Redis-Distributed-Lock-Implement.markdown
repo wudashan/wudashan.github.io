@@ -231,7 +231,7 @@ public static void wrongReleaseLock2(Jedis jedis, String lockKey, String request
 
 本文主要介绍了如何使用Java代码正确实现Redis分布式锁，对于加锁和解锁也分别给出了两个比较经典的错误示例。其实想要通过Redis实现分布式锁并不难，只要保证能满足可靠性里的四个条件。互联网虽然给我们带来了方便，只要有问题就可以google，然而网上的答案一定是对的吗？其实不然，所以我们更应该时刻保持着质疑精神，多想多验证。
 
-如果你的项目中，Redis是多机部署的，那么可以尝试使用Redisson实现分布式锁，这是Redis官方提供的Java组件，链接在**[参考阅读](#参考阅读)**章节已经给出。
+如果你的项目中，Redis是多机部署的，那么可以尝试使用`Redisson`实现分布式锁，这是Redis官方提供的Java组件，链接在**[参考阅读](#参考阅读)**章节已经给出。
 
 ---
 
