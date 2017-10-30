@@ -199,9 +199,7 @@ public class RedisTool {
 
 ```
 public static void wrongReleaseLock1(Jedis jedis, String lockKey) {
-        
     jedis.del(lockKey);
-
 }
 ```
 
