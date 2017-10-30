@@ -211,7 +211,19 @@ public static void wrongReleaseLock1(Jedis jedis, String lockKey) {
 
 ### 错误示例2
 
+这种解锁代码乍一看也是没问题，甚至我之前也差点这样实现，与正确姿势差不多，唯一区别的是分成两条命令去执行，代码如下：
 
+```
+public static void wrongReleaseLock2(Jedis jedis, String lockKey, String requestId) {
+        
+    // 判断加锁与解锁是不是同一个客户端
+    if (requestId.equals(jedis.get(lockKey))) {
+        // 若在此时，这把锁突然不是这个客户端的，则会误解锁
+        jedis.del(lockKey);
+    }
+
+}
+```
 
 ---
 
