@@ -49,7 +49,7 @@ tags:
 
 ### 正确姿势
 
-先展示代码，再带大家慢慢解释为什么这样实现：
+Talk is cheap, Show me the code。先展示代码，再带大家慢慢解释为什么这样实现：
 
 ```
 public class RedisTool {
@@ -182,6 +182,7 @@ public class RedisTool {
 
 }
 ```
+
 
 
 
