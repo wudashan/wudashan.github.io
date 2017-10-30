@@ -192,6 +192,17 @@ public class RedisTool {
 简单来说，就是在eval命令执行Lua代码的时候，Lua代码将被当成一整个命令执行，并且直到eval命令执行完成，redis才会执行其他命令。
 
 
+### 错误示例1
+
+最常见的解锁代码就是直接使用`jedis.del()`方法删除锁，这种不先判断锁的拥有者而直接解锁的方式，会导致任何客户端都可以随时进行解锁，即使这把锁不是它的。
+
+```
+public static void wrongReleaseLock1(Jedis jedis, String lockKey) {
+        
+    jedis.del(lockKey);
+
+}
+```
 
 ---
 
