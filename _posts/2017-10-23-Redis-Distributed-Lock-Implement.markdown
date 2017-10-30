@@ -49,7 +49,7 @@ tags:
 
 ### 正确姿势
 
-Talk is cheap, Show me the code。先展示代码，再带大家慢慢解释为什么这样实现：
+Talk is cheap, show me the code。先展示代码，再带大家慢慢解释为什么这样实现：
 
 ```
 public class RedisTool {
@@ -183,10 +183,8 @@ public class RedisTool {
 }
 ```
 
+可以看到，我们解锁只需要两行代码就搞定了！第一行代码，我们编写了一个简单的Lua脚本代码，
 
-
-
-**未完待续...**
 
 ---
 
@@ -194,4 +192,4 @@ public class RedisTool {
 
 [[1] Distributed locks with Redis](https://redis.io/topics/distlock)
 
-
+[[1] Redisson](https://github.com/redisson/redisson)
