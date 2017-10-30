@@ -223,6 +223,8 @@ public static void wrongReleaseLock2(Jedis jedis, String lockKey, String request
 }
 ```
 
+如代码注释，问题在于如果调用`jedis.del()`方法的时候，这把锁已经不属于当前客户端的时候会解除他人加的锁。那么是否真的有这种场景？答案是肯定的，比如客户端A加锁，一段时间之后客户端A解锁，在执行`jedis.del()`之前，锁突然过期了，此时客户端B尝试加锁成功，然后客户端A再执行del()方法，则将客户端B的锁给解除了。
+
 ---
 
 # 参考阅读
