@@ -113,7 +113,7 @@ public static void wrongGetLock1(Jedis jedis, String lockKey, String requestId, 
 }
 ```
 
-setnx()方法作用就是SET IF NOT EXIST，expire()方法就是给锁加一个过期时间。咋一看好像和前面的set()方法结果一样，然而由于这是两条redis命令，不具有原子性，如果程序在执行完setnx()之后突然崩溃，导致锁没有设置过期时间。那么将会发生死锁。网上之所以有人这样实现，是因为低版本的jedis并不支持多参数的set()方法。
+setnx()方法作用就是SET IF NOT EXIST，expire()方法就是给锁加一个过期时间。咋一看好像和前面的set()方法结果一样，然而由于这是两条Redis命令，不具有原子性，如果程序在执行完setnx()之后突然崩溃，导致锁没有设置过期时间。那么将会发生死锁。网上之所以有人这样实现，是因为低版本的jedis并不支持多参数的set()方法。
 
 
 ### 错误示例2
@@ -190,7 +190,7 @@ public class RedisTool {
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F_01.png)
 
-简单来说，就是在eval命令执行Lua代码的时候，Lua代码将被当成一整个命令执行，并且直到eval命令执行完成，redis才会执行其他命令。
+简单来说，就是在eval命令执行Lua代码的时候，Lua代码将被当成一整个命令执行，并且直到eval命令执行完成，Redis才会执行其他命令。
 
 
 ### 错误示例1
