@@ -190,7 +190,7 @@ public class RedisTool {
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F_01.png)
 
-简单来说，就是在eval命令执行Lua代码的时候，Lua代码将被当成一整个命令执行，并且直到eval命令执行完成，Redis才会执行其他命令。
+简单来说，就是在eval命令执行Lua代码的时候，Lua代码将被当成一个命令去执行，并且直到eval命令执行完成，Redis才会执行其他命令。
 
 
 ### 错误示例1
