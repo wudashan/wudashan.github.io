@@ -120,7 +120,31 @@ setnx()方法作用就是SET IF NOT EXIST，expire()方法就是给锁加一个�
 这一种错误示例就比较难以发现问题，而且实现也比较复杂。实现思路：使用`jedis.setnx()`命令实现加锁，其中key是锁，value是锁的过期时间。执行过程：1. 通过setnx()方法尝试加锁，如果当前锁不存在，返回加锁成功。2. 如果锁已经存在则获取锁的过期时间，和当前时间比较，如果锁已经过期，则设置新的过期时间，返回加锁成功。代码如下：
 
 ```
+public static boolean wrongGetLock2(Jedis jedis, String lockKey, int expireTime) {
 
+    long expires = System.currentTimeMillis() + expireTime;
+    String expiresStr = String.valueOf(expires);
+
+    // 如果当前锁不存在，返回加锁成功
+    if (jedis.setnx(lockKey, expiresStr) == 1) {
+        return true;
+    }
+
+    // 如果锁存在，获取锁的过期时间
+    String currentValueStr = jedis.get(lockKey);
+    if (currentValueStr != null && Long.parseLong(currentValueStr) < System.currentTimeMillis()) {
+        // 锁已过期，获取上一个锁的过期时间，并设置现在锁的过期时间
+        String oldValueStr = jedis.getSet(lockKey, expiresStr);
+        if (oldValueStr != null && oldValueStr.equals(currentValueStr)) {
+            // 考虑多线程并发的情况，只有一个线程的设置值和当前值相同，它才有权利加锁
+            return true;
+        }
+    }
+        
+    // 其他情况，一律返回加锁失败
+    return false;
+
+}
 ```
 
 
