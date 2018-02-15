@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "多线程场景下使日志携带请求标识"
-subtitle:   ""
+title:      "如何快速筛选出一次请求的所有日志？"
+subtitle:   "使用SLF4J日志框架的MDC工具，将请求标识植入一次请求的生命周期，并解决多线程场景下请求标识无法传递的问题。"
 date:       2018-02-15 14:30:00
 author:     "Wudashan"
 header-img: "img/post-bg-log-requset-in-mutithread.jpg"
