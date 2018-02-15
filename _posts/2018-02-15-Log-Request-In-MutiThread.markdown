@@ -12,7 +12,7 @@ tags:
     - 请求标识
 ---
 
-> 未完待续。
+> 示例源码地址：`https://github.com/wudashan/slf4j-mdc-muti-thread`
 
 # 前言
 
