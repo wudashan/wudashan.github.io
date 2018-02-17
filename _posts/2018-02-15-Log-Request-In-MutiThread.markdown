@@ -57,4 +57,6 @@ public class Main {
 2018-02-17 13:19:52.609 {requestId=f97ea0fb-2a43-40f4-a3e8-711f776857d0} [main] DEBUG cn.wudashan.Main - log in main thread 3
 ```
 
+从日志中可以明显地看到花括号中包含了（映射的）请求ID(requestId)，这其实就是我们定位（诊断）问题的关键字（上下文）。在现网定位问题时，我们可以通过`grep requestId=xxx *.log`快速的过滤出某次请求的所有日志。
+
 ---
