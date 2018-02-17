@@ -22,7 +22,7 @@ tags:
 
 # 正文
 
-SLF4J日志框架提供了一个MDC(Mapped Diagnostic Contexts)工具类，谷歌翻译为映射的诊断上下文，从字面上很难理解，我们可以先实战一把。
+SLF4J日志框架提供了一个MDC(Mapped Diagnostic Contexts)工具类，谷歌翻译为**映射的诊断上下文**，从字面上很难理解，我们可以先实战一把。
 
 ```
 public class Main {
@@ -52,11 +52,11 @@ public class Main {
 我们在main函数的入口调用`MDC.put()`方法传入请求ID，在出口调用`MDC.remove()`方法移除请求ID。配置好**log4j2.xml**文件后，运行main函数，可以在控制台看到以下日志输出：
 
 ```
-2018-02-17 13:19:52.606 **{requestId=f97ea0fb-2a43-40f4-a3e8-711f776857d0}** [main] DEBUG cn.wudashan.Main - log in main thread 1
+2018-02-17 13:19:52.606 {requestId=f97ea0fb-2a43-40f4-a3e8-711f776857d0} [main] DEBUG cn.wudashan.Main - log in main thread 1
 2018-02-17 13:19:52.609 {requestId=f97ea0fb-2a43-40f4-a3e8-711f776857d0} [main] DEBUG cn.wudashan.Main - log in main thread 2
 2018-02-17 13:19:52.609 {requestId=f97ea0fb-2a43-40f4-a3e8-711f776857d0} [main] DEBUG cn.wudashan.Main - log in main thread 3
 ```
 
-从日志中可以明显地看到花括号中包含了（映射的）请求ID(requestId)，这其实就是我们定位（诊断）问题的关键字（上下文）。在现网定位问题时，我们可以通过`grep requestId=xxx *.log`快速的过滤出某次请求的所有日志。
+从日志中可以明显地看到花括号中包含了**（映射的）**请求ID(requestId)，这其实就是我们定位**（诊断）**问题的关键字**（上下文）**。在现网定位问题时，我们可以通过`grep requestId=xxx *.log`快速的过滤出某次请求的所有日志。
 
 ---
