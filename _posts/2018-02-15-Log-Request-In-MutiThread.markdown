@@ -20,4 +20,37 @@ tags:
 
 华为IoT平台，提供了接收设备上报数据的能力， 当数据到达平台后，平台会进行一些复杂的业务逻辑处理，如数据存储，规则引擎，数据推送，命令下发等等。由于这个逻辑之间没有强耦合的关系，所以通常是异步处理。如何将一次数据上报请求中包含的所有业务日志快速过滤出来，就是本文要介绍的。
 
+# 正文
+
+SLF4J日志框架提供了一个MDC(Mapped Diagnostic Contexts)工具类，谷歌翻译为映射的诊断上下文，从字面上很难理解，我们可以先实战一把。
+
+```
+public class Main {
+
+    private static final String KEY = "requestId";
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    
+    public static void main(String[] args) {
+
+        // 入口传入请求ID
+        MDC.put(KEY, UUID.randomUUID().toString());
+        
+        // 打印日志
+        logger.debug("log in main thread");
+
+        // 出口移除请求ID
+        MDC.remove(KEY);
+
+    }
+
+}
+
+```
+
+我们在main函数的入口调用`MDC.put()`方法传入请求ID，在出口调用`MDC.remove()`方法移除请求ID。配置好**log4j2.xml**文件后，运行main函数，可以在控制台看到以下日志输出：
+
+
+> 2018-02-17 13:11:29.149 {requestId=cab3cd7f-8768-4534-a0bb-96392dcc33a0} [main] DEBUG cn.wudashan.Main - log in main thread
+
+
 ---
