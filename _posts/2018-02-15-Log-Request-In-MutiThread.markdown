@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "如何快速过滤出一次请求的所有日志？"
-subtitle:   "使用SLF4J日志框架的MDC工具，将请求标识植入一次请求的生命周期。"
+subtitle:   "使用SLF4J日志框架的MDC工具，将请求ID植入一次请求的生命周期。"
 date:       2018-02-15 14:30:00
 author:     "Wudashan"
 header-img: "img/post-bg-log-requset-in-mutithread.jpg"
@@ -9,7 +9,7 @@ catalog: true
 tags:
     - 日志
     - Log4j
-    - 请求标识
+    - SLF4J
 ---
 
 > 示例源码地址：`https://github.com/wudashan/slf4j-mdc-muti-thread`
