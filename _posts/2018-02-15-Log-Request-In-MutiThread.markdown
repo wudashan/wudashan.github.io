@@ -59,4 +59,45 @@ public class Main {
 
 从日志中可以明显地看到花括号中包含了**（映射的）**请求ID(requestId)，这其实就是我们定位**（诊断）**问题的关键字**（上下文）**。有了MDC工具，只要在接口或切面植入`put()`和`remove()`代码，在现网定位问题时，我们就可以通过`grep requestId=xxx *.log`快速的过滤出某次请求的所有日志。
 
+# 进阶
+
+然而，MDC工具真的有我们所想的这么方便吗？回到我们开头，一次请求可能涉及多线程异步处理，那么在多线程异步的场景下，它是否还能正常运作呢？Talk is cheap, show me the code。
+
+```
+public class Main {
+
+    private static final String KEY = "requestId";
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
+    public static void main(String[] args) {
+
+        // 入口传入请求ID
+        MDC.put(KEY, UUID.randomUUID().toString());
+
+        // 主线程打印日志
+        logger.debug("log in main thread");
+
+        // 异步线程打印日志
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                logger.debug("log in other thread");
+            }
+        }).start();
+
+        // 出口移除请求ID
+        MDC.remove(KEY);
+
+    }
+
+}
+```
+
+代码里我们新起了一个异步线程，并在匿名对象Runnable的run()方法打印日志。运行main函数，可以在控制台看到以下日志输出：
+
+```
+2018-02-17 14:05:43.487 {requestId=e6099c85-72be-4986-8a28-de6bb2e52b01} [main] DEBUG cn.wudashan.Main - log in main thread
+2018-02-17 14:05:43.490 {} [Thread-1] DEBUG cn.wudashan.Main - log in other thread
+```
+
 ---
