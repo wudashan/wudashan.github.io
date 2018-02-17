@@ -100,4 +100,6 @@ public class Main {
 2018-02-17 14:05:43.490 {} [Thread-1] DEBUG cn.wudashan.Main - log in other thread
 ```
 
+不幸的是，请求ID在异步线程里不打印了。这是怎么回事呢？要解决这个问题，我们就得知道MDC的实现原理。
+
 ---
