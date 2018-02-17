@@ -36,7 +36,9 @@ public class Main {
         MDC.put(KEY, UUID.randomUUID().toString());
         
         // 打印日志
-        logger.debug("log in main thread");
+        logger.debug("log in main thread 1");
+        logger.debug("log in main thread 2");
+        logger.debug("log in main thread 3");
 
         // 出口移除请求ID
         MDC.remove(KEY);
@@ -49,8 +51,10 @@ public class Main {
 
 我们在main函数的入口调用`MDC.put()`方法传入请求ID，在出口调用`MDC.remove()`方法移除请求ID。配置好**log4j2.xml**文件后，运行main函数，可以在控制台看到以下日志输出：
 
-
-> 2018-02-17 13:11:29.149 {requestId=cab3cd7f-8768-4534-a0bb-96392dcc33a0} [main] DEBUG cn.wudashan.Main - log in main thread
-
+```
+2018-02-17 13:19:52.606 {requestId=f97ea0fb-2a43-40f4-a3e8-711f776857d0} [main] DEBUG cn.wudashan.Main - log in main thread 1
+2018-02-17 13:19:52.609 {requestId=f97ea0fb-2a43-40f4-a3e8-711f776857d0} [main] DEBUG cn.wudashan.Main - log in main thread 2
+2018-02-17 13:19:52.609 {requestId=f97ea0fb-2a43-40f4-a3e8-711f776857d0} [main] DEBUG cn.wudashan.Main - log in main thread 3
+```
 
 ---
