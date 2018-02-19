@@ -102,10 +102,36 @@ public class Main {
 
 不幸的是，请求ID在异步线程里不打印了。这是怎么回事呢？要解决这个问题，我们就得知道MDC的实现原理。由于篇幅有限，这里就暂不详细介绍，MDC之所以在异步线程中不生效是因为底层采用**ThreadLocal**作为数据结构，我们调用`MDC.put()`方法传入的请求ID只在当前线程有效。感兴趣的小伙伴可以自己深入一下代码细节。
 
-知道了原理那么解决这个问题就轻而易举了，我们可以使用装饰器模式，新写一个MDCRunnable类对Runnable接口进行一层包装。在创建MDCRunnable类时保存当前线程的MDC值，在执行`run()`方法时再将保存的MDC值拷贝到异步线程中去。代码如下：
+知道了原理那么解决这个问题就轻而易举了，我们可以使用装饰器模式，新写一个`MDCRunnable`类对`Runnable`接口进行一层包装。在创建`MDCRunnable`类时保存当前线程的MDC值，在执行`run()`方法时再将保存的MDC值拷贝到异步线程中去。代码实现如下：
 
 ```
+public class MDCRunnable implements Runnable {
 
+    private final Runnable runnable;
+
+    private final Map<String, String> map;
+
+    public MDCRunnable(Runnable runnable) {
+        this.runnable = runnable;
+        // 保存当前线程的MDC值
+        this.map = MDC.getCopyOfContextMap();
+    }
+
+    @Override
+    public void run() {
+        // 传入已保存的MDC值
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            MDCUtil.put(entry.getKey(), entry.getValue());
+        }
+        // 装饰器模式，执行run方法
+        runnable.run();
+        // 移除已保存的MDC值
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            MDCUtil.remove(entry.getKey());
+        }
+    }
+    
+}
 ```
 
 ---
