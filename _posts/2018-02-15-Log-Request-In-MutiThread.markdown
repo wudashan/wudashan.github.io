@@ -184,6 +184,6 @@ public class Main {
 2018-03-04 23:44:05.347 {requestId=5ee2a117-e090-41d8-977b-cef5dea09d34} [pool-2-thread-1] DEBUG cn.wudashan.Main - log in other thread pool
 ```
 
-
+Congratulations！经过我们的努力，可以看到在异步线程和线程池中都有requestId打印了！
 
 ---
