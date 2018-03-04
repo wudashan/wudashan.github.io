@@ -102,7 +102,7 @@ public class Main {
 
 不幸的是，请求ID在异步线程里不打印了。这是怎么回事呢？要解决这个问题，我们就得知道MDC的实现原理。由于篇幅有限，这里就暂不详细介绍，MDC之所以在异步线程中不生效是因为底层采用**ThreadLocal**作为数据结构，我们调用`MDC.put()`方法传入的请求ID只在当前线程有效。感兴趣的小伙伴可以自己深入一下代码细节。
 
-知道了原理那么解决这个问题就轻而易举了，我们可以使用**装饰器模式**，新写一个`MDCRunnable类`对`Runnable接口`进行一层包装。在创建`MDCRunnable类`时保存当前线程的MDC值，在执行`run()`方法时再将保存的MDC值拷贝到异步线程中去。代码实现如下：
+知道了原理那么解决这个问题就轻而易举了，我们可以使用**装饰器模式**，新写一个`MDCRunnable类`对`Runnable接口`进行一层装饰。在创建`MDCRunnable类`时保存当前线程的MDC值，在执行`run()`方法时再将保存的MDC值拷贝到异步线程中去。代码实现如下：
 
 ```
 public class MDCRunnable implements Runnable {
@@ -134,7 +134,7 @@ public class MDCRunnable implements Runnable {
 }
 ```
 
-接着，我们需要对main函数里创建的Runnable实现类进行包装：
+接着，我们需要对main函数里创建的Runnable实现类进行装饰：
 
 ```
 public class Main {
@@ -151,7 +151,7 @@ public class Main {
         // 主线程打印日志
         logger.debug("log in main thread");
 
-        // 异步线程打印日志
+        // 异步线程打印日志，用MDCRunnable装饰Runnable
         new Thread(new MDCRunnable(new Runnable() {
             @Override
             public void run() {
@@ -159,7 +159,7 @@ public class Main {
             }
         })).start();
 
-        // 异步线程池打印日志
+        // 异步线程池打印日志，用MDCRunnable装饰Runnable
         EXECUTOR.execute(new MDCRunnable(new Runnable() {
             @Override
             public void run() {
