@@ -166,6 +166,7 @@ public class Main {
                 logger.debug("log in other thread pool");
             }
         }));
+        EXECUTOR.shutdown();
 
         // 出口移除请求ID
         MDC.remove(KEY);
@@ -182,5 +183,7 @@ public class Main {
 2018-03-04 23:44:05.346 {requestId=5ee2a117-e090-41d8-977b-cef5dea09d34} [Thread-1] DEBUG cn.wudashan.Main - log in other thread
 2018-03-04 23:44:05.347 {requestId=5ee2a117-e090-41d8-977b-cef5dea09d34} [pool-2-thread-1] DEBUG cn.wudashan.Main - log in other thread pool
 ```
+
+
 
 ---
