@@ -121,13 +121,13 @@ public class MDCRunnable implements Runnable {
     public void run() {
         // 传入已保存的MDC值
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            MDCUtil.put(entry.getKey(), entry.getValue());
+            MDC.put(entry.getKey(), entry.getValue());
         }
         // 装饰器模式，执行run方法
         runnable.run();
         // 移除已保存的MDC值
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            MDCUtil.remove(entry.getKey());
+            MDC.remove(entry.getKey());
         }
     }
     
