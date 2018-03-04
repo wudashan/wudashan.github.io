@@ -134,4 +134,53 @@ public class MDCRunnable implements Runnable {
 }
 ```
 
+接着，我们需要对main函数里创建的Runnable实现类进行包装：
+
+```
+public class Main {
+
+    private static final String KEY = "requestId";
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
+
+    public static void main(String[] args) {
+
+        // 入口传入请求ID
+        MDC.put(KEY, UUID.randomUUID().toString());
+
+        // 主线程打印日志
+        logger.debug("log in main thread");
+
+        // 异步线程打印日志
+        new Thread(new MDCRunnable(new Runnable() {
+            @Override
+            public void run() {
+                logger.debug("log in other thread");
+            }
+        })).start();
+
+        // 异步线程池打印日志
+        EXECUTOR.execute(new MDCRunnable(new Runnable() {
+            @Override
+            public void run() {
+                logger.debug("log in other thread pool");
+            }
+        }));
+
+        // 出口移除请求ID
+        MDC.remove(KEY);
+
+    }
+
+}
+```
+
+执行main函数，将会输出以下日志：
+
+```
+2018-03-04 23:44:05.343 {requestId=5ee2a117-e090-41d8-977b-cef5dea09d34} [main] DEBUG cn.wudashan.Main - log in main thread
+2018-03-04 23:44:05.346 {requestId=5ee2a117-e090-41d8-977b-cef5dea09d34} [Thread-1] DEBUG cn.wudashan.Main - log in other thread
+2018-03-04 23:44:05.347 {requestId=5ee2a117-e090-41d8-977b-cef5dea09d34} [pool-2-thread-1] DEBUG cn.wudashan.Main - log in other thread pool
+```
+
 ---
