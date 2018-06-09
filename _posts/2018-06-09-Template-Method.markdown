@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Template Method 模板方法"
+title:      "Template Method 模板方法模式"
 subtitle:   "定义一个抽象方法，交由子类去实现。"
 date:       2018-06-09 10:40:00
 author:     "Wudashan"
@@ -9,7 +9,7 @@ catalog: true
 tags:
     - 设计模式
     - 行为型模式
-    - 模板方法
+    - 模板方法模式
 ---
 
 > 示例源码地址：`https://github.com/wudashan/common-task`
