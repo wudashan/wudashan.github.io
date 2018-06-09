@@ -117,6 +117,29 @@ public class TimerTask extends BaseTask {
 }
 ```
 
+## Main.java
+
+```java
+/**
+ * 主程序
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        
+        // 执行消息处理任务
+        BaseTask messageTask = new MessageTask();
+        messageTask.execute();
+        
+        // 执行定时调动任务
+        BaseTask timerTask = new TimerTask();
+        timerTask.execute();
+
+    }
+
+}
+```
+
 ---
 
 # 总结
