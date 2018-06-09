@@ -44,4 +44,41 @@ tags:
 
 ![](http://o7x0ygc3f.bkt.clouddn.com/Template%20Method%20%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.png)
 
+---
 
+# 代码示例
+
+## BaseTask.java
+
+```java
+/**
+ * 抽象任务，封装公共处理逻辑
+ */
+public abstract class BaseTask {
+
+    public void execute() {
+
+        // 入口打印
+        System.out.println("enter execute method...");
+
+        try {
+            // 模板方法，执行真正的任务
+            doExecute();
+        } catch (Exception e) {
+            // 执行失败，打印错误信息
+            System.err.println("doExecute method occur exception, exception:" + e);
+            throw e;
+        }
+
+        // 出口打印
+        System.out.println("exit execute method...");
+
+    }
+
+    /**
+     * 执行任务方法，由子类实现具体的业务
+     */
+    protected abstract void doExecute();
+
+}
+```
