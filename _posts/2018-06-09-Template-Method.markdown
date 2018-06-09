@@ -82,3 +82,38 @@ public abstract class BaseTask {
 
 }
 ```
+
+## MessageTask.java
+
+```java
+/**
+ * 消息处理任务
+ */
+public class MessageTask extends BaseTask {
+
+    @Override
+    protected void doExecute() {
+        // 处理消息
+        System.out.println("handle message");
+    }
+
+}
+```
+
+## TimerTask.java
+
+```java
+/**
+ * 定时调度任务
+ */
+public class TimerTask extends BaseTask {
+
+    @Override
+    protected void doExecute() {
+        // 处理定时任务
+        System.out.println("handle timer");
+    }
+
+}
+```
+
