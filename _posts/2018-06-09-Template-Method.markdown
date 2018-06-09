@@ -123,6 +123,6 @@ public class TimerTask extends BaseTask {
 
 在上述代码示例中，我们在父类实现了`execute()`方法，并在该方法中调用了抽象方法`doExecute()`，即交由子类去覆写具体的实现。当需要统一地修改类的实现，则可以在父类中进行修改，这就是我们的模板方法模式。
 
-
+回顾“动机”一节，执行一个任务可以拆分为执行前、执行中、执行后。要实现该功能很简单，只需要在父类的`execute()`方法中依次调用抽象方法`preExecute()`、`doExecute()`、`postExecute()`即可。由于篇幅有限，感兴趣的小伙伴可以阅读完整代码：[common-task](https://github.com/wudashan/common-task)。
 
 
