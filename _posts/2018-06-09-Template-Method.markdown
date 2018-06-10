@@ -8,15 +8,15 @@ header-img: "img/post-bg-template-method.jpg"
 catalog: true
 tags:
     - 设计模式
-    - 行为型模式
+    - 行为模式
     - 模板方法模式
 ---
 
-> 示例源码地址：`https://github.com/wudashan/common-task`
+> 定义一个操作中算法的框架，而将一些步骤延迟到子类中。模板方法模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
 
 # 模式名和分类
 
-模板方法模式，属于行为型模式。
+模板方法模式，属于行为模式。
 
 ---
 
