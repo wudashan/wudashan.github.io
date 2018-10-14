@@ -214,4 +214,59 @@ public void serializableCopy() {
 }
 ```
 
+---
+
+# 方法四 Gson工具
+
+Gson可以将对象序列化成JSON，也可以将JSON反序列化成对象，所以我们可以用它进行深拷贝。
+
+## 测试用例
+
+```
+@Test
+public void gsonCopy() {
+
+    Address address = new Address("杭州", "中国");
+    User user = new User("大山", address);
+
+    // 使用Gson进行深拷贝
+    Gson gson = new Gson();
+    User copyUser = gson.fromJson(gson.toJson(user), User.class);
+
+    // 修改源对象的值
+    user.getAddress().setCity("深圳");
+
+    // 检查两个对象的值不同
+    assertNotSame(user.getAddress().getCity(), copyUser.getAddress().getCity());
+
+}
+```
+
+---
+
+# 方法五 Jackson工具
+
+Jackson与Gson相似，可以将对象序列化成JSON，明显不同的地方是拷贝的类（包括其成员变量）需要有默认的无参构造函数。
+
+## 测试用例
+
+```
+@Test
+public void jacksonCopy() throws IOException {
+
+    Address address = new Address("杭州", "中国");
+    User user = new User("大山", address);
+
+    // 使用Jackson进行深拷贝
+    ObjectMapper objectMapper = new ObjectMapper();
+    User copyUser = objectMapper.readValue(objectMapper.writeValueAsString(user), User.class);
+
+    // 修改源对象的值
+    user.getAddress().setCity("深圳");
+
+    // 检查两个对象的值不同
+    assertNotSame(user.getAddress().getCity(), copyUser.getAddress().getCity());
+
+}
+```
 
