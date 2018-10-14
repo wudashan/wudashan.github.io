@@ -18,7 +18,7 @@ tags:
 
 ![]()
 
-了解了浅拷贝和深拷贝的区别之后，本篇博客将教大家4种深拷贝的方法。
+了解了浅拷贝和深拷贝的区别之后，本篇博客将教大家几种深拷贝的方法。
 
 ---
 
@@ -90,7 +90,7 @@ Object父类有个clone()的拷贝方法，不过它是protected类型的，我�
 
 ## 重写代码
 
-让我们修改一下User类，Address类以支持深拷贝。
+让我们修改一下User类，Address类，实现Cloneable接口，使其支持深拷贝。
 
 ```
 /**
@@ -145,6 +145,65 @@ public void cloneCopy() throws CloneNotSupportedException {
 
     // 调用clone()方法进行深拷贝
     User copyUser = user.clone();
+
+    // 修改源对象的值
+    user.getAddress().setCity("深圳");
+
+    // 检查两个对象的值不同
+    assertNotSame(user.getAddress().getCity(), copyUser.getAddress().getCity());
+
+}
+```
+
+---
+
+# 方法三 序列化
+
+Java提供了序列化的能力，我们可以先将源对象进行序列化，再反序列化生成拷贝对象。但是，使用序列化的前提是拷贝的类（包括其成员变量）需要实现Serializable接口。
+
+## 重写代码
+
+让我们修改一下User类，Address类，实现Serializable接口，使其支持序列化。
+
+```
+/**
+ * 地址
+ */
+public class Address implements Serializable {
+
+    private String city;
+    private String country;
+
+    // constructors, getters and setters
+
+}
+```
+
+```
+/**
+ * 用户
+ */
+public class User implements Serializable {
+
+    private String name;
+    private Address address;
+
+    // constructors, getters and setters
+
+}
+```
+
+## 测试用例
+
+```
+@Test
+public void serializableCopy() {
+
+    Address address = new Address("杭州", "中国");
+    User user = new User("大山", address);
+
+    // 使用序列化进行深拷贝
+    User copyUser = (User) SerializationUtils.clone(user);
 
     // 修改源对象的值
     user.getAddress().setCity("深圳");
