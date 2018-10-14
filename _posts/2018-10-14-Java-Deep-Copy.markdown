@@ -22,9 +22,37 @@ tags:
 
 ---
 
-# 动机
+# 领域模型
 
-以前小学老师上课曾问过这样一个问题：把大象放进冰箱需要几个步骤？答案是三个步骤：1）打开冰箱 2）把大象放进冰箱 3）关上冰箱。若我们把大象放进冰箱看成是一个任务，那么完成这个任务需要有三个步骤：1）执行前准备 2）执行真正任务 3）执行后收尾。软件开发过程中，就会遇到各种各样的任务，如消息处理任务，定时调度任务，异步执行任务等等，虽然不同的任务做不同的事，但是流程上却是一直的，即分为执行前、执行中、执行后三个步骤。如何将流程在代码中实现，靠的就是即将介绍的模板方法模式。
+首先，我们定义一下我们的对象，方便我们介绍后续的代码实现。
+
+```
+/**
+ * 用户
+ */
+public class User {
+
+    private String name;
+    private Address address;
+
+    // constructors, getters and setters
+
+}
+
+/**
+ * 地址
+ */
+public class Address {
+
+    private String city;
+    private String country;
+
+    // constructors, getters and setters
+
+}
+```
+
+如上述代码，我们定义了一个User用户类，包含name姓名，和address地址，其中address并不是字符串，而是另一个Address类，包含country国家和city城市。
 
 ---
 
