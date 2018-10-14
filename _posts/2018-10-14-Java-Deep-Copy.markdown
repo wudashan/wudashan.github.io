@@ -82,23 +82,24 @@ public class User {
 ## 测试用例
 
 ```
-    @Test
-    public void constructorCopy() {
+@Test
+public void constructorCopy() {
 
-        Address address = new Address("杭州", "中国");
-        User user = new User();
-        user.setName("大山");
-        user.setAddress(address);
+    Address address = new Address("杭州", "中国");
+    User user = new User();
+    user.setName("大山");
+    user.setAddress(address);
 
-        User copyUser = new User(user.getName(), user.getAddress());
+    // 通过构造函数进行深拷贝
+    User copyUser = new User(user.getName(), user.getAddress());
 
-        // 修改源对象的值
-        user.getAddress().setCity("深圳");
+    // 修改源对象的值
+    user.getAddress().setCity("深圳");
 
-        // 检查两个对象的值不同
-        assertNotSame(user.getAddress().getCity(), copyUser.getAddress().getCity());
+    // 检查两个对象的值不同
+    assertNotSame(user.getAddress().getCity(), copyUser.getAddress().getCity());
 
-    }
+}
 ```
 
 ## 优点
