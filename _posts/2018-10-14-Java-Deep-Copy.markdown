@@ -134,4 +134,25 @@ public class User implements Cloneable {
 
 需要注意的是，`super.clone()`其实是浅拷贝，所以在重写User类的clone()方法时，address对象需要调用`address.clone()`重新赋值。
 
+## 测试用例
+
+```
+@Test
+public void cloneCopy() throws CloneNotSupportedException {
+
+    Address address = new Address("杭州", "中国");
+    User user = new User("大山", address);
+
+    // 调用clone()方法进行深拷贝
+    User copyUser = user.clone();
+
+    // 修改源对象的值
+    user.getAddress().setCity("深圳");
+
+    // 检查两个对象的值不同
+    assertNotSame(user.getAddress().getCity(), copyUser.getAddress().getCity());
+
+}
+```
+
 
