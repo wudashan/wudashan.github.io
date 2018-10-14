@@ -82,14 +82,6 @@ public void constructorCopy() {
 }
 ```
 
-## 优点
-
-* 待补充
-
-## 缺点
-
-* 待补充
-
 ---
 
 # 方法二 重载clone()方法
