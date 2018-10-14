@@ -52,21 +52,62 @@ public class Address {
 }
 ```
 
-如上述代码，我们定义了一个User用户类，包含name姓名，和address地址，其中address并不是字符串，而是另一个Address类，包含country国家和city城市。构造方法和成员变量的get()、set()方法此次我们省略不写。
+如上述代码，我们定义了一个User用户类，包含name姓名，和address地址，其中address并不是字符串，而是另一个Address类，包含country国家和city城市。构造方法和成员变量的get()、set()方法此次我们省略不写。接下来我们将详细描述如何深拷贝User对象。
 
 ---
 
-# 优缺点
+# 方法一 构造函数
+
+我们可以通过重载User类的构造函数进行深拷贝，如果成员变量是基本类型和字符串则直接赋值，如果是对象则重新new一个。
+
+## 深拷贝
+
+```
+public class User {
+
+    private String name;
+    private Address address;
+
+    // 重载构造函数
+    public User(String name, Address address) {
+        // 字符串直接赋值
+        this.name = name;
+        // 对象则重新new一个
+        this.address = new Address(address.getCity(), address.getCountry());
+    }
+
+}
+```
+
+## 用例
+
+```
+    @Test
+    public void constructorCopy() {
+
+        Address address = new Address("杭州", "中国");
+        User user = new User();
+        user.setName("大山");
+        user.setAddress(address);
+
+        User copyUser = new User(user.getName(), user.getAddress());
+
+        // 修改源对象的值
+        user.getAddress().setCity("深圳");
+
+        // 检查两个对象的值不同
+        assertNotSame(user.getAddress().getCity(), copyUser.getAddress().getCity());
+
+    }
+```
 
 ## 优点
 
-* 封装不变部分，扩展可变部分，即符合开闭原则
-* 提取公共代码，统一控制所有子类的公共逻辑，便于后期维护
-* 行为由父类控制，子类实现，父类控制住流程，子类实现差异化
+* 待补充
 
 ## 缺点
 
-* 每一个不同的实现都需要一个新的子类，导致系统类的数量增加
+* 待补充
 
 ---
 
