@@ -58,26 +58,8 @@ public class Address {
 
 # 方法一 构造函数
 
-我们可以通过重载User类的构造函数进行深拷贝，如果成员变量是基本类型和字符串则直接赋值，如果是对象则重新new一个。
+我们可以通过在调用构造函数进行深拷贝，形参如果是基本类型和字符串则直接赋值，如果是对象则重新new一个。
 
-## 深拷贝
-
-```
-public class User {
-
-    private String name;
-    private Address address;
-
-    // 重载构造函数
-    public User(String name, Address address) {
-        // 字符串直接赋值
-        this.name = name;
-        // 对象则重新new一个
-        this.address = new Address(address.getCity(), address.getCountry());
-    }
-
-}
-```
 
 ## 测试用例
 
@@ -86,12 +68,10 @@ public class User {
 public void constructorCopy() {
 
     Address address = new Address("杭州", "中国");
-    User user = new User();
-    user.setName("大山");
-    user.setAddress(address);
+    User user = new User("大山", address);
 
-    // 通过构造函数进行深拷贝
-    User copyUser = new User(user.getName(), user.getAddress());
+    // 调用构造函数时进行深拷贝
+    User copyUser = new User(user.getName(), new Address(address.getCity(), address.getCountry()));
 
     // 修改源对象的值
     user.getAddress().setCity("深圳");
@@ -112,112 +92,54 @@ public void constructorCopy() {
 
 ---
 
-# 类图
+# 方法二 重载clone()方法
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Template%20Method%20%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.png)
+Object父类有个clone()的拷贝方法，不过它是protected类型的，我们需要重写它并修改为public类型。除此之外，子类还需要实现Cloneable接口来告诉JVM这个类是可以拷贝的。
 
----
+## 拷贝代码
 
-# 代码示例
+让我们修改一下User类，Address类以支持深拷贝。
 
-## BaseTask.java
-
-```java
-/**
- * 抽象任务，封装公共处理逻辑
- */
-public abstract class BaseTask {
-
-    public void execute() {
-
-        // 入口打印
-        System.out.println("enter execute method...");
-
-        try {
-            // 模板方法，执行真正的任务
-            doExecute();
-        } catch (Exception e) {
-            // 执行失败，打印错误信息
-            System.err.println("doExecute method occur exception, exception:" + e);
-            throw e;
-        }
-
-        // 出口打印
-        System.out.println("exit execute method...");
-
-    }
-
-    /**
-     * 执行任务方法，由子类实现具体的业务
-     */
-    protected abstract void doExecute();
-
-}
 ```
-
-## MessageTask.java
-
-```java
 /**
- * 消息处理任务
+ * 地址
  */
-public class MessageTask extends BaseTask {
+public class Address implements Cloneable {
+
+    private String city;
+    private String country;
+
+    // constructors, getters and setters
 
     @Override
-    protected void doExecute() {
-        // 处理消息
-        System.out.println("handle message");
+    public Address clone() throws CloneNotSupportedException {
+        return (Address) super.clone();
     }
 
 }
 ```
 
-## TimerTask.java
-
-```java
+```
 /**
- * 定时调度任务
+ * 用户
  */
-public class TimerTask extends BaseTask {
+public class User implements Cloneable {
+
+    private String name;
+    private Address address;
+
+    // constructors, getters and setters
 
     @Override
-    protected void doExecute() {
-        // 处理定时任务
-        System.out.println("handle timer");
+    public User clone() throws CloneNotSupportedException {
+        User user = (User) super.clone();
+        user.setAddress(this.address.clone());
+        return user;
     }
 
 }
 ```
 
-## Main.java
-
-```java
-/**
- * 主程序
- */
-public class Main {
-
-    public static void main(String[] args) {
-        
-        // 执行消息处理任务
-        BaseTask messageTask = new MessageTask();
-        messageTask.execute();
-        
-        // 执行定时调动任务
-        BaseTask timerTask = new TimerTask();
-        timerTask.execute();
-
-    }
-
-}
-```
-
----
-
-# 总结
-
-在上述代码示例中，我们在父类实现了execute()方法，并在该方法中调用了抽象方法doExecute()，即交由子类去覆写具体的实现。当需要统一地修改类的实现，则可以在父类中进行修改，这就是我们的模板方法模式。
-
-回顾“动机”一节，执行一个任务可以拆分为执行前、执行中、执行后。要实现该功能很简单，只需要在父类的execute()方法中依次调用抽象方法preExecute()、doExecute()、postExecute()即可。由于篇幅有限，感兴趣的小伙伴可以阅读[完整示例代码](https://github.com/wudashan/common-task)。
+需要注意的是，`Object.clone()`其实是浅拷贝，所以在重写User类的clone()方法时，address对象需要调用`address.clone()`重新赋值。
 
 
