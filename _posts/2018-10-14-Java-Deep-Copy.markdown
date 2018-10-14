@@ -53,7 +53,7 @@ public class Address {
 }
 ```
 
-如上述代码，我们定义了一个User用户类，包含name姓名，和address地址，其中address并不是字符串，而是另一个Address类，包含country国家和city城市。构造方法和成员变量的get()、set()方法此次我们省略不写。接下来我们将详细描述如何深拷贝User对象。
+如上述代码，我们定义了一个User用户类，包含name姓名，和address地址，其中address并不是字符串，而是另一个Address类，包含country国家和city城市。构造方法和成员变量的get()、set()方法此处我们省略不写。接下来我们将详细描述如何深拷贝User对象。
 
 ---
 
