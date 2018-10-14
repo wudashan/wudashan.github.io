@@ -88,7 +88,7 @@ public void constructorCopy() {
 
 Object父类有个clone()的拷贝方法，不过它是protected类型的，我们需要重写它并修改为public类型。除此之外，子类还需要实现Cloneable接口来告诉JVM这个类是可以拷贝的。
 
-## 拷贝代码
+## 重写代码
 
 让我们修改一下User类，Address类以支持深拷贝。
 
@@ -132,6 +132,6 @@ public class User implements Cloneable {
 }
 ```
 
-需要注意的是，`Object.clone()`其实是浅拷贝，所以在重写User类的clone()方法时，address对象需要调用`address.clone()`重新赋值。
+需要注意的是，`super.clone()`其实是浅拷贝，所以在重写User类的clone()方法时，address对象需要调用`address.clone()`重新赋值。
 
 
