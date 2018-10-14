@@ -24,7 +24,7 @@ tags:
 
 # 领域模型
 
-首先，我们定义一下我们的对象，方便我们介绍后续的代码实现。
+首先，我们定义一下需要拷贝的对象。
 
 ```
 /**
@@ -52,7 +52,7 @@ public class Address {
 }
 ```
 
-如上述代码，我们定义了一个User用户类，包含name姓名，和address地址，其中address并不是字符串，而是另一个Address类，包含country国家和city城市。
+如上述代码，我们定义了一个User用户类，包含name姓名，和address地址，其中address并不是字符串，而是另一个Address类，包含country国家和city城市。构造方法和成员变量的get()、set()方法此次我们省略不写。
 
 ---
 
