@@ -316,3 +316,9 @@ public void jacksonCopy() throws IOException {
 
 说了这么多深拷贝的实现方法，哪一种方法才是最好的呢？最简单的判断就是根据拷贝的类（包括其成员变量）是否提供了深拷贝的构造函数、是否实现了Cloneable接口、是否实现了Serializable接口、是否实现了默认的无参构造函数。
 
+---
+
+# 参考阅读
+
+[[1] How to Make a Deep Copy of an Object in Java](https://www.baeldung.com/java-deep-copy)
+
