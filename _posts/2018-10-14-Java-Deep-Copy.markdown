@@ -203,7 +203,7 @@ public void serializableCopy() {
     Address address = new Address("杭州", "中国");
     User user = new User("大山", address);
 
-    // 使用序列化进行深拷贝
+    // 使用Apache Commons Lang序列化进行深拷贝
     User copyUser = (User) SerializationUtils.clone(user);
 
     // 修改源对象的值
@@ -230,7 +230,7 @@ public void gsonCopy() {
     Address address = new Address("杭州", "中国");
     User user = new User("大山", address);
 
-    // 使用Gson进行深拷贝
+    // 使用Gson序列化进行深拷贝
     Gson gson = new Gson();
     User copyUser = gson.fromJson(gson.toJson(user), User.class);
 
@@ -298,7 +298,7 @@ public void jacksonCopy() throws IOException {
     Address address = new Address("杭州", "中国");
     User user = new User("大山", address);
 
-    // 使用Jackson进行深拷贝
+    // 使用Jackson序列化进行深拷贝
     ObjectMapper objectMapper = new ObjectMapper();
     User copyUser = objectMapper.readValue(objectMapper.writeValueAsString(user), User.class);
 
