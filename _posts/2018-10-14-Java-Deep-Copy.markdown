@@ -11,6 +11,7 @@ tags:
     - 浅拷贝与深拷贝
 ---
 
+> 深拷贝实现代码：https://github.com/wudashan/java-deep-copy
 
 # 介绍
 
@@ -320,11 +321,11 @@ public void jacksonCopy() throws IOException {
 
 | 深拷贝方法 | 优点 | 缺点
 |----|------|---- 
-| 构造函数 |  简单易理解  |  可用性差，每次新增成员变量都需要新增新的拷贝构造函数
-| 重载clone()方法 |  1. 实现简单 <br> 2. 不需要引入第三方包  |  可用性较差，每次新增成员变量可能需要修改clone()方法
-|Apache Commons Lang序列化 | 可用性强，新增成员变量不需要修改拷贝方法  | 1. 拷贝类（包括其成员变量）需要实现Serializable接口 <br> 2. 需要引入Apache Commons Lang第三方JAR包
-|Gson序列化 |  | 
-|Jackson序列化 |  | 
+| 构造函数 | 1. 简单易理解  |  1. 可用性差，每次新增成员变量都需要新增新的拷贝构造函数
+| 重载clone()方法 |  1. 实现简单 <br> 2. 不需要引入第三方包  |  1. 可用性较差，每次新增成员变量可能需要修改clone()方法 <br> 2. 拷贝类（包括其成员变量）需要实现Cloneable接口
+|Apache Commons Lang序列化 | 1. 可用性强，新增成员变量不需要修改拷贝方法  | 1. 拷贝类（包括其成员变量）需要实现Serializable接口 <br> 2. 需要引入Apache Commons Lang第三方JAR包
+|Gson序列化 | 1. 对拷贝类没有要求，不需要实现额外接口 | 1. 需要引入Gson第三方JAR包
+|Jackson序列化 | 1. 可用性强，新增成员变量不需要修改拷贝方法 | 1. 需要引入Jackson第三方JAR包
 
 ---
 
