@@ -4,16 +4,15 @@ title:      "Java如何对一个对象进行深拷贝？"
 subtitle:   ""
 date:       2018-10-14 10:20:00
 author:     "Wudashan"
-header-img: "img/cb7s5-ukuoe-0.jpg"
+header-img: "img/post-bg-java-deep-copy.jpg"
 catalog: true
 tags:
     - Java
     - 浅拷贝与深拷贝
 ---
 
-> 定义一个操作中算法的框架，而将一些步骤延迟到子类中。模板方法模式使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
 
-# 模式名和分类
+# 介绍
 
 模板方法模式，属于行为模式。
 
