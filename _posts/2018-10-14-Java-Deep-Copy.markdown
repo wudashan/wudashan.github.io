@@ -248,6 +248,46 @@ public void gsonCopy() {
 
 Jackson与Gson相似，可以将对象序列化成JSON，明显不同的地方是拷贝的类（包括其成员变量）需要有默认的无参构造函数。
 
+## 重写代码
+
+让我们修改一下User类，Address类，实现默认的无参构造函数，使其支持Jackson。
+
+```
+/**
+ * 用户
+ */
+public class User {
+
+    private String name;
+    private Address address;
+
+    // constructors, getters and setters
+
+    public User() {
+    }
+
+}
+
+```
+
+```
+/**
+ * 地址
+ */
+public class Address {
+
+    private String city;
+    private String country;
+
+    // constructors, getters and setters
+
+    public Address() {
+    }
+
+}
+```
+
+
 ## 测试用例
 
 ```
