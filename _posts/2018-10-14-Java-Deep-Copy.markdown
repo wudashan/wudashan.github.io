@@ -157,9 +157,9 @@ public void cloneCopy() throws CloneNotSupportedException {
 
 ---
 
-# 方法三 序列化
+# 方法三 Apache Commons Lang序列化
 
-Java提供了序列化的能力，我们可以先将源对象进行序列化，再反序列化生成拷贝对象。但是，使用序列化的前提是拷贝的类（包括其成员变量）需要实现Serializable接口。
+Java提供了序列化的能力，我们可以先将源对象进行序列化，再反序列化生成拷贝对象。但是，使用序列化的前提是拷贝的类（包括其成员变量）需要实现Serializable接口。Apache Commons Lang包对Java序列化进行了封装，可以使用它进行。
 
 ## 重写代码
 
@@ -216,7 +216,7 @@ public void serializableCopy() {
 
 ---
 
-# 方法四 Gson工具
+# 方法四 Gson序列化
 
 Gson可以将对象序列化成JSON，也可以将JSON反序列化成对象，所以我们可以用它进行深拷贝。
 
@@ -244,7 +244,7 @@ public void gsonCopy() {
 
 ---
 
-# 方法五 Jackson工具
+# 方法五 Jackson序列化
 
 Jackson与Gson相似，可以将对象序列化成JSON，明显不同的地方是拷贝的类（包括其成员变量）需要有默认的无参构造函数。
 
@@ -316,15 +316,15 @@ public void jacksonCopy() throws IOException {
 
 说了这么多深拷贝的实现方法，哪一种方法才是最好的呢？最简单的判断就是根据拷贝的类（包括其成员变量）是否提供了深拷贝的构造函数、是否实现了Cloneable接口、是否实现了Serializable接口、是否实现了默认的无参构造函数。如果需要详细的考虑，则可以参考下面的表格：
 
-<br>
+
 
 | 深拷贝方法 | 优点 | 缺点
 |----|------|---- 
-| 构造函数 |  简单易理解  |  可用性差，每次新增成员变量都需要新增构造函数
-| 重载clone()方法 |    |  
-|序列化 |  | 
-|Gson工具 |  | 
-|Jackson工具 |  | 
+| 构造函数 |  简单易理解  |  可用性差，每次新增成员变量都需要新增新的拷贝构造函数
+| 重载clone()方法 |  1. 实现简单 <br> 2. 不需要引入第三方包  |  可用性较差，每次新增成员变量可能需要修改clone()方法
+|Apache Commons Lang序列化 | 可用性强，新增成员变量不需要修改拷贝方法  | 1. 拷贝类（包括其成员变量）需要实现Serializable接口 <br> 2. 需要引入Apache Commons Lang第三方JAR包
+|Gson序列化 |  | 
+|Jackson序列化 |  | 
 
 ---
 
