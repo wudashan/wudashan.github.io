@@ -212,7 +212,7 @@ String outputDir = context.getOptions().getScratchDir().getAbsolutePath();
 
 据Ken Beck所述，只要遵循以下规则，设计就能变得“简单”：
 
- 1. 运行所以测试；
+ 1. 运行所有测试；
  2. 不可重复；
  3. 表达了程序员的意图；
  4. 尽可能减少类和方法的数量；
