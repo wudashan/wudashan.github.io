@@ -19,7 +19,7 @@ tags:
 
 element根目录下，定义了网络层通信的基本类。
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/elements%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-08/elements%E5%8C%85.png)
 
 ## 根目录
 
