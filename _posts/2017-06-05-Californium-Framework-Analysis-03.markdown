@@ -19,7 +19,7 @@ tags:
 
 物联网时代，为了在设备监控的数据发生变化时平台能第一时间获取到，频繁地定时地向设备获取其数据是不现实的。一是会消耗设备的电量、二是会浪费不必要的带宽。其解决方案是：平台作为一个客户端向设备（服务端）的数据发起一个订阅请求，在设备数据发生变化时主动推送给平台。交互图如下：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E8%AE%A2%E9%98%85%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-03/%E8%AE%A2%E9%98%85%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
 
 ----
 
@@ -27,7 +27,7 @@ tags:
 
 observe包就是上面讲到的订阅功能模块，实现客户端对服务端资源的订阅。其过程为：客户端发起一个订阅请求；服务端接收请求，找到对应的资源来处理请求，并保存该订阅关系；当服务端的资源发生变化时，服务端主动发送响应给客户端；客户端根据之前的订阅接收该响应。observe包图如下：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/observe%E5%8C%85_01.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-03/observe%E5%8C%85_01.png)
 
 ## 客户端相关
 
@@ -122,7 +122,7 @@ public Exchange receiveResponse(final Response response, final CorrelationContex
 
 NotificationListener具有全局性。当添加了监听器后，所有资源的订阅响应都将回调，这是因为客户端订阅时是以服务端的资源为单位的，而监听器是在客户端的Endpoint里添加的，关系如下图：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/notificationListener%E4%B8%8EResource.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-03/notificationListener%E4%B8%8EResource.png)
 
 当然框架也提供了一个一对一关系的回调，通过`CoapClient.observe(Request request, CoapHandler handler)`方法实现，这里就不展开了。
 
@@ -136,7 +136,7 @@ NotificationListener具有全局性。当添加了监听器后，所有资源的
 
 该类表示客户端发起订阅的Endpoint，它包含着一个客户端与服务端所有资源建立的订阅关系，所以与`ObserveRelation类`是一个一对多的关系。为了形象化，画了下面这个图供大家参考：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/ObserveingEndpoint%E4%B8%8EObserveRelation.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-03/ObserveingEndpoint%E4%B8%8EObserveRelation.png)
 
 当一个CON类型的订阅响应发送给客户端超时之后，服务端可以认为客户端已不可达，并解除所有已经建立的订阅关系。
 
