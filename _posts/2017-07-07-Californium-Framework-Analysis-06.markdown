@@ -19,13 +19,13 @@ tags:
 
 network包目录下，是框架中网络传输的核心模块。
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-06/network%E5%8C%85.png)
 
 ## stack包
 
 该模块为CoAP协议栈，模块一共有以下类：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-stack%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-06/network-stack%E5%8C%85.png)
 
 ### Layer接口
 
@@ -115,7 +115,7 @@ CoapStack类组装了上面介绍的几个协议层，形成了协议栈，用�
 
 network根目录下，还有下面几个类：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-%E6%A0%B9%E7%9B%AE%E5%BD%95.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-06/network-%E6%A0%B9%E7%9B%AE%E5%BD%95.png)
 
 ### EndpointObserver接口
 
