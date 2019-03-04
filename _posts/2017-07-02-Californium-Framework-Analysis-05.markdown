@@ -19,13 +19,13 @@ tags:
 
 network包目录下，是框架中网络传输的核心模块。
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-05/network%E5%8C%85.png)
 
 ## config包
 
 该目录下一共有4个类。
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-config%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-05/network-config%E5%8C%85.png)
 
 ### NetworkConfig类
 
@@ -96,7 +96,7 @@ public void changed(String key, T value) {
 
 该目录一共有以下类：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-deduplication%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-05/network-deduplication%E5%8C%85.png)
 
 ### Deduplicator接口
 
@@ -175,11 +175,11 @@ private class SweepAlgorithm implements Runnable {
 
 该类使用三个ConcurrentHashMap对象组成循环队列，其存储报文、报文重复检查和清理报文过程如下图：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CropRotation-%E5%AD%98%E5%82%A8%E6%8A%A5%E6%96%87.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-05/CropRotation-%E5%AD%98%E5%82%A8%E6%8A%A5%E6%96%87.png)
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CropRotation-%E6%8A%A5%E6%96%87%E9%87%8D%E5%A4%8D%E6%A3%80%E6%9F%A5.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-05/CropRotation-%E6%8A%A5%E6%96%87%E9%87%8D%E5%A4%8D%E6%A3%80%E6%9F%A5.png)
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CropRotation-%E6%B8%85%E7%90%86%E6%8A%A5%E6%96%87.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-05/CropRotation-%E6%B8%85%E7%90%86%E6%8A%A5%E6%96%87.png)
 
 可以总结为，每次清理，激活态和冻结态将顺时针移动一格，报文需要经过2个清理周期才会被完全清理。
 
@@ -191,14 +191,14 @@ private class SweepAlgorithm implements Runnable {
 
 该目录下一共有3个类。
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-interceptors%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-05/network-interceptors%E5%8C%85.png)
 
 
 ### MessageInterceptor接口
 
 MessageInterceptor位于Connector和Matcher之间，如下图：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE_02.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-05/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE_02.png)
 
 当CoAP消息从Connector传来时，对应的`receiveXXX()`方法将被回调；当CoAP消息要发送到Connector时，对应的`sendXXX()`方法将被回调。
 
@@ -216,7 +216,7 @@ MessageInterceptor可以中断CoAP消息的处理。如果取消准备发送的�
 
 该目录下一共有5个类。
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network-serialization%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-05/network-serialization%E5%8C%85.png)
 
 ### DatagramReader类
 
