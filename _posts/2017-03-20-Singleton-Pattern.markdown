@@ -53,7 +53,7 @@ public class Runtime {
 ---
 
 # 类图
-![](http://o7x0ygc3f.bkt.clouddn.com/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/singleton-pattern/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.png)
 
 ---
 
