@@ -42,7 +42,7 @@ tags:
 
 # 类图
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Template%20Method%20%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/template-method/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F.png)
 
 ---
 
