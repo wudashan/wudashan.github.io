@@ -26,38 +26,38 @@ tags:
 
 californium-core是框架的核心实现，包图如下：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/californium-core%E5%8C%85%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-01/californium-core%E5%8C%85%E5%9B%BE.png)
 
 ## coap包
 
 该模块包含了CoAP协议中定义的常量和消息基本模型。模块一共有以下类：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/coap%E5%8C%85%E7%B1%BB%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-01/coap%E5%8C%85%E7%B1%BB%E5%9B%BE.png)
 
 ## observe包
 
 该模块为CoAP协议的订阅模块，是协议一大功能。模块一共有以下类：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/observe%E5%8C%85_01.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-01/observe%E5%8C%85_01.png)
 
 ## server包
 
 该模块为Californium框架中的服务端，模块一共有以下类：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/server%E5%8C%85_01.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-01/server%E5%8C%85_01.png)
 
 
 ## network包
 
 该模块为框架中网络传输的核心部分，包图如下：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/network%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-01/network%E5%8C%85.png)
 
 ## 根目录
 
 core模块下，封装好了一些供开发者使用的类：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/core.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-01/core.png)
 
 
 ---
