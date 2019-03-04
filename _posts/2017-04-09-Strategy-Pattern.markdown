@@ -77,7 +77,7 @@ public boolean pay(Pay payment, int money) {
 ---
 
 # 类图
-![](http://o7x0ygc3f.bkt.clouddn.com/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F_02.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/strategy-pattern/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F_02.png)
 
 ---
 
