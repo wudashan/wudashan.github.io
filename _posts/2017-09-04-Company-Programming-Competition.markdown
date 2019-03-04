@@ -19,11 +19,11 @@ tags:
 
 最近产品线举办了一个软件编程大赛，题目非常的有趣，就是在一个9 × 9的格子里，你要和另一个敌人PK，在PK的过程中，你可以吃格子里的果实来提升攻击力。每次可以往正上、正下、正左、正右、左上、左下、右上、右下八个方向走。每次要么连续吃果实要么连续走空白区域，且不能走重复的位置。初始状态如下图所示：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-5.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-programming-competition/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-5.png)
 
 为了提升攻击力，我们需要尽可能地一次吃最多的果实，所以路线可以这样规划：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-9.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-programming-competition/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-9.png)
 
 至此，我们可以对这个问题进行描述：已知空白区域不能走，每次可以往正上、正下、正左、正右、左上、左下、右上、右下八个方向走，走过的位置不能再走，求能吃最多果实的路线（最长路径问题）？
 
@@ -98,7 +98,7 @@ public class Pos {
 
 由于我们是使用横纵坐标而不是几行几列来表示一个格子（没错，我就是这么傲娇），那么我们就需要给地图定义横纵坐标方向。方向如下图所示：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-8.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-programming-competition/%E6%9C%80%E9%95%BF%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98-8.png)
 
 那么**起点上方的果实**坐标就是[3, 2]（横坐标为3，纵坐标为2），但是对应着二维数组为map[2][3]（第二行，第三列），即横坐标对应着二维数组的列，纵坐标对应着二维数组的行。
 
