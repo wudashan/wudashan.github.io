@@ -22,7 +22,7 @@ tags:
 
 # 动机
 现在我们手机App经常会有一个菜单栏，点击菜单栏里的每个选项会执行相应的功能，如下图：
-![](http://o7x0ygc3f.bkt.clouddn.com/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F_01.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/command-pattern/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F_01.png)
 但是如果我们对每个选项进行硬编码，那么下次App想换功能的时候，又需要删除旧代码，换成新代码。
 
 就比如说咱们想把上图**“收付款”**改为**“摇一摇”**，那么就得找到该选项对应的代码，然后重新编码。等你辛辛苦苦把代码写好了，也测试完了，准备上线了，这时候StringBuilder产品经理突然和你说：算啦算啦，还是不改啦，还是保留**“收付款”**吧！
@@ -46,7 +46,7 @@ tags:
 ---
 
 # 类图
-![](http://o7x0ygc3f.bkt.clouddn.com/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F_02.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/command-pattern/%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F_02.png)
 
 ---
 
