@@ -19,7 +19,7 @@ tags:
 
 core根目录下，封装好了一些供开发者使用的类。
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/core.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis-07/core.png)
 
 ## 根目录
 
