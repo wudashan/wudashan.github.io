@@ -29,7 +29,7 @@ tags:
 
 首先让我们看一下CoAP协议的报文是长啥样的：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/coap%E6%95%B0%E6%8D%AE%E5%8C%85.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/coap%E6%95%B0%E6%8D%AE%E5%8C%85.png)
 
 **Version (Ver)：**长度为2位，表示CoAP协议的版本号。当前版本为01（二进制表示形式）。
 
@@ -56,7 +56,7 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ### 可靠传输模型
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%9E%8B.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%9E%8B.png)
 
 如上图，客户端通过发起一个CON报文（Message ID = 0x7d34），服务端在收到CON报文之后，需要回复一个ACK报文（Message ID = 0x7d34）。通过Message ID将CON报文和ACK报文对应起来。
 
@@ -64,7 +64,7 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ### 不可靠传输模型
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E4%B8%8D%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%9E%8B.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/%E4%B8%8D%E5%8F%AF%E9%9D%A0%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%9E%8B.png)
 
 如上图，客户端发起一个NON报文（Message ID = 0x01a0）之后，服务端无需回复响应，客户端也不会重发。
 
@@ -75,17 +75,17 @@ CoAP协议是虽然是建立在UDP之上的，但是它有可靠和不可靠两�
 
 ### CON请求，ACK响应
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%B7%A6.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%B7%A6.png)
 
 如上图，客户端发起了一个`CON报文（Message ID = 0xbc90, Code = 0.01 GET, Options = {"Uri-Path":"/temperature"}, Token = 0x71）`，服务端在收到查询温度的请求之后，回复`ACK报文（Message ID = 0xbc90, Code = 2.05 Content, Payload = "22.5 C", Token = 0x71）`。也就是说服务端可以在ACK报文中，就将客户端查询温度的结果一起返回。
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%8F%B3.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/CON%E8%AF%B7%E6%B1%82_ACK%E5%93%8D%E5%BA%94_%E5%8F%B3.png)
 
 当然，还有一种情况，那就是服务端可能由于某些原因不马上返回结果。如上图，客户端发起查询温度的CON报文之后，服务端先回复ACK报文。一段时间过后，服务端再发起CON报文给客户端，并将温度的结果一起携带，客户端收到结果之后回复ACK报文。
 
 ### NON请求，NON响应
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/NON%E8%AF%B7%E6%B1%82_NON%E5%93%8D%E5%BA%94.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/NON%E8%AF%B7%E6%B1%82_NON%E5%93%8D%E5%BA%94.png)
 
 如上图，客户端发起了一个`NON报文（Message ID = 0x7a11, Code = 0.01 GET, Options = {"Uri-Path":"/temperature"}, Token = 0x74）`，服务端在收到查询温度的请求之后，回复`NON报文（Message ID = 0x23bc, Code = 2.05 Content, Payload = "22.5 C", Token = 0x74）`。
 
@@ -184,7 +184,7 @@ public void start() {
 
 启动方法很简单，主要是将所有的Endpoint一个个启动。至此，服务端算是启动成功了。让我们稍微总结一下几个类的关系：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapServer%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/CoapServer%E5%85%B3%E7%B3%BB%E5%9B%BE.png)
 
 如上图，消息会从Network模块传输给对应的Endpoint节点，所有的Endpoint节点都会将消息推给MessageDeliverer，MessageDeliverer根据消息的内容传输给指定的Resource，Resource再对消息内容进行处理。
 
@@ -229,7 +229,7 @@ public CoapEndpoint(Connector connector, NetworkConfig config, ObservationStore 
 
 从构造方法可以了解到，其内部结构如下所示：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE_02.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/CoapEndpoint%E6%A8%A1%E5%9D%97%E5%9B%BE_02.png)
 
 那么，也就是说客户端发起的GET请求将被InboxImpl类接收。InboxImpl类实现了RawDataChannel接口，该接口只有一个`receiveData(RawData raw)`方法，InboxImpl类的该方法如下：
 
@@ -291,13 +291,13 @@ private void receiveMessage(final RawData raw) {
 
 ## MessageInterceptor接口
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/MessageInterceptor%E7%B1%BB%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/MessageInterceptor%E7%B1%BB%E5%9B%BE.png)
 
 框架本身并没有提供该接口的任何实现类，我们可以根据业务需求实现该接口，并通过`CoapEndpoint.addInterceptor(MessageInterceptor interceptor)`方法添加具体的实现类。
 
 ## Matcher类
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/Matcher%E7%B1%BB%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/Matcher%E7%B1%BB%E5%9B%BE.png)
 
 我们主要看`receiveRequest(Request request)`方法，看它对客户端的GET请求做了哪些操作：
 
@@ -312,11 +312,11 @@ public Exchange receiveRequest(Request request) {
 
 ## CoapStack类
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapStack%E7%B1%BB%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/CoapStack%E7%B1%BB%E5%9B%BE.png)
 
 CoapStack的类图比较复杂，其结构可以简化为下图：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/CoapStack%E6%A8%A1%E5%9D%97%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/CoapStack%E6%A8%A1%E5%9D%97%E5%9B%BE.png)
 
 有人可能会疑惑，这个结构图是怎么来，答案就在构造方法里：
 
@@ -372,13 +372,13 @@ public void receiveRequest(Exchange exchange, Request request) {
 
 可以看到，StackTopAdapter最后会将请求传递给MessageDeliverer，至此CoapEndpoint的任务也就算完成了，我们可以通过一张请求消息流程图来回顾一下，一个客户端GET请求最终是如何到达MessageDeliverer的：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/%E8%AF%B7%E6%B1%82%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
 
 ---
 
 # MessageDeliverer接口
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/MessageDeliverer%E7%B1%BB%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/MessageDeliverer%E7%B1%BB%E5%9B%BE.png)
 
 框架有ServerMessageDeliverer和ClientMessageDeliverer两个实现类。从CoapServer的构造方法里知道使用的是ServerMessageDeliverer类。那么就让我们看看`ServerMessageDeliverer.deliverRequest(Exchange exchange)`方法是如何分发GET请求的：
 
@@ -412,7 +412,7 @@ public void deliverRequest(final Exchange exchange) {
 
 # Resource接口
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/Resource%E7%B1%BB%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/Resource%E7%B1%BB%E5%9B%BE.png)
 
 还记得CoapServer构造方法里创建了一个RootResource吗？它的资源路径为空，而客户端发起的GET请求默认也是空路径。那么ServerMessageDeliverer就会把请求分发给RootResource处理。RootResource类没有覆写`handleRequest(Exchange exchange)`方法，所以我们看看CoapResource父类的实现：
 
@@ -523,7 +523,7 @@ public void sendResponse(Exchange exchange, Response response) {
 
 通过一张响应消息流程图来回顾一下，一个服务端响应最终是如何传输到网络里去：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Californium%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6%E5%88%86%E6%9E%90/%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/californium-framework-analysis/%E5%93%8D%E5%BA%94%E6%B6%88%E6%81%AF%E6%B5%81%E5%9B%BE.png)
 
 ---
 
