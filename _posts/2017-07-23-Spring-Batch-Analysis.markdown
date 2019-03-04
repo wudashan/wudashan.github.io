@@ -303,7 +303,7 @@ Spring Batch在官网是这样一句话介绍自己的：A lightweight, comprehe
 
 ## 框架全貌
 
-![](http://docs.spring.io/spring-batch/trunk/reference/html/images/spring-batch-reference-model.png.pagespeed.ce.TrtTC751hI.png)
+![](http://docs.spring.io/spring-batch/trunk/reference/html/images/spring-batch-reference-model.png)
 
 框架一共有4个主要角色：`JobLauncher`是任务启动器，通过它来启动任务，可以看做是程序的入口。`Job`代表着一个具体的任务。`Step`代表着一个具体的步骤，一个Job可以包含多个Step（想象把大象放进冰箱这个任务需要多少个步骤你就明白了）。`JobRepository`是存储数据的地方，可以看做是一个数据库的接口，在任务执行的时候需要通过它来记录任务状态等等信息。
 
@@ -325,7 +325,7 @@ public interface JobLauncher {
 
 Job代表着一个任务，一个Job与一个或者多个JobInstance相关联，而一个JobInstance又与一个或者多个JobExecution相关联：
 
-![](http://docs.spring.io/spring-batch/trunk/reference/html/images/job-stereotypes-parameters.png.pagespeed.ce.Gj3WseCPCG.png)
+![](http://docs.spring.io/spring-batch/trunk/reference/html/images/job-stereotypes-parameters.png)
 
 考虑到任务可能不是只执行一次就再也不执行了，更多的情况可能是定时任务，如每天执行一次，每个星期执行一次等等，那么为了区分每次执行的任务，框架使用了JobInstance。如上图所示，Job是一个EndOfDay（每天最后时刻执行的任务），那么其中一个JobInstance就代表着2007年5月5日那天执行的任务实例。框架通过在执行`JobLauncher.run(Job, JobParameters)`方法时传入的JobParameters来区分是哪一天的任务。
 
