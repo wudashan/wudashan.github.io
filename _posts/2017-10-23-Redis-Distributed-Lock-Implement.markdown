@@ -188,7 +188,7 @@ public class RedisTool {
 
 那么这段Lua代码的功能是什么呢？其实很简单，首先获取锁对应的value值，检查是否与requestId相等，如果相等则删除锁（解锁）。那么为什么要使用Lua语言来实现呢？因为要确保上述操作是原子性的。关于非原子性会带来什么问题，可以阅读[【解锁代码-错误示例2】](#releaseLock-wrongDemo2) 。那么为什么执行eval()方法可以确保原子性，源于Redis的特性，下面是官网对eval命令的部分解释：
 
-![](http://o7x0ygc3f.bkt.clouddn.com/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F_01.png)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/redis-distributed-lock/Redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F_01.png)
 
 简单来说，就是在eval命令执行Lua代码的时候，Lua代码将被当成一个命令去执行，并且直到eval命令执行完成，Redis才会执行其他命令。
 
