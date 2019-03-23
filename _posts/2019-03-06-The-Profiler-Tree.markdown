@@ -28,9 +28,22 @@ tags:
 `---耗时:54ms 自身耗时:54ms 在父节点里所占时间比:31% 在总时间里所占时间比:31% 内容:发送消息
 ```
 
-从上面这个信息可以看到，Main主流程里还分别进行了RPC调用、数据库操作、消息发送，并且每个操作的耗时时间可以看得非常清晰。
+从上面这个信息可以看到，Main主流程里还分别进行了RPC调用、数据库操作、消息发送，并且每个操作的耗时时间可以看得非常清晰。那么，我们要如何使用调用树呢，心急的同学可以直接看[ProfilerTest](https://github.com/wudashan/profiler/blob/master/src/main/java/profiler/ProfilerTest.java)测试类。
 
-那么，我们要如何使用调用树呢，心急的同学可以直接看[ProfilerTest](https://github.com/wudashan/profiler/blob/master/src/main/java/profiler/ProfilerTest.java)测试类。
+调用树，一共会有以下几个方法供开发者使用：
+
+```
+* reset()：重置调用树，清除可能残留的历史数据。
+
+* init()：初始化调用树。
+
+* enter()：进入埋点方法。
+
+* exit()：退出埋点方法。
+
+* dump()：输出调用树结果。
+```
+
 
 
 未完待续，持续更新ing。。。
