@@ -44,6 +44,30 @@ tags:
 * dump()：输出调用树结果。
 ```
 
+开发者调用方式如下：
+
+```
+public static void main(String[] args) {
+
+        // 重置调用树
+        Profiler.reset();
+        // 初始化调用树
+        Profiler.init("Main主流程");
+
+        try {
+            // 关键流程代码
+            ...
+        } finally {
+            // 结束调用树
+            Profiler.exit();
+            // 打印调用树结果
+            System.out.println(Profiler.dump());
+            // 重置调用树
+            Profiler.reset();
+        }
+
+    }
+```
 
 
 未完待续，持续更新ing。。。
