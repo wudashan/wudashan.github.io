@@ -30,6 +30,8 @@ tags:
 
 从上面这个信息可以看到，Main主流程里还分别进行了RPC调用、数据库操作、消息发送，并且每个操作的耗时时间可以看得非常清晰。
 
+那么，我们要如何使用调用树呢，心急的同学可以直接看[ProfilerTest](https://github.com/wudashan/profiler/blob/master/src/main/java/profiler/ProfilerTest.java)测试类。
+
 
 未完待续，持续更新ing。。。
 
