@@ -69,6 +69,7 @@ public static void main(String[] args) {
 }
 ```
 
+在关键流程代码，我们可以对想监控的方法进行埋点，在方法的入口处调用`Profiler.enter()`方法，在方法的出口处调用`Profiler.exit()`方法。
 
 未完待续，持续更新ing。。。
 
