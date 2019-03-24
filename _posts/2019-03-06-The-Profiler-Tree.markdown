@@ -17,7 +17,7 @@ tags:
 
 性能这个话题，经常令人谈虎色变。因为我们经常会对关键业务进行性能压测，但是业务代码里可能会涉及各种数据库增删改查，第三方系统RPC调用，消息发送等操作，当发现性能瓶颈的时候我们无法很快的定位到底是哪个具体的操作耗时高。为了解决这个头疼的问题，**调用树**这个性能问题排查神器就可以排上用场。
 
-# 调用树
+# 调用树Profiler
 
 所谓调用树，就是可以把一段业务代码，按照树的层级，将涉及到的操作层层展示出来，效果如下：
 
@@ -32,7 +32,7 @@ tags:
 
 ## API接口
 
-[Profiler](https://github.com/wudashan/profiler/blob/master/src/main/java/profiler/Profiler.java)（点击查看源码）调用树，一共会有以下几个方法供开发者使用：
+调用树[Profiler](https://github.com/wudashan/profiler/blob/master/src/main/java/profiler/Profiler.java)（点击查看源码），一共会有以下几个方法供开发者使用：
 
 ```
 * reset()：重置调用树，清除可能残留的历史数据。
