@@ -34,7 +34,7 @@ tags:
 
 调用树，一共会有以下几个方法供开发者使用：
 
-```java
+```
 * reset()：重置调用树，清除可能残留的历史数据。
 
 * init()：初始化调用树，在业务代码的入口处调用。
@@ -78,19 +78,19 @@ public static void main(String[] args) {
 ```java
 public static void doBusiness() {
 
-	// 入口埋点
-	Profiler.enter();
-	// 数据库查询操作
-	repository.query();
-	// 出口埋点
-	Profiler.exit();
+    // 入口埋点
+    Profiler.enter();
+    // 数据库查询操作
+    repository.query();
+    // 出口埋点
+    Profiler.exit();
 
-	// 入口埋点
-	Profiler.enter();
-	// 数据库保存操作
-	repository.save();
-	// 出口埋点
-	Profiler.exit();
+    // 入口埋点
+    Profiler.enter();
+    // 数据库保存操作
+    repository.save();
+    // 出口埋点
+    Profiler.exit();
 
 }
 ```
@@ -109,10 +109,10 @@ public class Interceptor implements MethodInterceptor {
         // 调用被拦截的方法前，植入入口埋点
         Profiler.enter(mark);
         try {
-        	// 拦截器调用被拦截的方法
+            // 拦截器调用被拦截的方法
             return invocation.proceed();
         } finally {
-        	// 调用被拦截的方法后，植入出口埋点
+            // 调用被拦截的方法后，植入出口埋点
             Profiler.exit();
         }
     }
@@ -123,18 +123,18 @@ public class Interceptor implements MethodInterceptor {
 
 ```xml
 <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-	<property name="beanNames">
-		<list>
-			<!-- 对所有以repository结尾命名的类，进行方法拦截 -->
-			<value>*repository</value>
-		</list>
-	</property>
-	<property name="interceptorNames">
-		<list>
-			<!-- 声明我们的拦截器 -->
-			<value>Interceptor</value>
-		</list>
-	</property>
+    <property name="beanNames">
+        <list>
+            <!-- 对所有以repository结尾命名的类，进行方法拦截 -->
+            <value>*repository</value>
+        </list>
+    </property>
+    <property name="interceptorNames">
+        <list>
+            <!-- 声明我们的拦截器 -->
+            <value>Interceptor</value>
+        </list>
+    </property>
 </bean>  
 ```
 
