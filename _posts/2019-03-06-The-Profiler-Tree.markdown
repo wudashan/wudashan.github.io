@@ -97,6 +97,27 @@ public static void doBusiness() {
 
 `doBusiness()`方法里我们对数据库操作进行了埋点，这样我们就可以知道，查询操作和保存操作的耗时情况。当然如果我们对每个操作的入口出口进行硬编码`enter()`和`exit()`，那么整个项目的代码将非常的难看，稍有不慎可能只调用了`enter()`忘记调用`exit()`，并且每个开发同学还需要显式地感知要埋点，非常的不友好。
 
+这个时候，我们就需要借助AOP（面向切面编程）能力，对操作进行拦截，并植入埋点代码。Spring提供了一个很方便的方法拦截器**MethodInterceptor**类，拦截实现如下：
+
+```
+public class Interceptor implements MethodInterceptor {
+    @Override
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        Class clazz = invocation.getMethod().getDeclaringClass();
+        String method = invocation.getMethod().getName();
+        String mark = clazz.getCanonicalName() + "#" + method;
+        // 调用被拦截的方法前，植入入口埋点
+        Profiler.enter(mark);
+        try {
+        	// 拦截器调用被拦截的方法
+            return invocation.proceed();
+        } finally {
+        	// 调用被拦截的方法后，植入出口埋点
+            Profiler.exit();
+        }
+    }
+}
+```
 
 未完待续，持续更新ing。。。
 
