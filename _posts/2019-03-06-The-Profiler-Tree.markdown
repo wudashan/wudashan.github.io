@@ -148,4 +148,4 @@ public class Interceptor implements MethodInterceptor {
 
 数据结构确定后，还有一个最重要的一点，就是调用树如何在业务代码中获取和保存当前节点？想想看，业务代码在执行`Profiler.enter()`方法时，并不需要传任何的形参，那么我们如何感知当前节点需要挂在哪棵调用树下面呢？如果你看过一些类似框架代码，例如Spring的数据库连接和Session管理，你就可以马上联想到，是通过**ThreadLocal**线程变量实现。我们将调用树按线程进行隔离，在调用Profiler的API时，我们从当前线程取出对应的调用树进行操作。
 
-总结来说，调用树就是通过**N叉树+ThreadLocal线程变量**实现，有能力的同学可以尝试自己实现Profiler的API：reset()、init()、enter()、exit()、dump()。
+总结来说，调用树就是通过**N叉树+ThreadLocal线程变量**实现，有能力的同学可以尝试自己实现Profiler的API：reset()、init()、enter()、exit()、dump()。实现完成之后，再对照参考阿里的[Profiler](https://github.com/alipay/sofa-common-tools/blob/1e120ebbe10b15eed36e480aa858d7554a10db23/core/src/main/java/com/alipay/sofa/common/profile/diagnostic/Profiler.java)代码实现，看看谁的实现更优雅更美好。
