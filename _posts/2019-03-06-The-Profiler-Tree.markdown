@@ -34,7 +34,7 @@ tags:
 
 调用树，一共会有以下几个方法供开发者使用：
 
-```
+```java
 * reset()：重置调用树，清除可能残留的历史数据。
 
 * init()：初始化调用树，在业务代码的入口处调用。
@@ -50,7 +50,7 @@ tags:
 
 开发者使用方式如下：
 
-```
+```java
 public static void main(String[] args) {
 
     // 重置调用树
@@ -75,7 +75,7 @@ public static void main(String[] args) {
 
 在业务代码里，我们可以对想监控的方法进行埋点，在方法的入口处调用`Profiler.enter()`方法，在方法的出口处调用`Profiler.exit()`方法。示例代码如下：
 
-```
+```java
 public static void doBusiness() {
 
 	// 入口埋点
@@ -99,7 +99,7 @@ public static void doBusiness() {
 
 这个时候，我们就需要借助AOP（面向切面编程）能力，对操作进行拦截，并植入埋点代码。Spring提供了一个很方便的方法拦截器[MethodInterceptor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/aopalliance/intercept/MethodInterceptor.html)类，拦截实现如下：
 
-```
+```java
 public class Interceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -117,6 +117,25 @@ public class Interceptor implements MethodInterceptor {
         }
     }
 }
+```
+
+同时，我们还需要在配置文件里声明我们需要拦截的方法，XML配置文件如下：
+
+```xml
+<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	<property name="beanNames">
+		<list>
+			<!-- 对所有以repository结尾命名的类，进行方法拦截 -->
+			<value>*repository</value>
+		</list>
+	</property>
+	<property name="interceptorNames">
+		<list>
+			<!-- 声明我们的拦截器 -->
+			<value>Interceptor</value>
+		</list>
+	</property>
+</bean>  
 ```
 
 未完待续，持续更新ing。。。
