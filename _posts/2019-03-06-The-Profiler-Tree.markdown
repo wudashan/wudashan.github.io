@@ -28,7 +28,7 @@ tags:
 `---耗时:54ms 自身耗时:54ms 在父节点里所占时间比:31% 在总时间里所占时间比:31% 内容:发送消息
 ```
 
-从上面这个信息可以看到，Main主流程里分别进行了调用RPC接口、保存数据到数据库、发送消息操作，并且每个操作的耗时时间可以看得非常清晰，在排查性能瓶颈的时候，我们就可以知道Main主流程总共耗时175ms，其中调用RPC接口耗时87ms，占了总流程的一半时间，那么我们就可以针对这个RPC调用进行优化。如何才能使用调用树呢，心急的同学可以直接看[ProfilerTest](https://github.com/wudashan/profiler/blob/master/src/main/java/profiler/ProfilerTest.java)类。下面，我来详细讲解调用树提供的API接口和使用方式。
+从上面这个信息可以看到，Main主流程里分别进行了调用RPC接口、保存数据到数据库、发送消息操作，并且每个操作的耗时时间可以看得非常清晰，在排查性能瓶颈的时候，我们就可以知道Main主流程总共耗时175ms，其中调用RPC接口耗时87ms，占了总流程的一半时间，那么我们就可以针对这个RPC调用进行优化。如何才能使用调用树呢，心急的同学可以直接看[ProfilerTest](https://github.com/wudashan/profiler/blob/master/src/main/java/profiler/ProfilerTest.java)类。下面，给大家详细讲解调用树提供的API接口和使用方式。
 
 ## API接口
 
@@ -95,7 +95,7 @@ public static void doBusiness() {
 }
 ```
 
-`doBusiness()`方法里我们对数据库操作进行了埋点，这样我们就可以知道，查询操作和保存操作的耗时情况。
+`doBusiness()`方法里我们对数据库操作进行了埋点，这样我们就可以知道，查询操作和保存操作的耗时情况。当然如果我们对每个操作的入口出口进行硬编码`enter()`和`exit()`，那么整个项目的代码将非常的难看，稍有不慎可能只调用了`enter()`忘记调用`exit()`，并且每个开发同学还需要显式地感知要埋点，非常的不友好。
 
 
 未完待续，持续更新ing。。。
