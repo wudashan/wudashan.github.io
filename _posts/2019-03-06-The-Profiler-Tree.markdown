@@ -32,7 +32,7 @@ tags:
 
 ## API接口
 
-调用树[Profiler](https://github.com/wudashan/profiler/blob/master/src/main/java/profiler/Profiler.java)（点击查看源码），一共会有以下几个方法供开发者使用：
+调用树[Profiler（点击查看源码）](https://github.com/wudashan/profiler/blob/master/src/main/java/profiler/Profiler.java)，一共会有以下几个方法供开发者使用：
 
 ```
 * reset()：重置调用树，清除可能残留的历史数据。
