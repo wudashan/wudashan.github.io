@@ -145,7 +145,9 @@ public class Interceptor implements MethodInterceptor {
 </bean>  
 ```
 
-通过对数据库层代码、RPC调用代码、消息发送代码进行AOP拦截，使我们不需要硬编码，在开发代码的时候也无需特意关注这些点，便能详细明了地打印出整个业务代码中涉及的各个操作及其耗时情况。特别是对于那些有一定历史的项目代码，且代码写的不是很好，代码层层调用与嵌套，有非常显著的效果。完整代码请参考[Profiler项目工程](https://github.com/wudashan/profiler)，并通过运行[ProfilerApplicationTests](https://github.com/wudashan/profiler/blob/master/src/test/java/demo/ProfilerApplicationTests.java)测试用例类获取展示效果。
+通过对数据库层代码、RPC调用代码、消息发送代码进行AOP拦截，使我们不需要硬编码，在开发代码的时候也无需特意关注这些点，便能详细明了地打印出整个业务代码中涉及的各个操作及其耗时情况。特别是对于那些有一定历史的项目代码，且代码写的不是很好，代码层层调用与嵌套，有非常显著的效果。
+
+完整代码请参考[Profiler项目工程](https://github.com/wudashan/profiler)，并通过运行[ProfilerApplicationTests](https://github.com/wudashan/profiler/blob/master/src/test/java/demo/ProfilerApplicationTests.java)测试用例类获取展示效果。
 
 ## 实现原理
 
