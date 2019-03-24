@@ -15,7 +15,7 @@ tags:
 
 # 序言
 
-性能这个话题，经常令人谈虎色变。因为我们经常会对关键业务进行性能压测，但是业务代码里可能会涉及各种数据库增删改查，第三方系统RPC调用，消息发送等操作，当发现性能瓶颈的时候我们无法很快的定位到底是哪个具体的操作耗时高。为了解决这个头疼的问题，**调用树**这个性能问题排查神器就可以排上用场。
+性能这个话题，经常令人谈虎色变。因为我们经常会对关键业务进行性能压测，但是业务代码里可能会涉及各种数据库增删改查，第三方系统RPC调用，消息发送等操作，当发现性能瓶颈的时候我们往往无法很快地定位到底是哪个具体的操作耗时高。为了解决这个头疼的问题，**调用树**这个性能问题排查神器就可以排上用场。
 
 # 调用树Profiler
 
@@ -86,14 +86,14 @@ public static void doBusiness() {
     // 入口埋点
     Profiler.enter();
     // 数据库查询操作
-    repository.query();
+    demoRepository.query();
     // 出口埋点
     Profiler.exit();
 
     // 入口埋点
     Profiler.enter();
     // 数据库保存操作
-    repository.save();
+    demoRepository.save();
     // 出口埋点
     Profiler.exit();
 
@@ -107,6 +107,7 @@ public static void doBusiness() {
 这个时候，我们就需要借助AOP（面向切面编程）能力，对操作进行拦截，并植入埋点代码。Spring提供了一个很方便的方法拦截器[MethodInterceptor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/aopalliance/intercept/MethodInterceptor.html)类，拦截实现如下：
 
 ```java
+@Component
 public class Interceptor implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -132,14 +133,14 @@ public class Interceptor implements MethodInterceptor {
 <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
     <property name="beanNames">
         <list>
-            <!-- 对所有以repository结尾命名的类，进行方法拦截 -->
-            <value>*repository</value>
+            <!-- 对所有以Repository结尾命名的类，进行方法拦截 -->
+            <value>*Repository</value>
         </list>
     </property>
     <property name="interceptorNames">
         <list>
             <!-- 声明我们的拦截器 -->
-            <value>Interceptor</value>
+            <value>interceptor</value>
         </list>
     </property>
 </bean>  
