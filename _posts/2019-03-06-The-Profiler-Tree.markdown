@@ -34,16 +34,21 @@ tags:
 
 调用树Profiler，一共会有以下几个方法供开发者使用：
 
-```
-* reset()：重置调用树，清除可能残留的历史数据。
+```java
+// 重置调用树，清除可能残留的历史数据
+public static void reset();
 
-* init()：初始化调用树，在业务代码的入口处调用。
+// 初始化调用树，在业务代码的入口处调用
+public static void init();
 
-* enter()：进入埋点方法，在需要监控的操作的入口处调用。
+// 进入埋点方法，在需要监控的操作的入口处调用
+public static void enter();
 
-* exit()：退出埋点方法，在需要监控的操作的出口处调用。
+// 退出埋点方法，在需要监控的操作的出口处调用
+public static void exit();
 
-* dump()：输出调用树结果。
+// 输出调用树结果
+public static void dump();
 ```
 
 ## 使用方式
