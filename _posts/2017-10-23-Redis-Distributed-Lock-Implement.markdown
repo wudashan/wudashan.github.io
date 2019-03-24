@@ -37,7 +37,7 @@ tags:
 
 首先我们要通过Maven引入`Jedis`开源组件，在`pom.xml`文件加入下面的代码：
 
-```
+```xml
 <dependency>
     <groupId>redis.clients</groupId>
     <artifactId>jedis</artifactId>
@@ -51,7 +51,7 @@ tags:
 
 Talk is cheap, show me the code。先展示代码，再带大家慢慢解释为什么这样实现：
 
-```
+```java
 public class RedisTool {
 
     private static final String LOCK_SUCCESS = "OK";
@@ -101,7 +101,7 @@ public class RedisTool {
 
 比较常见的错误示例就是使用`jedis.setnx()`和`jedis.expire()`组合实现加锁，代码如下：
 
-```
+```java
 public static void wrongGetLock1(Jedis jedis, String lockKey, String requestId, int expireTime) {
 
     Long result = jedis.setnx(lockKey, requestId);
@@ -120,7 +120,7 @@ setnx()方法作用就是SET IF NOT EXIST，expire()方法就是给锁加一个�
 
 这一种错误示例就比较难以发现问题，而且实现也比较复杂。实现思路：使用`jedis.setnx()`命令实现加锁，其中key是锁，value是锁的过期时间。执行过程：1. 通过setnx()方法尝试加锁，如果当前锁不存在，返回加锁成功。2. 如果锁已经存在则获取锁的过期时间，和当前时间比较，如果锁已经过期，则设置新的过期时间，返回加锁成功。代码如下：
 
-```
+```java
 public static boolean wrongGetLock2(Jedis jedis, String lockKey, int expireTime) {
 
     long expires = System.currentTimeMillis() + expireTime;
@@ -157,7 +157,7 @@ public static boolean wrongGetLock2(Jedis jedis, String lockKey, int expireTime)
 
 还是先展示代码，再带大家慢慢解释为什么这样实现：
 
-```
+```java
 public class RedisTool {
 
     private static final Long RELEASE_SUCCESS = 1L;
@@ -197,7 +197,7 @@ public class RedisTool {
 
 最常见的解锁代码就是直接使用`jedis.del()`方法删除锁，这种不先判断锁的拥有者而直接解锁的方式，会导致任何客户端都可以随时进行解锁，即使这把锁不是它的。
 
-```
+```java
 public static void wrongReleaseLock1(Jedis jedis, String lockKey) {
     jedis.del(lockKey);
 }
@@ -211,7 +211,7 @@ public static void wrongReleaseLock1(Jedis jedis, String lockKey) {
 
 这种解锁代码乍一看也是没问题，甚至我之前也差点这样实现，与正确姿势差不多，唯一区别的是分成两条命令去执行，代码如下：
 
-```
+```java
 public static void wrongReleaseLock2(Jedis jedis, String lockKey, String requestId) {
         
     // 判断加锁与解锁是不是同一个客户端
