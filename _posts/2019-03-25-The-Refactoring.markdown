@@ -11,6 +11,8 @@ tags:
     - 软件工程
 ---
 
+> 书籍链接：https://book.douban.com/subject/26575459/
+
 # 目录解析
 
 * 第1章：重构是什么？WHAT
