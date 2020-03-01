@@ -11,7 +11,7 @@ tags:
     - 软件工程
 ---
 
-> 书籍链接：https://book.douban.com/subject/26575459/
+> 书籍链接：https://book.douban.com/subject/26575459
 
 # 目录解析
 
