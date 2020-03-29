@@ -2,7 +2,7 @@
 layout:     post
 title:      "主题知识学习方法论"
 subtitle:   "找到学习方法，提高学习效率，实现学习目的"
-date:       2019-03-29 11:00:00
+date:       2020-03-29 11:00:00
 author:     "Wudashan"
 header-img: "img/post-bg-learning-method.jpg"
 catalog: true
