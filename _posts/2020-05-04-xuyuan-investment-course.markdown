@@ -34,3 +34,6 @@ tags:
 
 [徐远的投资课.xmind](https://github.com/wudashan/blog-picture/blob/master/xuyuan-investment-course/%E5%BE%90%E8%BF%9C%E7%9A%84%E6%8A%95%E8%B5%84%E8%AF%BE.xmind?raw=true)
 
+# 课程目录
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/xuyuan-investment-course/%E8%AF%BE%E7%A8%8B%E7%9B%AE%E5%BD%95.png)
