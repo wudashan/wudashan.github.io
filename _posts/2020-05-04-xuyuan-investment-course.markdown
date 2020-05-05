@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "《徐远的投资课》阅读笔记"
+title:      "《徐远的投资课》学习笔记"
 subtitle:   "北大教授以坚实的学术理论基础，丰富的问题研究基础，实战导向，教你如何投资"
 date:       2020-05-04 11:00:00
 author:     "Wudashan"
@@ -12,7 +12,9 @@ tags:
     - 投资理财
 ---
 
-# [主题知识学习方法论引导](http://wudashan.com/2020/03/29/Learning-Method/)
+# 主题知识学习方法论引导
+
+> http://wudashan.com/2020/03/29/Learning-Method/
 
 ## 学习之前
 
@@ -49,7 +51,7 @@ tags:
 3. 最后回顾自己是否拿到了最初期望的结果？
 
 
-# 阅读笔记
+# 学习笔记
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/xuyuan-investment-course/%E5%BE%90%E8%BF%9C%E7%9A%84%E6%8A%95%E8%B5%84%E8%AF%BE.png)
 
