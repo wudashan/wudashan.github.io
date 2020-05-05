@@ -12,7 +12,11 @@ tags:
     - 投资理财
 ---
 
-# 学习方法论引导
+# 学习笔记
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/xuyuan-investment-course/%E5%BE%90%E8%BF%9C%E7%9A%84%E6%8A%95%E8%B5%84%E8%AF%BE.png)
+
+# 学习引导
 
 > http://wudashan.com/2020/03/29/Learning-Method/
 
@@ -61,10 +65,6 @@ tags:
 **3 最后回顾自己是否拿到了最初期望的结果？**
 
 答：待课程全部学习完后回答。
-
-# 学习笔记
-
-![](https://raw.githubusercontent.com/wudashan/blog-picture/master/xuyuan-investment-course/%E5%BE%90%E8%BF%9C%E7%9A%84%E6%8A%95%E8%B5%84%E8%AF%BE.png)
 
 # 笔记xmind
 
