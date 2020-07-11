@@ -18,6 +18,12 @@ tags:
 
 [原文：阿里巴巴资深技术专家崮德：8个影响我职业生涯的重要技能](https://mp.weixin.qq.com/s/4bNAqO5ZtFT8fCQOVw_4LQ)
 
+## 技术人成长七步曲
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/career-knowledge-summary/%E6%8A%80%E6%9C%AF%E4%BA%BA%E6%88%90%E9%95%BF%E4%B8%83%E6%AD%A5%E6%9B%B2.png)
+
+[技术人成长七步曲.xmind（点此下载）](https://github.com/wudashan/blog-picture/blob/master/career-knowledge-summary/%E6%8A%80%E6%9C%AF%E4%BA%BA%E6%88%90%E9%95%BF%E4%B8%83%E6%AD%A5%E6%9B%B2.xmind?raw=true)
+
 ## 干好工作7法
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/make-work-better/%E5%B9%B2%E5%A5%BD%E5%B7%A5%E4%BD%9C7%E6%B3%95.png)
