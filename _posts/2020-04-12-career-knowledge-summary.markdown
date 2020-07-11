@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "职业生涯相关知识点总结"
+title:      "职业生涯相关知识总结"
 subtitle:   ""
 date:       2020-04-12 11:00:00
 author:     "Wudashan"
