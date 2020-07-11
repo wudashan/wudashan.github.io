@@ -15,6 +15,8 @@ tags:
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/learning-method/%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E8%AE%BA.png)
 
+[https://github.com/wudashan/blog-picture/blob/master/learning-method/%E4%B8%BB%E9%A2%98%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E8%AE%BA.xmind?raw=true](https://github.com/wudashan/blog-picture/blob/master/learning-method/%E4%B8%BB%E9%A2%98%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E8%AE%BA.xmind?raw=true)
+
 # 写在前头
 
 学习不是简单地投入时间和精力就可以达到效果，我们需要有一些技巧和方法，去提高我们学习过程中的效率，最终达到自己学习后想要的效果。特别是在我参加工作之后，之前在华为，现在在蚂蚁，都是加班比较多的公司，能学习的时间很少，所以更需要我们用一些方法论，高效地掌握一块知识。
