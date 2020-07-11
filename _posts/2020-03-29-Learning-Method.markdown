@@ -15,7 +15,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/learning-method/%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E8%AE%BA.png)
 
-[方法论导图.xmind](https://github.com/wudashan/blog-picture/blob/master/learning-method/%E4%B8%BB%E9%A2%98%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E8%AE%BA.xmind?raw=true)
+[方法论导图.xmind（点此下载）](https://github.com/wudashan/blog-picture/blob/master/learning-method/%E4%B8%BB%E9%A2%98%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E8%AE%BA.xmind?raw=true)
 
 # 写在前头
 
