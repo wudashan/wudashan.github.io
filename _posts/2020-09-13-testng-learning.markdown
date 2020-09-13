@@ -13,10 +13,10 @@ tags:
 
 # 执行时序图
 
-[](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/1.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/1.svg)
 
-[](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/2.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/2.svg)
 
-[](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/3.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/3.svg)
 
-![https://www.yuque.com/wudashan/olrmnh/gsmge6](https://www.yuque.com/wudashan/olrmnh/gsmge6)
+[https://www.yuque.com/wudashan/olrmnh/gsmge6](https://www.yuque.com/wudashan/olrmnh/gsmge6)
