@@ -32,5 +32,5 @@ tags:
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/3.svg)
 
 # 参考链接
-* [testng官方文档](https://testng.org/doc/documentation-main.html)
-* [https://www.yuque.com/wudashan/olrmnh/gsmge6](https://www.yuque.com/wudashan/olrmnh/gsmge6)
+* [TestNG官方文档](https://testng.org/doc/documentation-main.html)
+* [TestNG学习笔记（语雀版）](https://www.yuque.com/wudashan/olrmnh/gsmge6)
