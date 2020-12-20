@@ -25,29 +25,29 @@ tags:
 
 # 执行时序图
 
-![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/1.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/1.svg)
 
-![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/2.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/2.svg)
 
-![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/3.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/3.svg)
 
 # 关键类类图
 
 ## TestNG 主程序
 
-![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/b1.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b1.svg)
 
 ## Parser 文件解析器
 
-![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/b2.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b2.svg)
 
 ## XmlSuite 测试数据
 
-![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/b3.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b3.svg)
 
 ## Listener 监听器
 
-![](https://raw.githubusercontent.com/wudashan/blog-picture/6dcdd3597aaf76082381770da124afcb9accef4f/testng-learning/b4.svg)
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b4.svg)
 
 # 参考链接
 * [TestNG官方文档](https://testng.org/doc/documentation-main.html)
