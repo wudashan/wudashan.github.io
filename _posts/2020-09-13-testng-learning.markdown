@@ -25,9 +25,15 @@ tags:
 
 # 执行时序图
 
+## TestNG.main()
+
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/1.svg)
 
+## TestNG.runSuitesLocally()
+
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/2.svg)
+
+## TestRunner.createWorkersAndRun()
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/3.svg)
 
@@ -48,6 +54,14 @@ tags:
 ## Listener 监听器
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b4.svg)
+
+## IAnnotation 注解接口
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b5.svg)
+
+## SuiteRunner 执行类
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b6.svg)
 
 # 参考链接
 * [TestNG官方文档](https://testng.org/doc/documentation-main.html)
