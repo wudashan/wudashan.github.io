@@ -37,6 +37,47 @@ tags:
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/%E5%88%9B%E6%96%B0%E5%A4%8D%E6%9D%82%E5%BA%A6.jpg)
 
+# P5 CMOD
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P5-%E6%8A%80%E6%9C%AF.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P5-%E4%B8%9A%E5%8A%A1.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P5-%E7%AE%A1%E7%90%86.jpg)
+
+# P6 CMOD
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P6-%E6%8A%80%E6%9C%AF.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P6-%E4%B8%9A%E5%8A%A1.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P6-%E7%AE%A1%E7%90%86.jpg)
+
+# P7 CMOD
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P7-%E6%8A%80%E6%9C%AF.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P7-%E4%B8%9A%E5%8A%A1.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P7-%E7%AE%A1%E7%90%86.jpg)
+
+# P8 CMOD
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P8-%E6%8A%80%E6%9C%AF.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P8-%E4%B8%9A%E5%8A%A1.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P8-%E7%AE%A1%E7%90%86.jpg)
+
+# P9 CMOD
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P9-%E6%8A%80%E6%9C%AF.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P9-%E4%B8%9A%E5%8A%A1.jpg)
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P9-%E7%AE%A1%E7%90%86.jpg)
+
+
 
 # 笔记xmind
 
