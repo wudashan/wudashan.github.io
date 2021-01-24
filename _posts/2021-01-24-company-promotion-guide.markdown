@@ -15,7 +15,27 @@ tags:
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/%E5%A4%A7%E5%8E%82%E6%99%8B%E5%8D%87%E6%8C%87%E5%8D%97.png)
 
+# 课程大纲视图
 
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/%E8%AF%BE%E7%A8%8B%E5%A4%A7%E7%BA%B2%E8%A7%86%E5%9B%BE.jpg)
+
+# COMD能力模型
+
+## 规模复杂度
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/%E8%A7%84%E6%A8%A1%E5%A4%8D%E6%9D%82%E5%BA%A6.jpg)
+
+## 时间复杂度
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.jpg)
+
+## 环境复杂度
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/%E7%8E%AF%E5%A2%83%E5%A4%8D%E6%9D%82%E5%BA%A6.jpg)
+
+## 创新复杂度
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/%E5%88%9B%E6%96%B0%E5%A4%8D%E6%9D%82%E5%BA%A6.jpg)
 
 
 # 笔记xmind
