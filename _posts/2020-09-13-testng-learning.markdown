@@ -17,7 +17,7 @@ tags:
 TestNG is a testing framework inspired from JUnit and NUnit but introducing some new functionalities that make it more powerful and easier to use, such as:
 
 * Annotations.
-* Run your tests in arbitrarily big thread pools with various policies available (all methods in their own * thread, one thread per test class, etc...).
+* Run your tests in arbitrarily big thread pools with various policies available (all methods in their own thread, one thread per test class, etc...).
 * Test that your code is multithread safe.
 * Flexible test configuration.
 * Support for data-driven testing (with @DataProvider).
@@ -31,6 +31,21 @@ TestNG is a testing framework inspired from JUnit and NUnit but introducing some
 TestNG is designed to cover all categories of tests:  unit, functional, end-to-end, integration, etc...
 ```
 
+TestNG是一个受JUnit和NUnit启发的测试框架，但引入了一些使其更强大且更易于使用的新功能，例如：
+
+* 注解。
+* 在具有各种可用策略的任意大线程池中运行测试（所有方法都在各自的线程中，每个测试类一个线程，等等）。
+* 测试代码是多线程安全的。
+* 灵活的测试配置。
+* 支持数据驱动的测试（使用@DataProvider）。
+* 支持参数。
+* 强大的执行模型（不再需要TestSuite）。
+* 以插件形式被各种工具（Eclipse，IDEA，Maven等）集成。
+* 嵌入BeanShell以获得更大的灵活性。
+* 使用默认的JDK函数（无依赖项）。
+* 支持在测试应用程序服务器时，调用依赖方法。
+
+TestNG旨在涵盖所有类别的测试：单元，功能，端到端，集成等。
 
 
 # 源码版本
