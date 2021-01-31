@@ -13,6 +13,8 @@ tags:
 
 # 框架介绍
 
+## 英文原版
+
 ```
 TestNG is a testing framework inspired from JUnit and NUnit but introducing some new functionalities that make it more powerful and easier to use, such as:
 
@@ -30,6 +32,8 @@ TestNG is a testing framework inspired from JUnit and NUnit but introducing some
 
 TestNG is designed to cover all categories of tests:  unit, functional, end-to-end, integration, etc...
 ```
+
+## 中文翻译
 
 TestNG是一个受JUnit和NUnit启发的测试框架，但引入了一些使其更强大且更易于使用的新功能，例如：
 
