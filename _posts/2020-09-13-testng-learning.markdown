@@ -148,6 +148,10 @@ TestNG旨在涵盖所有类别的测试：单元，功能，端到端，集成�
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b7.svg)
 
+## IReporter 执行结果
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b8.svg)
+
 # 经典代码
 
 ## 反射获取Class类
