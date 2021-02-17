@@ -98,6 +98,8 @@ TestNG旨在涵盖所有类别的测试：单元，功能，端到端，集成�
 
 **TestNG如何展示用例执行结果？**
 
+定义了IReporter接口，在用例执行结束后，回调其generateReport方法，并将整个用例结果SuiteResult传给该方法。
+
 **TestNG如何解决测试用例之间的依赖顺序？**
 
 
