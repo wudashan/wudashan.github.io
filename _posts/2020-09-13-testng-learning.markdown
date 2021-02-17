@@ -70,6 +70,8 @@ TestNG旨在涵盖所有类别的测试：单元，功能，端到端，集成�
 
 **TestNG如何支持用户感知框架运行时状态？**
 
+通过开放各种Listener接口（父类为org.testng.ITestNGListener），如IExecutionListener、IConfigurationListener、IInvokedMethodListener等，并在运行时进行回调，使用户感知当前运行状态。
+
 ## 线程池中运行测试用例
 
 **TestNG如何支持多线程执行测试用例？**
