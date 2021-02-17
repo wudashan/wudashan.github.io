@@ -86,6 +86,7 @@ TestNG旨在涵盖所有类别的测试：单元，功能，端到端，集成�
 
 **TestNG如何解析testng.xml配置文件？**
 
+实现了一个[Parser文件处理器](http://wudashan.com/2020/09/13/testng-learning/#parser-%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90%E5%99%A8)，支持对xml和yaml格式的配置文件进行解析，通过类继承关系可以知道TestNG支持通过SAX和DOM两种方式解析xml文件。
 
 ## 支持数据驱动的测试功能
 
