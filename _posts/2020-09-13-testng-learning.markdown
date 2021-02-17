@@ -226,6 +226,85 @@ private void addServiceLoaderListeners() {
 }
 ```
 
+## 图数据结构找无依赖的方法
+
+```java
+// 图由节点和边组成
+public class DynamicGraph<T> {
+	
+  // Set记录节点，这里区分节点3个状态，因为已完成的节点可认为不再依赖
+  private Set<T> m_nodesReady = Sets.newLinkedHashSet();
+  private Set<T> m_nodesRunning = Sets.newLinkedHashSet();
+  private Set<T> m_nodesFinished = Sets.newLinkedHashSet();
+  // Map记录边
+  private ListMultiMap<T, T> m_dependedUpon = Maps.newListMultiMap();
+  private ListMultiMap<T, T> m_dependingOn = Maps.newListMultiMap();
+	
+  // 往图中增加节点
+  public void addNode(T node) {
+    m_nodesReady.add(node);
+  }
+	
+  // 往图中增加边
+  public void addEdge(T from, T to) {
+    addNode(from);
+    addNode(to);
+    m_dependingOn.put(to, from);
+    m_dependedUpon.put(from, to);
+  }
+	
+  // 获取没有依赖的节点
+  public List<T> getFreeNodes() {
+    List<T> result = Lists.newArrayList();
+    for (T m : m_nodesReady) {
+      // 一个节点如何是“自由的”，那应该它没有依赖任何节点，或者依赖的节点状态都是已完成
+      List<T> du = m_dependedUpon.get(m);
+      if (!m_dependedUpon.containsKey(m)) {
+        result.add(m);
+      } else if (getUnfinishedNodes(du).size() == 0) {
+        result.add(m);
+      }
+    }
+    return result;
+  }
+  
+  // 获取未到达终态的节点列表
+  private Collection<? extends T> getUnfinishedNodes(List<T> nodes) {
+    Set<T> result = Sets.newHashSet();
+    for (T node : nodes) {
+      if (m_nodesReady.contains(node) || m_nodesRunning.contains(node)) {
+        result.add(node);
+      }
+    }
+    return result;
+  }
+  
+  // 设置节点状态
+  public void setStatus(T node, Status status) {
+    // 先将节点从原集合Set中删除
+    removeNode(node);
+    // 再插入到对应状态的新集合里
+    switch(status) {
+      case READY: m_nodesReady.add(node); break;
+      case RUNNING: m_nodesRunning.add(node); break;
+      case FINISHED: m_nodesFinished.add(node); break;
+      default: throw new IllegalArgumentException();
+    }
+  }
+
+  // 删除节点
+  private void removeNode(T node) {
+    // 这种代码有点难理解，就是三个集合依次删除，成功就返回
+    if (!m_nodesReady.remove(node)) {
+      if (!m_nodesRunning.remove(node)) {
+        m_nodesFinished.remove(node);
+      }
+    }
+  }
+	
+}
+```
+
 # 参考链接
 * [TestNG官方文档](https://testng.org/doc/documentation-main.html)
 * [TestNG学习笔记（语雀版）](https://www.yuque.com/wudashan/olrmnh/gsmge6)
