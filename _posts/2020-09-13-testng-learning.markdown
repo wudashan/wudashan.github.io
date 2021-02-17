@@ -118,6 +118,80 @@ TestNG旨在涵盖所有类别的测试：单元，功能，端到端，集成�
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/testng-learning/b6.svg)
 
+# 经典代码
+
+## 反射获取Class类
+
+```java
+// org.testng.internal.ClassHelper#forName
+public static Class<?> forName(final String className) {
+  // 获取类加载器集合
+  Vector<ClassLoader> allClassLoaders = new Vector<ClassLoader>();
+  ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+  if (contextClassLoader != null) {
+    allClassLoaders.add(contextClassLoader);
+  }
+  if (m_classLoaders != null) {
+    allClassLoaders.addAll(m_classLoaders);
+  }
+  
+  // 遍历类加载器，看谁能加载成功类
+  int count = 0;
+  for (ClassLoader classLoader : allClassLoaders) {
+    ++count;
+    if (null == classLoader) {
+      continue;
+    }
+    try {
+      return classLoader.loadClass(className);
+    }
+    catch(ClassNotFoundException ex) {
+      // With additional class loaders, it is legitimate to ignore ClassNotFoundException
+      if (null == m_classLoaders || m_classLoaders.size() == 0) {
+        logClassNotFoundError(className, ex);
+      }
+    }
+  }
+  // 问题1：Class.forName() 和 ClassLoader.loadClass() 有什么不同？
+  // 答案：https://stackoverflow.com/questions/8100376/class-forname-vs-classloader-loadclass-which-to-use-for-dynamic-loading
+
+  // 问题2：Class.forName() 使用哪个类加器进行加载？
+  // 答案：默认会使用调用类的类加载器来进行类加载，顺便理解双亲委派机制，（双亲是哪双亲？）。
+  try {
+    return Class.forName(className);
+  }
+  catch(ClassNotFoundException cnfe) {
+    logClassNotFoundError(className, cnfe);
+    return null;
+  }
+}
+```
+
+## Java SPI获取Listener实现类
+
+```java
+// org.testng.TestNG#addServiceLoaderListeners
+private void addServiceLoaderListeners() {
+  Iterable<ITestNGListener> loader;
+  try {
+    if (m_serviceLoaderClassLoader != null) {
+      // spi原理：加载META-INF/services/路径下的文件
+      // 文件名是接口，文件内容每行是实现类，反射创建实现类实例，并强转成接口
+      // 使用到了懒加载机制
+      loader = ServiceLoader.load(ITestNGListener.class, m_serviceLoaderClassLoader);
+    } else {
+      loader = ServiceLoader.load(ITestNGListener.class);
+    }
+    for (ITestNGListener l : loader) {
+      addListener(l);
+      addServiceLoaderListener(l);
+    }
+  } catch (Exception ex) {
+      // Ignore
+  }
+}
+```
+
 # 参考链接
 * [TestNG官方文档](https://testng.org/doc/documentation-main.html)
 * [TestNG学习笔记（语雀版）](https://www.yuque.com/wudashan/olrmnh/gsmge6)
