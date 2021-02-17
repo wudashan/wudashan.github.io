@@ -82,7 +82,10 @@ TestNG旨在涵盖所有类别的测试：单元，功能，端到端，集成�
 
 **TestNG如何解析命令行参数？**
 
+使用JCommander第三方框架，解析main入口函数里用户通过命令行传入的args参数，并转成CommandLineArgs对象。
+
 **TestNG如何解析testng.xml配置文件？**
+
 
 ## 支持数据驱动的测试功能
 
