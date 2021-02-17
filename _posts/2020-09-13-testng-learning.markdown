@@ -76,6 +76,8 @@ TestNG旨在涵盖所有类别的测试：单元，功能，端到端，集成�
 
 **TestNG如何支持多线程执行测试用例？**
 
+通过Java内置的java.util.concurrent.ExecutorService线程池实现多线程执行测试用例。并且支持tests/classes/methods/instances四种维度的多线程场景。tests多线程实现在org.testng.SuiteRunner#runInParallelTestMode，classes/methods/instances多线程实现都在org.testng.TestRunner#privateRun，区别在于通过org.testng.TestRunner#createWorkers创建的Work数量不同：classes场景该类的所有被测方法都在一个Work里串行执行，methods场景每个被测方法自己单独一个Work，instances场景每个被测方法实例单独一个Work。
+
 ## 灵活的测试配置功能
 
 **TestNG如何解析命令行参数？**
