@@ -92,7 +92,7 @@ TestNG旨在涵盖所有类别的测试：单元，功能，端到端，集成�
 
 **TestNG如何支持参数化执行用例？**
 
-通过@DataProvider注解的方法，执行该方法并返回List<Object[]>对象（外层List代表被测方法要执行的次数，内层Object[]代表每次执行被测方法时传入的形参），或testng.xml里的<parameter>参数，得到参数列表，并在反射调用用例时传入参数。
+通过找到@DataProvider注解的方法，执行该方法并返回List<Object[]>对象（外层List代表被测方法要执行的次数，内层Object[]代表每次执行被测方法时传入的形参），或testng.xml里的<parameter>参数，得到参数列表，并在反射调用用例时传入参数。
 
 ## 其他功能
 
