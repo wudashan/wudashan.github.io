@@ -37,9 +37,9 @@ tags:
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/%E5%88%9B%E6%96%B0%E5%A4%8D%E6%9D%82%E5%BA%A6.jpg)
 
-# 各职级CMOD
+# 各职级COMD
 
-## P5（开发工程师） CMOD
+## P5（开发工程师） COMD
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P5-%E6%8A%80%E6%9C%AF.jpg)
 
@@ -47,7 +47,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P5-%E7%AE%A1%E7%90%86.jpg)
 
-## P6（高级工程师） CMOD
+## P6（高级工程师） COMD
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P6-%E6%8A%80%E6%9C%AF.jpg)
 
@@ -55,7 +55,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P6-%E7%AE%A1%E7%90%86.jpg)
 
-## P7（技术专家） CMOD
+## P7（技术专家） COMD
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P7-%E6%8A%80%E6%9C%AF.jpg)
 
@@ -63,7 +63,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P7-%E7%AE%A1%E7%90%86.jpg)
 
-## P8（高级技术专家） CMOD
+## P8（高级技术专家） COMD
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P8-%E6%8A%80%E6%9C%AF.jpg)
 
@@ -71,7 +71,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P8-%E7%AE%A1%E7%90%86.jpg)
 
-## P9（资深技术专家） CMOD
+## P9（资深技术专家） COMD
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/company-promotion-guide/P9-%E6%8A%80%E6%9C%AF.jpg)
 
