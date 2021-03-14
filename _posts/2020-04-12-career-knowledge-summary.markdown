@@ -10,6 +10,12 @@ tags:
     - 职业生涯
 ---
 
+## 如何做好个人发展计划
+
+![](https://raw.githubusercontent.com/wudashan/blog-picture/master/career-knowledge-summary/%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E4%B8%AA%E4%BA%BA%E5%8F%91%E5%B1%95%E8%AE%A1%E5%88%92.png)
+
+[如何做好个人发展计划.xmind（点此下载）](https://github.com/wudashan/blog-picture/blob/master/career-knowledge-summary/%E5%A6%82%E4%BD%95%E5%81%9A%E5%A5%BD%E4%B8%AA%E4%BA%BA%E5%8F%91%E5%B1%95%E8%AE%A1%E5%88%92.xmind)
+
 ## 职业生涯的8个重要技能
 
 ![](https://raw.githubusercontent.com/wudashan/blog-picture/master/8-important-skills/%E8%81%8C%E4%B8%9A%E7%94%9F%E6%B6%AF%E7%9A%848%E4%B8%AA%E9%87%8D%E8%A6%81%E6%8A%80%E8%83%BD.png)
