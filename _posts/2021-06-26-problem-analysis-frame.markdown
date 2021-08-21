@@ -22,7 +22,7 @@ tags:
 
 ## 框架公式
 
-收集资料 + 理论基础/认知经验 --逻辑判断--> 结论
+![](https://github.com/wudashan/blog-picture/raw/master/problem-analysis-frame/Untitled%20Diagram.png)
 
 ## 框架制约因素
 
